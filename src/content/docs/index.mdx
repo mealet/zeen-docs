@@ -1,38 +1,41 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Zero-cost Efficient Execution Natively
+description: A statically typed compiling programming language
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  image:
+    file: ../../assets/Zeen.png
+  tagline: Zeen is a modern systems programming language focused on performance, safety and simplicity.
   actions:
-    - text: Example Guide
+    - text: Get Started
       link: /guides/example/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Github
+      link: https://github.com/mealet/zeen
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Code } from '@astrojs/starlight/components';
 
-## Next steps
+<Card title="Quick Installation" icon="down-arrow">
+  <Code code="curl -fsSL https://zeen.dev/install.sh | sh" lang="bash" />
+</Card>
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+<CardGrid>
+	<Card title="Familiar by Design" icon="heart">
+		A clean, modern syntax inspired by Rust and Zig. If you know either, Zeen already feels familiar.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+
+	<Card title="Native Performance" icon="rocket">
+		Built on LLVM, compiles to optimized native code - delivering the performance you expect from a systems language.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+
+	<Card title="Move Semantics" icon="random">
+		Explicit ownership with move semantics provide predictable memory management without a garbage collector or hidden runtime overhead.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+
+	<Card title="Freedom to Build" icon="approve-check">
+	  No unnecessary restrictions. Zeen gives you direct control over your data, memory and program flow.
 	</Card>
 </CardGrid>
