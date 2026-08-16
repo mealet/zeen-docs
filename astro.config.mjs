@@ -1,17 +1,28 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-// import starlightRosePine from 'starlight-theme-rose-pine';
+
+import zeenGrammarFile from './src/assets/zeen.tmLanguage.json';
+
+const zeenLanguage = {
+	...zeenGrammarFile,
+	aliases: ['zeen', 'zn']
+}
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Zeen',
-			// plugins: [starlightRosePine()],
 			logo: {
 				light: './src/assets/Zeen.png',
 				dark: './src/assets/Zeen.png',
+			},
+			expressiveCode: {
+				themes: ['kanagawa-wave'],
+				shiki: {
+					langs: [zeenLanguage]
+				},
 			},
 			customCss: [
 				'./src/styles/custom.css',
@@ -22,6 +33,7 @@ export default defineConfig({
 					label: 'Getting Started',
 					items: [
 						{ label: 'Introduction', slug: 'getting-started/introduction' },
+						{ label: 'Examples', slug: 'getting-started/examples' },
 					],
 				},
 			],
