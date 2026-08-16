@@ -10,6 +10,17 @@ fn main() {
 }
 ```
 
+## Formatting Strings
+```zn
+fn greet_message(name: []const char) []const char {
+  @format("Hello, {}!", name);
+}
+
+fn main() {
+  @println("{}", greet_message("mealet"));
+}
+```
+
 ## Structures
 ```zn
 struct Person {
