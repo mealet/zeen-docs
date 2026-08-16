@@ -87,3 +87,7 @@ fn main() {
   free_me(pointer);
 }
 ```
+
+----
+
+More examples of specific language's spheres you'll find in the relevant topics.
