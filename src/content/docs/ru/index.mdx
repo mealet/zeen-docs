@@ -1,0 +1,45 @@
+---
+title: Zeen
+head:
+  - tag: title
+    content: Zeen
+description: Статически типизированный компилируемый язык программирования
+template: splash
+hero:
+  title: Эффективность без компромисов.
+  image:
+    file: /public/Zeen.png
+  tagline: Zeen - это современный системный язык программирования, ориентированный на производительность, безопасность и простоту.
+  actions:
+    - text: Начать
+      link: /getting-started/introduction/
+      icon: right-arrow
+    - text: Github
+      link: https://github.com/mealet/zeen
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, Code } from '@astrojs/starlight/components';
+
+<Card title="Быстрая установка" icon="down-arrow">
+  <Code code="curl -fsSL https://zeen.dev/install.sh | sh" lang="bash" />
+</Card>
+
+<CardGrid>
+	<Card title="Знакомый по Дизайну" icon="heart">
+		Чистый и современный синтаксис был вдохновлён языками Rust и Zig. Если вы знаете один из них - Zeen покажется знакомым и простым.
+	</Card>
+
+	<Card title="Нативная Производительность" icon="rocket">
+	  Создан с LLVM, компилируется в оптимизированный платформенный код, что даёт ту производительность, которую вы ожидаете.
+	</Card>
+
+	<Card title="Move Семантика" icon="random">
+	  Явные правила владения с move семантикой дают предсказуемое поведение памяти БЕЗ сборщика мусора или скрытых runtime расходов.
+	</Card>
+
+	<Card title="Свободный для Создания" icon="approve-check">
+	  Никаких лишних строгостей. Zeen даёт вам прямой контроль ваших данных, памяти и всего цикла программы.
+	</Card>
+</CardGrid>
