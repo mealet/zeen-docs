@@ -26,7 +26,11 @@ export default defineConfig({
 			},
 			customCss: [
 				'./src/styles/custom.css',
+				'./src/styles/landing.css',
 			],
+			components: {
+				ThemeSelect: './src/components/ThemeSelect.astro'
+			},
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/mealet/zeen' }],
 			sidebar: [
 				{
