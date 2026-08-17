@@ -50,9 +50,24 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Getting Started',
+					translations: {
+						ru: 'Начало',
+					},
 					items: [
-						{ label: 'Introduction', slug: 'getting-started/introduction' },
-						{ label: 'Examples', slug: 'getting-started/examples' },
+						{
+							label: 'Introduction',
+							slug: 'getting-started/introduction',
+							translations: {
+								ru: 'Вступление'
+							}
+						},
+						{
+							label: 'Examples',
+							slug: 'getting-started/examples',
+							translations: {
+								ru: 'Примеры'
+							}
+						},
 					],
 				},
 			],

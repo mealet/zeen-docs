@@ -4,7 +4,7 @@ description: An introduction to Zeen Programming Language
 ---
 
 # What is Zeen
-**Zeen** is a modern systems programming language designed for simplicity of program flow control.
+**<u>Zeen</u>** - a modern systems programming language designed for simplicity of program flow control.
 It provides toolchains and compiler's rules to easily operate the data and automatically drop it after usage with move semantics to avoid any runtime overhead.
 The main idea is to create a tool to develop efficient software where most errors are catched at compile time.
 

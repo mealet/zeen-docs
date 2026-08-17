@@ -1,19 +1,19 @@
 ---
-title: Examples
-description: Small code examples
+title: Примеры
+description: Небольшие примеры кода
 ---
 
-## Hello World
+## "Привет, Мир!"
 ```zn
 fn main() {
-  @println("Hello, World!");
+  @println("Привет, Мир!");
 }
 ```
 
-## Formatting Strings
+## Форматирование строк
 ```zn
 fn greet_message(name: []const char) []const char {
-  @format("Hello, {}!", name)
+  @format("Привет, {}!", name)
 }
 
 fn main() {
@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-## Structures
+## Работа со структурами
 ```zn
 struct Person {
   age: u32,
@@ -32,7 +32,7 @@ struct Person {
 
   pub fn birthday(*self) {
     self.age += 1;
-    @println("Happy, Birthday!");
+    @println("С днём рождения!");
   }
 
   pub fn get_age(*const self) u32 {
@@ -44,25 +44,25 @@ fn main() {
   let person = Person.new(26);
   person.birthday();
 
-  @println("Current age: {}", person.get_age());
+  @println("Текущий возраст: {}", person.get_age());
 }
 ```
 
-## Generics
+## Общие типы
 ```zn
 fn print_this[T: Display](value: T) {
-  @println("Yeah, I've printed this: {}", value);
+  @println("Вот, я вывел для вас: {}", value);
 }
 
 fn main() {
   print_this(123);
-  print_this("hello!");
+  print_this("привет!");
 }
 ```
 
-## Extern functions (with generic example)
+## Extern функции (с общими типами)
 ```zn
-/* declaration of extern C functions */
+/* декларация extern C функций */
 extern fn malloc(usize) *void;
 extern fn free(*void);
 
@@ -75,7 +75,7 @@ fn free_me[T](ptr: *T) {
 }
 
 fn main() {
-  /* Note how we're filling generics in non-type expressions */
+  /* Заметьте, как мы заполняем общие типы в обычных выражениях (не типах) */
   let pointer = alloc_me #[i32](3);
 
   *pointer = 123;
@@ -90,4 +90,4 @@ fn main() {
 
 ----
 
-More examples of specific language's spheres you'll find in the relevant topics.
+Больше примеров разных областей языка вы найдёте в соответствующих темах.
