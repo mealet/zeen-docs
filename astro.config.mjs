@@ -15,8 +15,8 @@ export default defineConfig({
 		starlight({
 			title: 'Zeen',
 			logo: {
-				light: './src/assets/Zeen.png',
-				dark: './src/assets/Zeen.png',
+				light: './public/Zeen.png',
+				dark: './public/Zeen.png',
 			},
 			expressiveCode: {
 				themes: ['kanagawa-wave'],
