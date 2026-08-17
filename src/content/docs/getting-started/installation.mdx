@@ -1,0 +1,72 @@
+---
+title: Installation
+description: Instruction to install Zeen
+---
+
+import { Aside, Steps, FileTree, Code } from '@astrojs/starlight/components'
+
+# Quick Installation
+
+<Aside>
+  Currently quick installation for Zeen is not available, you can watch after development process, or provide your help for faster implementation on [Github](https://github.com/mealet/zeen)
+</Aside>
+
+# Build From Source
+
+<Steps>
+
+1. Install the [Rust Programming Language](https://rust-lang.org/) from the official
+
+2. Install [LLVM](https://www.llvm.org/docs/GettingStarted.html) following the tutorial.
+
+3. Clone **Zeen** actual repository:
+
+   ```bash
+   git clone https://github.com/mealet/zeen
+   ```
+
+4. Open cloned directory in terminal and build compiler:
+
+   ```
+   cd compiler
+   cargo build --release
+   ```
+
+5. You'll find the executable in the `target/release` directory:
+
+   <FileTree>
+      - compiler
+         - target
+            - release
+              - **zeen** compiler executable (on Windows `zeen.exe`)
+              - ...
+   </FileTree>
+
+</Steps>
+
+# Compiler Usage
+
+<Steps>
+
+1. Create new `.zn` file and write code:
+   
+   <Code code={`fn main() {
+       @println("Hello, World!");
+}`} lang="zn" title="main.zn" />
+
+2. Compile source to binary:
+
+   ```bash
+   zeen main.zn output
+   ```
+
+3. Run compiler executable program:
+
+   ```bash
+   ./output
+   ```
+   ```
+   Hello, World!
+   ```
+
+</Steps>

@@ -68,6 +68,13 @@ export default defineConfig({
 								ru: 'Примеры'
 							}
 						},
+						{
+							label: 'Installation',
+							slug: 'getting-started/installation',
+							translations: {
+								ru: 'Установка'
+							}
+						}
 					],
 				},
 			],
