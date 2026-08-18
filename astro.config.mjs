@@ -48,6 +48,7 @@ export default defineConfig({
 
 			// sidebar
 			sidebar: [
+				// Getting Started
 				{
 					label: 'Getting Started',
 					translations: {
@@ -75,6 +76,121 @@ export default defineConfig({
 								ru: 'Установка'
 							}
 						}
+					],
+				},
+
+				// Language Basics
+
+				{
+					label: 'Language Basics',
+					translations: {
+						ru: 'Основы языка',
+					},
+					items: [
+						{
+							label: 'Zeen Modules',
+							slug: 'language-basics/zeen-modules',
+							translations: {
+								ru: 'Модули в Zeen'
+							}
+						},
+
+						{
+							label: 'Constant Literals',
+							slug: 'language-basics/constant-literals',
+							translations: {
+								ru: 'Литералы'
+							}
+						},
+
+						{
+							label: 'Variables and Bindings',
+							slug: 'language-basics/variables-and-bindings',
+							translations: {
+								ru: 'Переменные и Привязки'
+							}
+						},
+
+						{
+							label: 'Operators',
+							slug: 'language-basics/operators',
+							translations: {
+								ru: 'Операторы'
+							}
+						},
+
+						{
+							label: 'Constructions',
+							slug: 'language-basics/constructions',
+							translations: {
+								ru: 'Конструкции'
+							}
+						},
+
+						{
+							label: 'Basic Types',
+							slug: 'language-basics/basic-types',
+							translations: {
+								ru: 'Базовые Типы'
+							}
+						},
+
+						{
+							label: 'Pointers',
+							slug: 'language-basics/pointers',
+							translations: {
+								ru: 'Указатели'
+							}
+						},
+					],
+				},
+
+				// Advanced Declarations
+				{
+					label: 'Advanced Declarations',
+					translations: {
+						ru: 'Продвинутые декларации',
+					},
+					items: [
+						{
+							label: 'Functions',
+							slug: 'advanced-declarations/functions',
+							translations: {
+								ru: 'Функции'
+							}
+						},
+
+						{
+							label: 'Imports and Visibility',
+							slug: 'advanced-declarations/imports-and-visibility',
+							translations: {
+								ru: 'Импорты и Публичность'
+							}
+						},
+
+						{
+							label: 'Structures and Methods',
+							slug: 'advanced-declarations/structures-and-methods',
+							translations: {
+								ru: 'Структуры и Методы'
+							}
+						},
+
+						{
+							label: 'Enums',
+							slug: 'advanced-declarations/enums',
+							translations: {
+								ru: 'Перечисления (enums)'
+							}
+						},
+
+						{
+							label: 'Extern Elements',
+							slug: 'advanced-declarations/extern-elements',
+							translations: {
+								ru: 'Сторонние элементы (extern)'
+							}
+						},
 					],
 				},
 			],
