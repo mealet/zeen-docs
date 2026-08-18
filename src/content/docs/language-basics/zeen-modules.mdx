@@ -35,3 +35,25 @@ fn main() {
   @println("Result: {}", calculation);
 }
 ```
+
+import { FileTree } from '@astrojs/starlight/components';
+
+It's highly recommended to use `main.zn` name for the entry file. Currently Zeen doesn't have package manager 
+which could automatically initialize project for you. I suggest to use next template:
+
+<FileTree>
+
+- README.md
+- LICENSE if necessary
+- docs/
+- src/
+  - main.zn
+
+</FileTree>
+
+To automatically initialize all these files you can run this command inside project directory:
+```bash
+mkdir -p docs src
+touch {README.md,LICENSE,src/main.zn}
+printf '%s\n' 'fn main() {' '  @println("Hello, Zeen!");' '}' > src/main.zn
+```
