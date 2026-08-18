@@ -124,7 +124,7 @@
         },
         {
           "name": "constant.numeric.integer.zeen",
-          "match": "\\b[0-9]+\\b"
+          "match": "\\b[0-9]+(?:_[0-9]+)*\\b"
         }
       ]
     },
