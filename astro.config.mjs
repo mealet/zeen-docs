@@ -193,6 +193,54 @@ export default defineConfig({
 						},
 					],
 				},
+
+				{
+					label: 'Advanced Type System',
+					translations: {
+						ru: 'Продвинутые декларации',
+					},
+					items: [
+						{
+							label: 'Stack and Heap',
+							slug: 'advanced-type-system/stack-and-heap',
+							translations: {
+								ru: 'Стэк и Куча'
+							}
+						},
+
+						{
+							label: 'Move Semantics',
+							slug: 'advanced-type-system/move-semantics',
+							translations: {
+								ru: 'Move Семантика'
+							}
+						},
+
+						{
+							label: 'User Interfaces',
+							slug: 'advanced-type-system/user-interfaces',
+							translations: {
+								ru: 'Пользовательские Интерфейсы'
+							}
+						},
+
+						{
+							label: 'Compiler Interfaces',
+							slug: 'advanced-type-system/compiler-interfaces',
+							translations: {
+								ru: 'Интерфейсы Компилятора'
+							}
+						},
+
+						{
+							label: 'Generic Types',
+							slug: 'advanced-type-system/generic-types',
+							translations: {
+								ru: 'Общие Типы (Generic)'
+							}
+						},
+					],
+				},
 			],
 		}),
 	],
