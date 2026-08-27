@@ -1,3 +1,205 @@
 ---
 title: Constructions
 ---
+
+On this page described main Zeen statements/expressions constructions used for controlling program flow.
+They might be familiar for you from other languages.
+
+## Basic
+
+### Calls
+Calls can be: function calls, method calls, macro call. Can be expression that returns value from call <br/>
+Syntax:
+```zeen
+callee(args)
+```
+
+Possible callees:
+```zeen
+// function call
+foo("hello");
+
+// compiler macro call
+@println("hello");
+
+// struct static call
+Foo.new("hello")
+
+// struct instance (method) call
+foo_instance.func("hello")
+
+// indirect call
+let func: fn(i32) = foo;
+func(123);
+```
+
+### Blocks
+Blocks can be small execution context inside statement or can be expression withh return value.<br/>
+Syntax:
+```zeen
+{
+  statements
+}
+```
+
+:::note[Remember that]
+To return value from **block** use only **trailing expression return**:
+```zeen
+let a = {
+  // code before return
+  123
+};
+```
+Usage of `return` keyword will lead to return from function.
+:::
+
+## Conditional Constructions
+Conditional constructions are the basic statements that let you switch branches on provided condition result.
+
+### `If` / `If-Else`
+Syntax:
+```zeen
+if (condition) expression
+if (condition) { statements }
+
+if (condition) expression else expression
+if (condition) { statements } else { statements }
+```
+
+The `if` construction is an **expression**, that means you can use it for conditional variables assign,
+or combine it in to get `else if` variation:
+```zeen
+let a = 5;
+let conditional = if (a == 5) 123 else 321;
+
+if (conditional == 123) {
+  // ...
+} else if (conditional == 321) {
+  // ...
+} else {
+  // ...
+}
+```
+
+### `Switch`
+Syntax:
+```zeen
+// Note that statements block (`{ }`) is also "expression"
+
+switch (expression) {
+  // basic value comparison
+  value => expression,
+
+  // binding value to `bind_name` for guard
+  bind_name if (condition) => expression,
+
+  // wildcard with guard (means only guard)
+  _ if (condition) => expression,
+
+  // wildcard (in other languages `else`/`default`)
+  _ => expression,
+}
+```
+
+Example:
+```zeen
+fn main() {
+  let value = 123;
+
+  switch (value) {
+    1 => @println("this is one!"),
+    2 => @println("not exactly one"),
+
+    val if (val > 500) => @println("woah, very big!"),
+    _ if (0 == 1) => @println("wth is this"),
+
+    _ => @println("Seems like something else"),
+  };
+}
+```
+
+## Loops
+Loops are constructions type that leads to cyclic statements conditional repeat.
+
+### `While`
+Syntax:
+```zeen
+while (condition) expression
+while (condition) { statements }
+```
+
+Example:
+```zeen
+fn main() {
+  let i = 0;
+
+  while (i < 10) {
+    @println("{}", i);
+
+    i += 1;
+  }
+
+  @println("loop ended");
+}
+```
+
+### `For`
+Syntax:
+```zeen
+for (varname : iterator) expression
+for (varname : iterator) { statements }
+```
+
+Supported iterators types:
+```zeen
+// integer signed types
+i8 i16 i32 i64 isize
+
+// integer unsigned types
+u8 u16 u32 u64 usize
+
+// array types
+[N]T
+
+// slice types
+[]T
+```
+
+Example:
+```zeen
+for (i : 10) {
+  @println("{}", i);
+}
+```
+
+## Program Flow Controllers
+
+### `return`
+Returns provided expression value for current function. <br/>
+Syntax:
+```zeen
+return; // empty/void return
+return expression; // expression return
+```
+
+Example:
+```zeen
+fn foo() i32 {
+  return 123 + 321 * 2;
+}
+```
+
+### `break`
+Breaks current loop execution and returns to the branch after the loop. <br/>
+Syntax:
+```zeen
+break;
+```
+
+Example:
+```zeen
+for (i : 10) {
+  if (i == 6)
+    break;
+}
+```
