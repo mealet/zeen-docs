@@ -1,0 +1,51 @@
+---
+title: Imports and Visibility
+---
+
+import { FileTree } from '@astrojs/starlight/components';
+
+Zeen modules are just `.zn` files, joined by the include system. Modules connect with the `use` word: the compiler resolves every import by itself, links modules together and reports collisions (duplicate definitions) with both locations. The project root is the dir of the file the compilation started from (`main.zn` in `zeen main.zn output`):
+
+<FileTree>
+
+- main.zn entry file, its dir is the project root
+- utils/
+  - helpers.zn reachable as `root.utils.helpers` (or from main: `utils.helpers`)
+
+</FileTree>
+
+## Core
+Core library is injected automatically, no `use` needed: `Option`, `Result`, `Copy`, `Drop`, `Display`, `Iterator` and etc. are always in scope.
+
+Names declared in `core` are reserved: a custom item with the same name is an error.
+
+## Use
+Dots map to directories, the last segment to a `.zn` file:
+```zn
+use std.string;
+use std.c.posix.pthread;
+```
+
+The first segment picks the base:
+
+| Prefix | Base |
+|--------|------|
+| `root` | project root |
+| `super` | parent dir of current file |
+| `std` | std root (`--std`, `$ZEEN_STD` or `~/.zeen/std`) |
+| (none) | dir of current file |
+
+```zn
+use root.utils.helpers;
+use super.sibling;
+```
+
+`@format` pulls in `std.string` and fat closures pull in `std.fn` automatically.
+
+## Visibility
+Items are private by default, `pub` opens them for other modules:
+```zn
+pub fn triangulate() { ... }
+```
+
+Accessing a private item from another module is an error.
