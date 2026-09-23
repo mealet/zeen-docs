@@ -29,7 +29,7 @@ Foo.new("hello")
 foo_instance.func("hello")
 
 // indirect call
-let func: fn(i32) = foo;
+let func: fn(i32) void = foo;
 func(123);
 ```
 
@@ -52,6 +52,8 @@ let a = {
 ```
 Usage of `return` keyword will lead to return from function.
 :::
+
+The trailing semicolon after `if` / `while` / `for` / bare block is optional.
 
 ## Conditional Constructions
 Conditional constructions are the basic statements that let you switch branches on provided condition result.
@@ -82,25 +84,6 @@ if (conditional == 123) {
 ```
 
 ### `Switch`
-Syntax:
-```zeen
-// Note that statements block (`{ }`) is also "expression"
-
-switch (expression) {
-  // basic value comparison
-  value => expression,
-
-  // binding value to `bind_name` for guard
-  bind_name if (condition) => expression,
-
-  // wildcard with guard (means only guard)
-  _ if (condition) => expression,
-
-  // wildcard (in other languages `else`/`default`)
-  _ => expression,
-}
-```
-
 Example:
 ```zeen
 fn main() {
@@ -117,6 +100,8 @@ fn main() {
   };
 }
 ```
+
+Full description in [Switch](/functions-closures/switch/) topic.
 
 ## Loops
 Loops are constructions type that leads to cyclic statements conditional repeat.
@@ -163,6 +148,8 @@ u8 u16 u32 u64 usize
 
 // slice types
 []T
+
+// structs with Iterator
 ```
 
 Example:
@@ -202,4 +189,11 @@ for (i : 10) {
   if (i == 6)
     break;
 }
+```
+
+### `continue`
+Skips current loop iteration and returns to the loop condition. <br/>
+Syntax:
+```zeen
+continue;
 ```
