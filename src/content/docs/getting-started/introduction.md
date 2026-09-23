@@ -11,6 +11,11 @@ The main idea is to create a tool to develop efficient software where most error
 Zeen took out many design choices from Rust and Zig programming languages, which makes it more familiar for most developers.
 Besides that it introduces its own approach to ownership, memory management, and compile-time features.
 
+:::note[Please Note]
+- There is no borrow checker, only move semantics
+- Compiles through LLVM 22 to native binary
+:::
+
 # Why was Zeen created
 Personally me (founder of language and writer of first version of this documentation - [@mealet](https://github.com/mealet)) was very fancy
 about Rust's ownership and auto-drops system, but also I wanted more freedom like in Zig. I've chosen freedom of Zig and, once a day, I've got untrackable
