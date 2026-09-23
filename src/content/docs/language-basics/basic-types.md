@@ -31,6 +31,13 @@ Default float literal type is `f64`.
 | `void` | No value (use `@void()` to make one) |
 | `never` | Never returns (e.g. `@panic`) |
 
+## Typeof
+`typeof EXPR` takes the type of an expression without executing it. Combined with `@typename` it names the type:
+```zn
+let func: typeof hello = hello;
+@println("{}", @typename(typeof 123));
+```
+
 ## Casts
 Implicit casts happen right in expression. <br/>
 Explicit casts use `@as`:
