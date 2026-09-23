@@ -17,7 +17,7 @@ import { Aside, Steps, FileTree, Code } from '@astrojs/starlight/components'
 
 1. Install the [Rust Programming Language](https://rust-lang.org/) from the official
 
-2. Install [LLVM](https://www.llvm.org/docs/GettingStarted.html) following the tutorial.
+2. Install [LLVM 22](https://www.llvm.org/docs/GettingStarted.html) following the tutorial.
 
 3. Clone **Zeen** actual repository:
 
@@ -58,6 +58,12 @@ import { Aside, Steps, FileTree, Code } from '@astrojs/starlight/components'
 
    ```bash
    zeen main.zn output
+   ```
+
+   To see all supported targets:
+
+   ```bash
+   zeen --targets-list
    ```
 
 3. Run compiler executable program:
