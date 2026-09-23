@@ -63,13 +63,6 @@ export default defineConfig({
 							}
 						},
 						{
-							label: 'Examples',
-							slug: 'getting-started/examples',
-							translations: {
-								ru: 'Примеры'
-							}
-						},
-						{
 							label: 'Installation',
 							slug: 'getting-started/installation',
 							translations: {
@@ -81,6 +74,13 @@ export default defineConfig({
 							slug: 'getting-started/compiler-cli',
 							translations: {
 								ru: 'Компилятор CLI'
+							}
+						},
+						{
+							label: 'Examples',
+							slug: 'getting-started/examples',
+							translations: {
+								ru: 'Примеры'
 							}
 						},
 					],
@@ -98,6 +98,13 @@ export default defineConfig({
 							slug: 'language-basics/zeen-modules',
 							translations: {
 								ru: 'Модули в Zeen'
+							}
+						},
+						{
+							label: 'Basic Types',
+							slug: 'language-basics/basic-types',
+							translations: {
+								ru: 'Базовые Типы'
 							}
 						},
 						{
@@ -129,10 +136,10 @@ export default defineConfig({
 							}
 						},
 						{
-							label: 'Basic Types',
-							slug: 'language-basics/basic-types',
+							label: 'Arrays, Slices and Ranges',
+							slug: 'language-basics/arrays-slices-ranges',
 							translations: {
-								ru: 'Базовые Типы'
+								ru: 'Массивы, Слайсы и Диапазоны'
 							}
 						},
 						{
@@ -140,13 +147,6 @@ export default defineConfig({
 							slug: 'language-basics/pointers',
 							translations: {
 								ru: 'Указатели'
-							}
-						},
-						{
-							label: 'Arrays, Slices and Ranges',
-							slug: 'language-basics/arrays-slices-ranges',
-							translations: {
-								ru: 'Массивы, Слайсы и Диапазоны'
 							}
 						},
 					],

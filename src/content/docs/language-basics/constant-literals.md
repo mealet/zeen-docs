@@ -36,7 +36,7 @@ Example:
 Default float literal type is `f64`.
 
 ## Boolean Literals
-Boolean constants are just 0/1 representation keywords with specified type. <br/>
+Boolean constants are keywords with specified type. <br/>
 Keywords to use:
 ```zn
 true, false
@@ -48,21 +48,21 @@ Boolean literal type is `bool`.
 A _char_ is essentially an unsigned 1-byte integer that contains symbol representation inside. <br/>
 To define char use single quote:
 ```zn
-'a', '\n', '😀'
+'a', '\n'
 ```
 
 Character literal type is `char`.
 
 ## Byte Char
-Byte character literall is similar as _char_, but it returns `u8` (unsigned 1 byte integer) type. <br/>
+Byte character literal is similar as _char_, but it returns `u8` (unsigned 1 byte integer) type. <br/>
 Usage:
 ```zn
-b'a', b'\n', b'😀'
+b'a', b'\n'
 ```
 
 ## String
 Strings in Zeen may seem familiar like in C programming language. <br/>
-Core mechanics are similar: string is an allocated sequence of characters with '\0' terminator.
+Core mechanics are similar: string literal ends with '\0' terminator.
 
 To define string use double quotes:
 ```zn
@@ -94,3 +94,10 @@ To define array use brackets:
 ```
 
 Array type is `[N]T` (example above is `[4]i32`)
+
+Fast init with repeated value:
+```zn
+[0; 1024]
+```
+
+Type of example above is `[1024]i32`
