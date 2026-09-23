@@ -12,7 +12,7 @@ fn main() {
 
 ## Formatting Strings
 ```zn
-fn greet_message(name: []const char) []const char {
+fn greet_message(name: []const char) String {
   @format("Hello, {}!", name)
 }
 
@@ -85,6 +85,48 @@ fn main() {
   @println("{} {} {}", *pointer, *(pointer + 1), *(pointer + 2));
 
   free_me(pointer);
+}
+```
+
+## Result and Switch
+```zn
+fn divide(a: i32, b: i32) Result[i32, i32] {
+  if (b == 0) {
+    return Result.Err(-1);
+  };
+
+  Result.Ok(a / b)
+}
+
+fn main() {
+  switch (divide(7, 2)) {
+    .Ok(v) => @println("ok: {}", v),
+    .Err(e) => @println("err: {}", e),
+  };
+}
+```
+
+## Iterators
+```zn
+struct Counter {
+  n: i32,
+}
+
+implement Iterator : Counter {
+  fn next(*self) Option[i32] {
+    if (self.n < 3) {
+      self.n += 1;
+      return Option.Some(self.n);
+    };
+
+    Option.None
+  }
+}
+
+fn main() {
+  for (i : Counter { .n = 0 }) {
+    @println("{}", i);
+  }
 }
 ```
 
