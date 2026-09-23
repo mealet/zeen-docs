@@ -18,7 +18,7 @@ Table of supported binary operators:
 | `==` | `Eq` | Equality comparison |
 | `!=` | `Ne` | Negated equality comparison |
 | `<` | `Lt` | `true` if **left** less than **right** |
-| `>` | `Bt` | `true` if **left** greater than **right** |
+| `>` | `Gt` | `true` if **left** greater than **right** |
 | `<=` | `Le` | `true` if **left** less or equals **right** |
 | `>=` | `Ge` | `true` if **left** greater or equals **right** |
 |     |     |     |
@@ -28,8 +28,31 @@ Table of supported binary operators:
 | `&` | `BitAnd` | Bits level AND operation |
 | `\|` | `BitOr` | Bits level OR operation |
 | `^` | `BitXor` | Bits level XOR operation |
-| `<<` | `Shl` | Shift **left** by **N right** bits to left |
-| `>>` | `Shr` | Shift **left** by **N right** bits to right |
+| `<<` | `BitShl` | Shift **left** by **N right** bits to left |
+| `>>` | `BitShr` | Shift **left** by **N right** bits to right |
+
+`&&` and `||` always evaluate both sides (no short-circuit).
+
+## Overloading
+Overloadable operators map to interfaces (`< > <= >= && ||` are not):
+
+| Operator | Interface | Method |
+|----------|-----------|--------|
+| `+` | `Add` | `add` |
+| `-` | `Sub` | `sub` |
+| `*` | `Mul` | `mul` |
+| `/` | `Div` | `div` |
+| `%` | `Mod` | `mod` |
+| `==` `!=` | `Eq` | `eq` |
+| `&` | `BitAnd` | `bit_and` |
+| `\|` | `BitOr` | `bit_or` |
+| `^` | `BitXor` | `bit_xor` |
+| `<<` | `BitShl` | `bit_shl` |
+| `>>` | `BitShr` | `bit_shr` |
+| `-EXPR` | `Neg` | `neg` |
+| `!EXPR` | `Not` | `not` |
+| `~EXPR` | `BitNot` | `bit_not` |
+| `*EXPR` | `Deref` | `deref` |
 
 ## Unary Operations
 Unary operations involve single operand instruction.

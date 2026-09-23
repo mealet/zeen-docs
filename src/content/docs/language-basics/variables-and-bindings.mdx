@@ -33,6 +33,28 @@ let var: i32 = 123;
 let var = 123;
 ```
 
+## Globals
+
+Top-level globals need explicit type and value. <br/>
+Syntax:
+```zn
+const NAME: type = value;
+let name: type = value;
+```
+
+Example:
+```zn
+const MAX: i32 = 100;
+let counter: i32 = 0;
+```
+
+## Discard
+
+Use `_` to discard value without drop:
+```zn
+let _ = foo();
+```
+
 ## Detailed Example
 
 Variable is a pointer to temporary stack-allocated data, existing in current function context. It provides the means to load,
