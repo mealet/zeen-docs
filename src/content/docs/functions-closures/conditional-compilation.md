@@ -1,3 +1,66 @@
 ---
 title: Conditional Compilation
 ---
+
+Directives pick code by target and mode. They work at three levels: declarations, statements and expressions. Non-matching branches never reach resolve and typecheck.
+
+## Directives
+| Directive | Values | Description |
+|-----------|--------|-------------|
+| `@os` | `linux`, `windows`, `darwin`, `freebsd`, `android`, `wasip1` | Target OS |
+| `@arch` | `x86_64`, `aarch64`, `i686`, `wasm32`, `wasm64` | Target CPU |
+| `@env` | `gnu`, `musl`, `msvc`, `android` | Target environment |
+| `@target` | full triple | Exact target triple |
+| `@family` | `unix`, `windows`, `wasm` | Platform family |
+| `@debug` | none | Debug mode |
+| `@release` | none | Release mode |
+
+Values with `|` mean OR. Directives chain with `else`:
+```zn
+@os[linux] {
+  fn platform() i32 {
+    return 1;
+  }
+}
+else @os[windows] {
+  fn platform() i32 {
+    return 2;
+  }
+}
+else {
+  fn platform() i32 {
+    return 3;
+  }
+}
+```
+
+Statements flatten inline, expressions pick a branch value:
+```zn
+@os[linux] {
+  @println("linux");
+}
+
+let threads = @debug { 1 } else { 8 };
+```
+
+## Variables
+`@var[...]` becomes a literal for the current target:
+
+| Variable | Literal |
+|----------|---------|
+| `@var[os]` | string |
+| `@var[arch]` | string |
+| `@var[env]` | string |
+| `@var[target]` | string |
+| `@var[family]` | string |
+| `@var[debug]` | bool |
+| `@var[release]` | bool |
+
+```zn
+fn main() {
+  let os = @var[os];
+  let arch = @var[arch];
+
+  @println("You're on: {} {}", os, arch);
+}
+```
