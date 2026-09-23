@@ -75,12 +75,18 @@ export default defineConfig({
 							translations: {
 								ru: 'Установка'
 							}
-						}
+						},
+						{
+							label: 'Compiler CLI',
+							slug: 'getting-started/compiler-cli',
+							translations: {
+								ru: 'Компилятор CLI'
+							}
+						},
 					],
 				},
 
 				// Language Basics
-
 				{
 					label: 'Language Basics',
 					translations: {
@@ -94,7 +100,6 @@ export default defineConfig({
 								ru: 'Модули в Zeen'
 							}
 						},
-
 						{
 							label: 'Constant Literals',
 							slug: 'language-basics/constant-literals',
@@ -102,7 +107,6 @@ export default defineConfig({
 								ru: 'Литералы'
 							}
 						},
-
 						{
 							label: 'Variables and Bindings',
 							slug: 'language-basics/variables-and-bindings',
@@ -110,7 +114,6 @@ export default defineConfig({
 								ru: 'Переменные и Привязки'
 							}
 						},
-
 						{
 							label: 'Operators',
 							slug: 'language-basics/operators',
@@ -118,7 +121,6 @@ export default defineConfig({
 								ru: 'Операторы'
 							}
 						},
-
 						{
 							label: 'Constructions',
 							slug: 'language-basics/constructions',
@@ -126,7 +128,6 @@ export default defineConfig({
 								ru: 'Конструкции'
 							}
 						},
-
 						{
 							label: 'Basic Types',
 							slug: 'language-basics/basic-types',
@@ -134,7 +135,6 @@ export default defineConfig({
 								ru: 'Базовые Типы'
 							}
 						},
-
 						{
 							label: 'Pointers',
 							slug: 'language-basics/pointers',
@@ -142,101 +142,315 @@ export default defineConfig({
 								ru: 'Указатели'
 							}
 						},
+						{
+							label: 'Arrays, Slices and Ranges',
+							slug: 'language-basics/arrays-slices-ranges',
+							translations: {
+								ru: 'Массивы, Слайсы и Диапазоны'
+							}
+						},
 					],
 				},
 
-				// Advanced Declarations
+				// Functions & Closures
 				{
-					label: 'Advanced Declarations',
+					label: 'Functions & Closures',
 					translations: {
-						ru: 'Продвинутые декларации',
+						ru: 'Функции и Замыкания',
 					},
 					items: [
 						{
 							label: 'Functions',
-							slug: 'advanced-declarations/functions',
+							slug: 'functions-closures/functions',
 							translations: {
 								ru: 'Функции'
 							}
 						},
-
 						{
-							label: 'Imports and Visibility',
-							slug: 'advanced-declarations/imports-and-visibility',
+							label: 'Closures',
+							slug: 'functions-closures/closures',
 							translations: {
-								ru: 'Импорты и Публичность'
+								ru: 'Замыкания'
 							}
 						},
-
 						{
 							label: 'Structures and Methods',
-							slug: 'advanced-declarations/structures-and-methods',
+							slug: 'functions-closures/structures-and-methods',
 							translations: {
 								ru: 'Структуры и Методы'
 							}
 						},
-
 						{
 							label: 'Enums',
-							slug: 'advanced-declarations/enums',
+							slug: 'functions-closures/enums',
 							translations: {
 								ru: 'Перечисления (enums)'
 							}
 						},
-
 						{
-							label: 'Extern Elements',
-							slug: 'advanced-declarations/extern-elements',
+							label: 'Switch',
+							slug: 'functions-closures/switch',
+							translations: {
+								ru: 'Switch'
+							}
+						},
+						{
+							label: 'Type Aliases',
+							slug: 'functions-closures/type-aliases',
+							translations: {
+								ru: 'Алиасы типов'
+							}
+						},
+						{
+							label: 'Imports and Visibility',
+							slug: 'functions-closures/imports-and-visibility',
+							translations: {
+								ru: 'Импорты и Публичность'
+							}
+						},
+						{
+							label: 'Extern',
+							slug: 'functions-closures/extern',
 							translations: {
 								ru: 'Сторонние элементы (extern)'
+							}
+						},
+						{
+							label: 'Builtin Macros',
+							slug: 'functions-closures/macros-builtin',
+							translations: {
+								ru: 'Встроенные макросы'
+							}
+						},
+						{
+							label: 'Conditional Compilation',
+							slug: 'functions-closures/conditional-compilation',
+							translations: {
+								ru: 'Условная компиляция'
 							}
 						},
 					],
 				},
 
+				// Ownership & Types
 				{
-					label: 'Advanced Type System',
+					label: 'Ownership & Types',
 					translations: {
-						ru: 'Продвинутые декларации',
+						ru: 'Владение и Типы',
 					},
 					items: [
 						{
 							label: 'Stack and Heap',
-							slug: 'advanced-type-system/stack-and-heap',
+							slug: 'ownership-types/stack-and-heap',
 							translations: {
 								ru: 'Стэк и Куча'
 							}
 						},
-
 						{
 							label: 'Move Semantics',
-							slug: 'advanced-type-system/move-semantics',
+							slug: 'ownership-types/move-semantics',
 							translations: {
 								ru: 'Move Семантика'
 							}
 						},
-
 						{
 							label: 'User Interfaces',
-							slug: 'advanced-type-system/user-interfaces',
+							slug: 'ownership-types/user-interfaces',
 							translations: {
 								ru: 'Пользовательские Интерфейсы'
 							}
 						},
-
 						{
 							label: 'Compiler Interfaces',
-							slug: 'advanced-type-system/compiler-interfaces',
+							slug: 'ownership-types/compiler-interfaces',
 							translations: {
 								ru: 'Интерфейсы Компилятора'
 							}
 						},
-
 						{
 							label: 'Generic Types',
-							slug: 'advanced-type-system/generic-types',
+							slug: 'ownership-types/generic-types',
 							translations: {
 								ru: 'Общие Типы (Generic)'
+							}
+						},
+						{
+							label: 'Printing and Formatting',
+							slug: 'ownership-types/printing-formatting',
+							translations: {
+								ru: 'Печать и Форматирование'
+							}
+						},
+						{
+							label: 'Iterators',
+							slug: 'ownership-types/iterators',
+							translations: {
+								ru: 'Итераторы'
+							}
+						},
+					],
+				},
+
+				// Library
+				{
+					label: 'Library',
+					translations: {
+						ru: 'Библиотека',
+					},
+					items: [
+						{
+							label: 'Library Overview',
+							slug: 'library/overview',
+							translations: {
+								ru: 'Обзор библиотеки'
+							}
+						},
+						{
+							label: 'Core',
+							translations: {
+								ru: 'Ядро (core)',
+							},
+							items: [
+								{
+									label: 'Ops',
+									slug: 'library/core/ops',
+									translations: { ru: 'Ops' }
+								},
+								{
+									label: 'Core IO',
+									slug: 'library/core/io',
+									translations: { ru: 'Core IO' }
+								},
+								{
+									label: 'Option',
+									slug: 'library/core/option',
+									translations: { ru: 'Option' }
+								},
+								{
+									label: 'Result',
+									slug: 'library/core/result',
+									translations: { ru: 'Result' }
+								},
+								{
+									label: 'Iter',
+									slug: 'library/core/iter',
+									translations: { ru: 'Iter' }
+								},
+								{
+									label: 'Slice',
+									slug: 'library/core/slice',
+									translations: { ru: 'Slice' }
+								},
+							],
+						},
+						{
+							label: 'Std',
+							translations: {
+								ru: 'Стандарт (std)',
+							},
+							items: [
+								{
+									label: 'Alloc',
+									slug: 'library/std/alloc',
+									translations: { ru: 'Alloc' }
+								},
+								{
+									label: 'Fn',
+									slug: 'library/std/fn',
+									translations: { ru: 'Fn' }
+								},
+								{
+									label: 'String',
+									slug: 'library/std/string',
+									translations: { ru: 'String' }
+								},
+								{
+									label: 'List',
+									slug: 'library/std/list',
+									translations: { ru: 'List' }
+								},
+								{
+									label: 'Math',
+									slug: 'library/std/math',
+									translations: { ru: 'Math' }
+								},
+								{
+									label: 'Meta',
+									slug: 'library/std/meta',
+									translations: { ru: 'Meta' }
+								},
+								{
+									label: 'Std IO',
+									slug: 'library/std/io',
+									translations: { ru: 'Std IO' }
+								},
+								{
+									label: 'Fs',
+									slug: 'library/std/fs',
+									translations: { ru: 'Fs' }
+								},
+								{
+									label: 'Net',
+									slug: 'library/std/net',
+									translations: { ru: 'Net' }
+								},
+								{
+									label: 'Http',
+									slug: 'library/std/http',
+									translations: { ru: 'Http' }
+								},
+							],
+						},
+						{
+							label: 'Std C',
+							translations: {
+								ru: 'Std C',
+							},
+							items: [
+								{
+									label: 'C Overview',
+									slug: 'library/std/c/overview',
+									translations: { ru: 'Обзор C' }
+								},
+								{
+									label: 'Libc',
+									slug: 'library/std/c/libc',
+									translations: { ru: 'Libc' }
+								},
+								{
+									label: 'Posix',
+									slug: 'library/std/c/posix',
+									translations: { ru: 'Posix' }
+								},
+								{
+									label: 'Windows',
+									slug: 'library/std/c/windows',
+									translations: { ru: 'Windows' }
+								},
+							],
+						},
+					],
+				},
+
+				// Toolchain
+				{
+					label: 'Toolchain',
+					translations: {
+						ru: 'Тулчейн',
+					},
+					items: [
+						{
+							label: 'Targets',
+							slug: 'toolchain/targets',
+							translations: {
+								ru: 'Таргеты'
+							}
+						},
+						{
+							label: 'Linking',
+							slug: 'toolchain/linking',
+							translations: {
+								ru: 'Линковка'
 							}
 						},
 					],
