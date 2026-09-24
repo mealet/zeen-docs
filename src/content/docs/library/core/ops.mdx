@@ -1,3 +1,251 @@
 ---
 title: Ops
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.ops" variant="note" size="medium" /> <br/>
+
+## Interfaces
+<Card title="Copy">
+  Empty marker to tell compiler that structure can be copied (simple load instructions)
+
+  ----
+
+  ```zeen
+  // No Methods
+  ```
+</Card>
+
+<Card title="Clone">
+  Clone structure method (simply interface without compiler markers)
+
+  ----
+
+  ```zeen
+  pub fn clone(*const self) Self;
+  ```
+</Card>
+
+<Card title="Drop">
+  Automatic function to free struct resources after it goes out of scope
+
+  ----
+
+  ```zeen
+  fn drop(self) void;
+  ```
+</Card>
+
+<Card title="Ord">
+  Comparison interface between Self structs
+
+  ----
+
+  ```zeen
+  fn cmp(*const self, other: *const Self) Ordering;
+  ```
+</Card>
+
+<Card title="Eq">
+  Interface for `==` operator between structures
+
+  ----
+
+  ```zeen
+  fn eq(*const self, other: *const Self) bool;
+  ```
+</Card>
+
+<Card title="Add">
+  `+` operator
+
+  ----
+
+  ```zeen
+  fn add(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="Sub">
+  `-` operator
+
+  ----
+
+  ```zeen
+  fn sub(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="Mul">
+  `*` operator
+
+  ----
+
+  ```zeen
+  fn mul(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="Div">
+  `/` operator
+
+  ----
+
+  ```zeen
+  fn div(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="Mod">
+  `%` operator
+
+  ----
+
+  ```zeen
+  fn mod(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitAnd">
+  `&` operator
+
+  ----
+
+  ```zeen
+  fn bit_and(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitOr">
+  `|` operator
+
+  ----
+
+  ```zeen
+  fn bit_or(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitXor">
+  `^` operator
+
+  ----
+
+  ```zeen
+  fn bit_xor(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitShl">
+  `<<` operator
+
+  ----
+
+  ```zeen
+  fn bit_shl(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitShr">
+  `>>` operator
+
+  ----
+
+  ```zeen
+  fn bit_shr(self, other: Self) Self;
+  ```
+</Card>
+
+<Card title="BitNot">
+  `~` operator
+
+  ----
+
+  ```zeen
+  fn bit_not(self) Self;
+  ```
+</Card>
+
+<Card title="Neg">
+  `-` operator
+
+  ----
+
+  ```zeen
+  fn neg(self) Self;
+  ```
+</Card>
+
+<Card title="Not">
+  `!` operator
+
+  ----
+
+  ```zeen
+  fn not(self) Self;
+  ```
+</Card>
+
+<Card title="Deref[T]">
+  Dereference operator (`*expr`)
+
+  ----
+
+  ```zeen
+  fn deref(*const self) T;
+  ```
+</Card>
+
+<Card title="DerefPtr[T]">
+  Dereference operator with pointer access (example: `*lvalue = rvalue`, uses DerefPtr for lvalue)
+
+  ----
+
+  ```zeen
+  fn deref_ptr(*self) *T;
+  ```
+</Card>
+
+<Card title="Index[T]">
+  Index operation (`expr[index] -> T`)
+
+  ----
+
+  ```zeen
+  fn index(*const self, index: usize) T;
+  ```
+</Card>
+
+<Card title="IndexPtr[T]">
+  Index operation with pointer access (`lvalue[index] = rvalue`)
+
+  ----
+
+  ```zeen
+  fn index_ptr(*self, index: usize) *T;
+  ```
+</Card>
+
+<Card title="Hash">
+  Hash value generation for hash based collections
+
+  ----
+
+  ```zeen
+  fn hash(*const self) u64;
+  ```
+</Card>
+
+## Enums
+<Card title="Ordering">
+  An ordering result between two values
+
+  ----
+
+  ```zeen
+  Less,
+  Equal,
+  Greater
+  ```
+</Card>
