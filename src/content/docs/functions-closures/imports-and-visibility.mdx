@@ -40,7 +40,7 @@ use root.utils.helpers;
 use super.library;
 ```
 
-`@format` pulls in `std.string` and fat closures pull in `std.fn` automatically.
+Mentioning `String` or `List` pulls in `std.string` / `std.collections.list` automatically, no `use` needed. `@format` pulls in `std.string` and fat closures pull in `std.fn` the same way.
 
 ## Visibility
 Items are private by default, `pub` opens them for other modules:

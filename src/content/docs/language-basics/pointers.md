@@ -5,6 +5,8 @@ title: Pointers
 ## Single Pointers
 Single pointer holds an address of one value. `*T` points to mutable data, `*const T` to read-only data. To get a pointer, apply addr-of `&` to an expression. Pointers are always `Copy`, and an empty pointer is `nullptr`, which can be compared with `==` and `!=`.
 
+Calls see through pointers to the inner value: `ptr.len()`, `@println!("{}", ptr)` and `ptr[..]` work the same as on the value itself.
+
 ```zn
 let num = 123;
 let ptr = &num;

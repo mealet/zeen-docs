@@ -365,9 +365,27 @@ export default defineConfig({
 									translations: { ru: 'String' }
 								},
 								{
-									label: 'List',
-									slug: 'library/std/list',
-									translations: { ru: 'List' }
+									label: 'Collections',
+									translations: {
+										ru: 'Коллекции',
+									},
+									items: [
+										{
+											label: 'List',
+											slug: 'library/std/collections/list',
+											translations: { ru: 'List' }
+										},
+										{
+											label: 'Map',
+											slug: 'library/std/collections/map',
+											translations: { ru: 'Map' }
+										},
+										{
+											label: 'Set',
+											slug: 'library/std/collections/set',
+											translations: { ru: 'Set' }
+										},
+									],
 								},
 								{
 									label: 'Math',

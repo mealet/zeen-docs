@@ -45,6 +45,8 @@ switch (point) {
 };
 ```
 
+With `&` the arm binds a `*Payload` pointer into the enum instead of moving the payload out. `&_` discards it.
+
 ## Tag
 `@enumTag` returns the runtime tag as `u8`:
 ```zn

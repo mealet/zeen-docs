@@ -100,6 +100,14 @@ let area = switch (shape) {
 };
 ```
 
+With `&` the arm binds a pointer into the value instead of moving it out. `&_` discards:
+```zn
+switch (shape) {
+  .rect(&side) => @println("side: {}", *side),
+  _ => @println("other"),
+};
+```
+
 ## Statement Position
 Switch works as a statement too:
 ```zn
