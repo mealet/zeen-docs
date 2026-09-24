@@ -90,18 +90,18 @@ fn main() {
 
 ## Result and Switch
 ```zn
-fn divide(a: i32, b: i32) Result[i32, i32] {
+fn divide(a: i32, b: i32) Result[i32, String] {
   if (b == 0) {
-    return Result.Err(-1);
+    return Result.Err(String.from("Division by zero"));
   };
 
   Result.Ok(a / b)
 }
 
 fn main() {
-  switch (divide(7, 2)) {
-    .Ok(v) => @println("ok: {}", v),
-    .Err(e) => @println("err: {}", e),
+  switch (divide(7, 0)) {
+    .Ok(v) => @println("Result: {}", v),
+    .Err(e) => @println("Error: {}", e),
   };
 }
 ```
@@ -109,22 +109,31 @@ fn main() {
 ## Iterators
 ```zn
 struct Counter {
-  n: i32,
+  cur: i32,
+  end: i32,
+
+  pub fn until(end: i32) Self {
+    Self { .cur = 0, .end = end }
+  }
 }
 
 implement Iterator : Counter {
   fn next(*self) Option[i32] {
-    if (self.n < 3) {
-      self.n += 1;
-      return Option.Some(self.n);
-    };
+    if (self.cur < self.end) {
+      let output = self.cur;
+      self.cur += 1;
+
+      return Option.Some(output);
+    }
 
     Option.None
   }
 }
 
 fn main() {
-  for (i : Counter { .n = 0 }) {
+  let counter = Counter.until(5);
+
+  for (i : counter) {
     @println("{}", i);
   }
 }
