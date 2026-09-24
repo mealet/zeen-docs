@@ -69,11 +69,11 @@ let current = Counter.count(41);
 @println("{}", current.value());
 ```
 
-Custom interfaces apply to enums exactly like structs:
+Interfaces apply to enums exactly like structs:
 ```zn
-implement Describe : Shape {
-  fn kind(*const self) []const char {
-    "enum"
+implement Display : Shape {
+  fn display[W: StrWriter](*const self, out: *W) void {
+    out.write_str("enum");
   }
 }
 ```
