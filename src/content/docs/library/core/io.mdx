@@ -1,0 +1,73 @@
+---
+title: Core IO
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.io" variant="note" size="medium" /> <br/>
+
+## Interfaces
+<Card title="StrWriter">
+  String slice writer interface for the buffers
+
+  ----
+
+  ```zeen
+  pub fn write_str(*self, value: []const char) void;
+  ```
+  ```zeen
+  pub fn write_str_raw(*self, ptr: [*]const char, len: usize) void;
+  ```
+  ```zeen
+  pub fn write_str_single(*self, value: char) void;
+  ```
+</Card>
+
+<Card title="Display">
+  Format macros renderer for structure (`{}` specifier)
+
+  ----
+
+  ```zeen
+  pub fn display[T: StrWriter](*const self, out: *T) void;
+  ```
+</Card>
+
+<Card title="Debug">
+  Format macros debugger for structure (`{:?}` specifier, `@dbg(expr)` macro)
+
+  ----
+
+  ```zeen
+  pub fn debug[T: StrWriter](*const self, out: *T) void;
+  ```
+</Card>
+
+## Structures
+<Card title="OutStream">
+  Compiler-reserved output stream
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  **Methods:**
+  ```zeen
+  // No Methods
+  ```
+
+  **Interfaces:**
+  - `core.io` : `StrWriter`
+</Card>
+
+## Functions
+No public functions exported
+
+## Extern Functions
+
+```zeen
+// Compiler provided stdout writer function
+extern fn __zeen_stdout_write(ptr: [*]const char, len: usize) void;
+```
