@@ -254,6 +254,13 @@ export default defineConfig({
 							}
 						},
 						{
+							label: 'Generic Types',
+							slug: 'ownership-types/generic-types',
+							translations: {
+								ru: 'Общие Типы (Generic)'
+							}
+						},
+						{
 							label: 'User Interfaces',
 							slug: 'ownership-types/user-interfaces',
 							translations: {
@@ -265,13 +272,6 @@ export default defineConfig({
 							slug: 'ownership-types/compiler-interfaces',
 							translations: {
 								ru: 'Интерфейсы Компилятора'
-							}
-						},
-						{
-							label: 'Generic Types',
-							slug: 'ownership-types/generic-types',
-							translations: {
-								ru: 'Общие Типы (Generic)'
 							}
 						},
 						{
