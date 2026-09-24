@@ -1,0 +1,38 @@
+---
+title: Iter
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.iter" variant="note" size="medium" /> <br/>
+
+## Interfaces
+<Card title="Iterator[T]">
+  Main Iterator interface
+
+  ----
+
+  ```zeen
+  pub fn next(*self) Option[T];
+  ```
+</Card>
+
+<Card title="PtrIterator[T]">
+  Returns struct that implements `Iterator` with pointer access
+
+  ----
+
+  ```zeen
+  pub fn iter[I: Iterator](*self) I;
+  ```
+</Card>
+
+<Card title="OwnedIterator[T]">
+  Converter from ownership `self` to struct with `Iterator` implementation
+
+  ----
+
+  ```zeen
+  pub fn into_iter[I: Iterator](self) I;
+  ```
+</Card>
