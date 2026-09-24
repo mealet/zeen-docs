@@ -297,153 +297,151 @@ export default defineConfig({
 					translations: {
 						ru: 'Библиотека',
 					},
+					collapsed: true,
 					items: [
 						{
-							label: 'Library Overview',
-							slug: 'library/overview',
+							label: 'core',
 							translations: {
-								ru: 'Обзор библиотеки'
-							}
-						},
-						{
-							label: 'Core',
-							translations: {
-								ru: 'Ядро (core)',
+								ru: 'core',
 							},
+							collapsed: true,
 							items: [
 								{
-									label: 'Ops',
+									label: 'ops',
 									slug: 'library/core/ops',
-									translations: { ru: 'Ops' }
+									translations: { ru: 'ops' }
 								},
 								{
-									label: 'Core IO',
+									label: 'io',
 									slug: 'library/core/io',
-									translations: { ru: 'Core IO' }
+									translations: { ru: 'io' }
 								},
 								{
-									label: 'Option',
+									label: 'option',
 									slug: 'library/core/option',
-									translations: { ru: 'Option' }
+									translations: { ru: 'option' }
 								},
 								{
-									label: 'Result',
+									label: 'result',
 									slug: 'library/core/result',
-									translations: { ru: 'Result' }
+									translations: { ru: 'result' }
 								},
 								{
-									label: 'Iter',
+									label: 'iter',
 									slug: 'library/core/iter',
-									translations: { ru: 'Iter' }
+									translations: { ru: 'iter' }
 								},
 								{
-									label: 'Slice',
+									label: 'slice',
 									slug: 'library/core/slice',
-									translations: { ru: 'Slice' }
+									translations: { ru: 'slice' }
 								},
 							],
 						},
 						{
-							label: 'Std',
+							label: 'std',
 							translations: {
-								ru: 'Стандарт (std)',
+								ru: 'std',
 							},
+							collapsed: true,
 							items: [
 								{
-									label: 'Alloc',
-									slug: 'library/std/alloc',
-									translations: { ru: 'Alloc' }
-								},
-								{
-									label: 'Fn',
-									slug: 'library/std/fn',
-									translations: { ru: 'Fn' }
-								},
-								{
-									label: 'String',
-									slug: 'library/std/string',
-									translations: { ru: 'String' }
-								},
-								{
-									label: 'Collections',
+									label: 'collections/',
 									translations: {
-										ru: 'Коллекции',
+										ru: 'collections/',
 									},
+									collapsed: true,
 									items: [
 										{
-											label: 'List',
+											label: 'list',
 											slug: 'library/std/collections/list',
-											translations: { ru: 'List' }
+											translations: { ru: 'list' }
 										},
 										{
-											label: 'Map',
+											label: 'map',
 											slug: 'library/std/collections/map',
-											translations: { ru: 'Map' }
+											translations: { ru: 'map' }
 										},
 										{
-											label: 'Set',
+											label: 'set',
 											slug: 'library/std/collections/set',
-											translations: { ru: 'Set' }
+											translations: { ru: 'set' }
 										},
 									],
 								},
 								{
-									label: 'Math',
+									label: 'c/',
+									translations: {
+										ru: 'c/',
+									},
+									collapsed: true,
+									items: [
+										{
+											label: 'overview',
+											slug: 'library/std/c/overview',
+											translations: { ru: 'overview' }
+										},
+										{
+											label: 'libc',
+											slug: 'library/std/c/libc',
+											translations: { ru: 'libc' }
+										},
+										{
+											label: 'posix',
+											slug: 'library/std/c/posix',
+											translations: { ru: 'posix' }
+										},
+										{
+											label: 'windows',
+											slug: 'library/std/c/windows',
+											translations: { ru: 'windows' }
+										},
+									],
+								},
+								{
+									label: 'alloc',
+									slug: 'library/std/alloc',
+									translations: { ru: 'alloc' }
+								},
+								{
+									label: 'fn',
+									slug: 'library/std/fn',
+									translations: { ru: 'fn' }
+								},
+								{
+									label: 'string',
+									slug: 'library/std/string',
+									translations: { ru: 'string' }
+								},
+								{
+									label: 'math',
 									slug: 'library/std/math',
-									translations: { ru: 'Math' }
+									translations: { ru: 'math' }
 								},
 								{
-									label: 'Meta',
+									label: 'meta',
 									slug: 'library/std/meta',
-									translations: { ru: 'Meta' }
+									translations: { ru: 'meta' }
 								},
 								{
-									label: 'Std IO',
+									label: 'io',
 									slug: 'library/std/io',
-									translations: { ru: 'Std IO' }
+									translations: { ru: 'io' }
 								},
 								{
-									label: 'Fs',
+									label: 'fs',
 									slug: 'library/std/fs',
-									translations: { ru: 'Fs' }
+									translations: { ru: 'fs' }
 								},
 								{
-									label: 'Net',
+									label: 'net',
 									slug: 'library/std/net',
-									translations: { ru: 'Net' }
+									translations: { ru: 'net' }
 								},
 								{
-									label: 'Http',
+									label: 'http',
 									slug: 'library/std/http',
-									translations: { ru: 'Http' }
-								},
-							],
-						},
-						{
-							label: 'Std C',
-							translations: {
-								ru: 'Std C',
-							},
-							items: [
-								{
-									label: 'C Overview',
-									slug: 'library/std/c/overview',
-									translations: { ru: 'Обзор C' }
-								},
-								{
-									label: 'Libc',
-									slug: 'library/std/c/libc',
-									translations: { ru: 'Libc' }
-								},
-								{
-									label: 'Posix',
-									slug: 'library/std/c/posix',
-									translations: { ru: 'Posix' }
-								},
-								{
-									label: 'Windows',
-									slug: 'library/std/c/windows',
-									translations: { ru: 'Windows' }
+									translations: { ru: 'http' }
 								},
 							],
 						},
