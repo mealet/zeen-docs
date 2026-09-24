@@ -1,3 +1,73 @@
 ---
 title: Result
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.result" variant="note" size="medium" /> <br/>
+
+## Enums
+<Card title="Result[T, E]">
+  Success value or error
+
+  ----
+
+  **Variants:**
+  ```zeen
+  Ok: T,
+  Err: E,
+  ```
+
+  **Methods:**
+  ```zeen
+  pub fn is_ok(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_err(*const self) bool;
+  ```
+  ```zeen
+  pub fn unwrap(self) T;
+  ```
+  ```zeen
+  pub fn unwrap_err(self) E;
+  ```
+  ```zeen
+  pub fn unwrap_or(self, default: T) T;
+  ```
+  ```zeen
+  pub fn unwrap_or_else(self, f: FnOnce() T) T;
+  ```
+  ```zeen
+  pub fn expect(self, msg: []const char) T;
+  ```
+  ```zeen
+  pub fn expect_err(self, msg: []const char) E;
+  ```
+  ```zeen
+  pub fn ok(self) Option[T];
+  ```
+  ```zeen
+  pub fn err(self) Option[E];
+  ```
+  ```zeen
+  pub fn map[U](self, f: FnOnce(T) U) Result[U, E];
+  ```
+  ```zeen
+  pub fn map_or[U](self, f: FnOnce(T) U, default: U) Result[U, E];
+  ```
+  ```zeen
+  pub fn map_err[F](self, f: FnOnce(E) F) Result[T, F];
+  ```
+  ```zeen
+  pub fn and_then[U](self, f: FnOnce(T) Result[U, E]) Result[U, E];
+  ```
+  ```zeen
+  pub fn inspect(self, f: FnOnce(*T) void) Self;
+  ```
+  ```zeen
+  pub fn inspect_err(self, f: FnOnce(*E) void) Self;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Copy` (when `T` and `E` are `Copy`)
+</Card>
