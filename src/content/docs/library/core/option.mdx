@@ -1,3 +1,64 @@
 ---
 title: Option
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.option" variant="note" size="medium" /> <br/>
+
+## Enums
+<Card title="Option[T]">
+  Optional value: either something or nothing
+
+  ----
+
+  **Variants:**
+  ```zeen
+  None,
+  Some: T,
+  ```
+
+  **Methods:**
+  ```zeen
+  pub fn is_some(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_none(*const self) bool;
+  ```
+  ```zeen
+  pub fn unwrap(self) T;
+  ```
+  ```zeen
+  pub fn unwrap_or(self, default: T) T;
+  ```
+  ```zeen
+  pub fn unwrap_or_else(self, f: FnOnce() T) T;
+  ```
+  ```zeen
+  pub fn expect(self, msg: []const char) T;
+  ```
+  ```zeen
+  pub fn map[U](self, f: FnOnce(T) U) Option[U];
+  ```
+  ```zeen
+  pub fn map_or[U](self, f: FnOnce(T) U, default: U) Option[U];
+  ```
+  ```zeen
+  pub fn inspect(self, f: FnOnce(*T) void) Option[T];
+  ```
+  ```zeen
+  pub fn ok_or[E](self, err: E) Result[T, E];
+  ```
+  ```zeen
+  pub fn ok_or_else[E](self, err: FnOnce() E) Result[T, E];
+  ```
+  ```zeen
+  pub fn and_then[U](self, f: FnOnce(T) Option[U]) Option[U];
+  ```
+  ```zeen
+  pub fn filter(self, predicate: FnOnce(*T) bool) Option[T];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Copy` (when `T` is `Copy`)
+</Card>
