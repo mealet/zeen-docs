@@ -1,0 +1,46 @@
+---
+title: Slice
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.slice" variant="note" size="medium" /> <br/>
+
+## Interfaces
+<Card title="Sliceable[T]">
+  Slicing with a `Range`
+
+  ----
+
+  ```zeen
+  pub fn slice(*self, range: Range) []T;
+  ```
+</Card>
+
+## Structures
+<Card title="Range">
+  Ranges variations:
+  * `lo..hi` - `{ start: Some, end: Some }`
+  * `lo..=hi` - `{ start: Some, end: Some + 1 }`
+  * `lo..` - `{ start: Some, end: None }`
+  * `..hi` - `{ start: None, end: Some }`
+  * `..=hi` - `{ start: None, end: Some + 1 }`
+  * `..` - `{ start: None, end: None }`
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub start: Option[usize],
+  pub end: Option[usize],
+  ```
+  **Methods:**
+  ```zeen
+  pub fn first(*const self) Option[usize];
+  pub fn last(*const self) Option[usize];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Copy`
+  - `core.iter` : `Iterator`
+</Card>
