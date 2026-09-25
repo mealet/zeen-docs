@@ -1,3 +1,140 @@
 ---
-title: Std IO
+title: Io
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.io" variant="note" size="medium" /> <br/>
+**Source:** [std/io.zn](https://github.com/mealet/zeen/blob/main/lib/std/io.zn) <br/>
+
+## Structures
+<Card title="Stdin">
+  Standard input handle
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn read_line(buf: *String) bool;
+  ```
+  ```zeen
+  pub fn read_to_string(buf: *String) bool;
+  ```
+  ```zeen
+  pub fn read_exact(buf: *String, n: usize) bool;
+  ```
+</Card>
+
+<Card title="Stdout">
+  Standard output handle
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn write(value: []const char) void;
+  ```
+  ```zeen
+  pub fn write_string(value: *String) void;
+  ```
+  ```zeen
+  pub fn flush() void;
+  ```
+</Card>
+
+<Card title="Stderr">
+  Standard error handle
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn write(value: []const char) void;
+  ```
+  ```zeen
+  pub fn flush() void;
+  ```
+</Card>
+
+<Card title="IoError">
+  IO error with a kind and a human readable message
+
+  ----
+
+  **Fields:**
+  ```zeen
+  _kind: IoErrorKind,
+  _message: String,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(kind: IoErrorKind, message: []const char) Self;
+  ```
+  ```zeen
+  pub fn from_errno(code: c_int) Self;
+  ```
+  ```zeen
+  pub fn last_os_error() Self;
+  ```
+  ```zeen
+  pub fn win_error(code: WinDWORD) IoError;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn kind(*const self) IoErrorKind;
+  ```
+  ```zeen
+  pub fn message(self) String;
+  ```
+</Card>
+
+## Enums
+<Card title="IoErrorKind">
+  IO error kind
+
+  ----
+
+  ```zeen
+  NotFound,
+  PermissionDenied,
+  AlreadyExists,
+  InvalidInput,
+  InvalidData,
+  UnexpectedEof,
+  WriteZero,
+  Interrupted,
+  WouldBlock,
+  TimedOut,
+  BrokenPipe,
+  ConnectionRefused,
+  ConnectionReset,
+  ConnectionAborted,
+  NotConnected,
+  AddrInUse,
+  AddrNotAvailable,
+  IsADirectory,
+  NotADirectory,
+  Unsupported,
+  OutOfMemory,
+  Uncategorized,
+  ```
+</Card>
