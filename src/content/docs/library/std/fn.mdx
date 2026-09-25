@@ -1,3 +1,47 @@
 ---
 title: Fn
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.fn" variant="note" size="medium" /> <br/>
+**Source:** [std/fn.zn](https://github.com/mealet/zeen/blob/main/lib/std/fn.zn) <br/>
+
+## Structures
+<Card title="Fn">
+  Callable many times, owns its env block
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: *void,
+  env: *void,
+  ```
+  **Methods:**
+  ```zeen
+  // No Methods
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="FnOnce">
+  Callable at most once, owns its env block
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: *void,
+  env: *void,
+  ```
+  **Methods:**
+  ```zeen
+  // No Methods
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
