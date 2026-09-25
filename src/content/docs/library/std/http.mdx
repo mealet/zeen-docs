@@ -1,3 +1,299 @@
 ---
 title: Http
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.http" variant="note" size="medium" /> <br/>
+**Source:** [std/http.zn](https://github.com/mealet/zeen/blob/main/lib/std/http.zn) <br/>
+
+## Enums
+<Card title="Method">
+  HTTP request method
+
+  ----
+
+  ```zeen
+  Get,
+  Post,
+  Put,
+  Delete,
+  Patch,
+  Head,
+  Options,
+  Unknown,
+  ```
+</Card>
+
+## Structures
+<Card title="HttpServer">
+  Tiny HTTP server over `TcpListener`
+
+  ----
+
+  **Fields:**
+  ```zeen
+  listener: TcpListener,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn bind(addr: *const SocketAddr) Result[Self, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn accept(*const self) Result[TcpStream, IoError];
+  ```
+  ```zeen
+  pub fn read_request(stream: *TcpStream) Result[Request, IoError];
+  ```
+</Card>
+
+<Card title="Header">
+  One `Name: value` header line
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub name: String,
+  pub value: String,
+  ```
+</Card>
+
+<Card title="Headers">
+  Header map. Lookup is case insensitive and clones the value
+
+  ----
+
+  **Fields:**
+  ```zeen
+  inner: List[Header],
+  ```
+  **Methods:**
+  ```zeen
+  pub fn push(*self, name: String, value: String);
+  ```
+  ```zeen
+  pub fn get(*const self, name: []const char) Option[String];
+  ```
+</Card>
+
+<Card title="Request">
+  Parsed HTTP request
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub method: Method,
+  pub path: String,
+  pub headers: Headers,
+  pub body: String,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn header(*const self, name: []const char) Option[String];
+  ```
+</Card>
+
+<Card title="Response">
+  HTTP response builder
+
+  ----
+
+  **Fields:**
+  ```zeen
+  status: u16,
+  body: String,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(status: u16, body: []const char) Self;
+  ```
+  ```zeen
+  pub fn empty(status: u16) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn status_code(*const self) u16;
+  ```
+
+  **Setters:**
+  ```zeen
+  pub fn set_status_code(*self, code: u16);
+  ```
+
+  **Named Constructors:**
+  ```zeen
+  pub fn ok(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn not_found() Self;
+  ```
+  ```zeen
+  pub fn continue_() Self;
+  ```
+  ```zeen
+  pub fn switching_protocols() Self;
+  ```
+  ```zeen
+  pub fn processing() Self;
+  ```
+  ```zeen
+  pub fn early_hints() Self;
+  ```
+  ```zeen
+  pub fn created(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn accepted(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn non_authoritative_information(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn no_content() Self;
+  ```
+  ```zeen
+  pub fn reset_content() Self;
+  ```
+  ```zeen
+  pub fn partial_content(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn multi_status(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn already_reported(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn im_used(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn multiple_choices(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn moved_permanently(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn found(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn see_other(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn not_modified() Self;
+  ```
+  ```zeen
+  pub fn use_proxy(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn temporary_redirect(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn permanent_redirect(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn bad_request(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn unauthorized(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn payment_required(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn forbidden(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn method_not_allowed(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn not_acceptable(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn proxy_authentication_required(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn request_timeout(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn conflict(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn gone(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn payload_too_large(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn im_a_teapot(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn unprocessable_content(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn locked(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn failed_dependency(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn too_early(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn upgrade_required(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn precondition_required(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn too_many_requests(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn request_header_fields_too_large(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn unavailable_for_legal_reasons(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn internal_server_error(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn not_implemented(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn bad_gateway(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn service_unavailable(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn gateway_timeout(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn http_version_not_supported(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn variant_also_negotiates(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn insufficient_storage(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn loop_detected(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn not_extended(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn network_authentication_required(body: []const char) Self;
+  ```
+
+  **Send:**
+  ```zeen
+  pub fn send(*self, stream: *TcpStream) Result[void, IoError];
+  ```
+</Card>
