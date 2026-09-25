@@ -1,3 +1,12 @@
 ---
 title: Windows
 ---
+
+import { Badge } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.c.windows" variant="note" size="medium" /> <br/>
+
+## Headers
+`windef`/`winbase` (basic types, handles), `fileapi` (`CreateFile`, `ReadFile`, `WriteFile`), `consoleapi` (`GetStdHandle`), `libloaderapi` (`LoadLibrary`), `memoryapi` (`VirtualAlloc`), `processthreadsapi` (`CreateThread`), `synchapi` (`WaitForSingleObject`), `winsock2` (sockets).
+
+Full lists in [`std/c/windows/`](https://github.com/mealet/zeen/tree/main/lib/std/c/windows).

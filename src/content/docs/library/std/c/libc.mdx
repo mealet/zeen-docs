@@ -1,3 +1,27 @@
 ---
 title: Libc
 ---
+
+import { Badge } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.c" variant="note" size="medium" /> <br/>
+
+## types
+Platform-dependent aliases via preprocessor. Core: `c_char`, `c_schar`, `c_uchar`, `c_short`, `c_ushort`, `c_int`, `c_uint`, `c_long`, `c_ulong`, `c_longlong`, `c_ulonglong`, `c_float`, `c_double`, `c_size_t`, `c_ptrdiff_t`, `c_intptr_t`, `c_uintptr_t`, `c_ssize_t`, `c_wchar_t`, `c_pid_t`, `c_uid_t` and others.
+
+## stdio
+`FILE`, `fopen`, `fclose`, `fread`, `fwrite`, `fgets`, `fputs`, `printf` family, `stdin`/`stdout`/`stderr`.
+
+## stdlib
+`malloc`, `free`, `realloc`, `exit`, `atoi` family, `qsort`, `bsearch`.
+
+## string
+`memcpy`, `memset`, `memcmp`, `strlen`, `strcpy`, `strcmp`, `strstr` family.
+
+## math
+Re-exported through `std.math` - see there. Raw in `std.c.math`: `fabs`, `sin`, `cos`, `sqrt`, `pow`, `exp`, `log` and others.
+
+## Other headers
+`ctype` (`isalpha`, `isdigit` …), `errno` (`EPERM`, `ENOENT` …), `float` (`FLT_MAX` …), `limits` (`CHAR_MAX` …), `locale` (`setlocale`), `signal` (`SIGINT` …), `assert`, `stddef` (`NULL`), `stdint`, `time`.
+
+Full lists in [types.zn](https://github.com/mealet/zeen/blob/main/lib/std/c/types.zn) and other `std/c/*.zn`.

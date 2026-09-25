@@ -1,3 +1,15 @@
 ---
 title: Posix
 ---
+
+import { Badge } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.c.posix" variant="note" size="medium" /> <br/>
+
+## Headers
+`unistd` (`read`, `write`, `close`, `fork`), `fcntl` (`open` flags), `dirent` (`opendir`, `readdir`), `pthread` (threads, mutexes), `semaphore`, `sched`, `mqueue`, `signal`, `wait`.
+
+## sys/*
+`sys/socket` (socket families, `bind`, `connect`), `sys/stat` (`stat` struct), `sys/mman` (`mmap`), `sys/time`, `sys/resource`, `sys/utsname`.
+
+Full lists in [`std/c/posix/`](https://github.com/mealet/zeen/tree/main/lib/std/c/posix).
