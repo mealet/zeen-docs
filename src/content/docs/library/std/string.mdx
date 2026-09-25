@@ -19,7 +19,8 @@ import { Badge, Card } from '@astrojs/starlight/components';
   _len: usize,
   _capacity: usize,
   ```
-  **Methods:**
+  ----
+  **Constructors:**
   ```zeen
   pub fn new() Self;
   ```
@@ -38,9 +39,8 @@ import { Badge, Card } from '@astrojs/starlight/components';
   ```zeen
   pub fn from_list(value: *const List[char]) Self;
   ```
-  ```zeen
-  pub fn len(*const self) usize;
-  ```
+
+  **Getters:**
   ```zeen
   pub fn capacity(*const self) usize;
   ```
@@ -48,28 +48,10 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn is_empty(*const self) bool;
   ```
   ```zeen
-  pub fn push(*self, value: char);
-  ```
-  ```zeen
-  pub fn push_str(*self, value: []const char);
-  ```
-  ```zeen
-  pub fn push_string(*self, value: *Self);
-  ```
-  ```zeen
-  pub fn pop(*self) Option[char];
-  ```
-  ```zeen
-  pub fn remove(*self, index: usize) Option[char];
-  ```
-  ```zeen
   pub fn get(*const self, index: usize) Option[char];
   ```
   ```zeen
   pub fn get_ptr(*const self, index: usize) Option[*char];
-  ```
-  ```zeen
-  pub fn set(*self, index: usize, value: char) Option[char];
   ```
   ```zeen
   pub fn contains(*const self, value: char) bool;
@@ -90,6 +72,41 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn find_cstr(*const self, value: [*]const char) Option[usize];
   ```
   ```zeen
+  pub fn to_list(*const self) List[char];
+  ```
+  ```zeen
+  pub fn trim(*const self) []const char;
+  ```
+  ```zeen
+  pub fn trim_start(*const self) []const char;
+  ```
+  ```zeen
+  pub fn trim_end(*const self) []const char;
+  ```
+  ```zeen
+  pub fn split(*const self, delim: char) List[String];
+  ```
+
+  **Mutations:**
+  ```zeen
+  pub fn push(*self, value: char);
+  ```
+  ```zeen
+  pub fn push_str(*self, value: []const char);
+  ```
+  ```zeen
+  pub fn push_string(*self, value: *Self);
+  ```
+  ```zeen
+  pub fn pop(*self) Option[char];
+  ```
+  ```zeen
+  pub fn remove(*self, index: usize) Option[char];
+  ```
+  ```zeen
+  pub fn set(*self, index: usize, value: char) Option[char];
+  ```
+  ```zeen
   pub fn to_uppercase(*self);
   ```
   ```zeen
@@ -106,21 +123,6 @@ import { Badge, Card } from '@astrojs/starlight/components';
   ```
   ```zeen
   pub fn truncate(*self, new_len: usize);
-  ```
-  ```zeen
-  pub fn to_list(*const self) List[char];
-  ```
-  ```zeen
-  pub fn trim(*const self) []const char;
-  ```
-  ```zeen
-  pub fn trim_start(*const self) []const char;
-  ```
-  ```zeen
-  pub fn trim_end(*const self) []const char;
-  ```
-  ```zeen
-  pub fn split(*const self, delim: char) List[String];
   ```
 
   **Interfaces:**
