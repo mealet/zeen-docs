@@ -1,3 +1,88 @@
 ---
 title: Map
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.collections.map" variant="note" size="medium" /> <br/>
+**Source:** [std/collections/map.zn](https://github.com/mealet/zeen/blob/main/lib/std/collections/map.zn) <br/>
+
+## Structures
+<Card title="HashMap[K: Hash + Eq, V]">
+  Separate-chaining hash map over `List[List[Entry]]`, load factor 0.75
+
+  ----
+
+  **Fields:**
+  ```zeen
+  buckets: List[List[Entry[K, V]]],
+  _len: usize,
+  _capacity: usize,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+  ```zeen
+  pub fn with_capacity(cap: usize) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn len(*const self) usize;
+  ```
+  ```zeen
+  pub fn capacity(*const self) usize;
+  ```
+  ```zeen
+  pub fn is_empty(*const self) bool;
+  ```
+  ```zeen
+  pub fn contains_key(*const self, key: *const K) bool;
+  ```
+  ```zeen
+  pub fn get(*const self, key: *const K) Option[*const V];
+  ```
+  ```zeen
+  pub fn get_mut(*self, key: *const K) Option[*V];
+  ```
+
+  **Mutations:**
+  ```zeen
+  pub fn insert(*self, key: K, value: V) Option[V];
+  ```
+  ```zeen
+  pub fn remove(*self, key: *const K) Option[V];
+  ```
+  ```zeen
+  pub fn remove_entry(*self, key: *const K) Option[Entry[K, V]];
+  ```
+  ```zeen
+  pub fn clear(*self);
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`, `Clone` (when `K: Clone`, `V: Clone`)
+</Card>
+
+<Card title="Entry[K, V]">
+  Single map entry
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub hash: u64,
+  pub value: V,
+  pub key: K,
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn value_ptr(*self) *V;
+  ```
+  ```zeen
+  pub fn value_const_ptr(*const self) *const V;
+  ```
+</Card>
