@@ -7,6 +7,27 @@ import { Badge, Card } from '@astrojs/starlight/components';
 **Module:** <Badge text="std.http" variant="note" size="medium" /> <br/>
 **Source:** [std/http.zn](https://github.com/mealet/zeen/blob/main/lib/std/http.zn) <br/>
 
+> **Usage Example**
+> ```zeen
+> use std.http;
+> 
+> fn main() {
+>   let addr = SocketAddr.from_str("127.0.0.1:8080").unwrap();
+>   let server = HttpServer.bind(&addr).unwrap();
+>   @println("serving on http://{}", addr);
+> 
+>   while (true) {
+>     switch (server.accept()) {
+>       .Ok(stream) => {
+>         let _ = HttpServer.read_request(&stream).unwrap();
+>         let _ = Response.ok("Hello World\n").send(&stream).unwrap();
+>       },
+>       .Err(e) => @println("accept: {}", e.kind()),
+>     };
+>   };
+> }
+> ```
+
 ## Enums
 <Card title="Method">
   HTTP request method
