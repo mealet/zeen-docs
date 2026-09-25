@@ -23,8 +23,7 @@ Containers like `List` iterate through `.iter()`:
 ----
 
 ```zn
-for (x : items.iter()) {
-}
+for (x : items.iter()) {}
 ```
 
 ## Custom Iterators
