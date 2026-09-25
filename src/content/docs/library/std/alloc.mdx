@@ -1,3 +1,50 @@
 ---
 title: Alloc
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.alloc" variant="note" size="medium" /> <br/>
+**Source:** [std/alloc.zn](https://github.com/mealet/zeen/blob/main/lib/std/alloc.zn) <br/>
+
+## Structures
+<Card title="Allocator">
+  Main standard library allocator
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  **Methods:**
+  ```zeen
+  pub fn alloc(size: usize) *void;
+  ```
+  ```zeen
+  pub fn realloc(ptr: *void, size: usize) *void;
+  ```
+  ```zeen
+  pub fn dealloc(ptr: *void);
+  ```
+  ```zeen
+  pub fn set_allocator(instance: AllocatorInstance);
+  ```
+</Card>
+
+<Card title="AllocatorInstance">
+  Swappable allocator backend
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub alloc: fn(usize) *void,
+  pub realloc: fn(*void, usize) *void,
+  pub free: fn(*void) void
+  ```
+  **Methods:**
+  ```zeen
+  // No Methods
+  ```
+</Card>
