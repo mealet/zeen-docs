@@ -3,7 +3,7 @@ title: User Interfaces
 ---
 
 ## Declaration
-Interface declares a behavior shared by many types. Any struct or enum can promise it:
+An interface declares a behavior shared by many types. Any struct or enum can promise it:
 ```zn
 interface Pet {
   pub fn name(*const self) String;

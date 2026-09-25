@@ -2,7 +2,7 @@
 title: Constant Literals
 ---
 
-Constant literal is a compile-time data you set in your code. <br/>
+A constant literal is compile-time data you set in your code. <br/>
 Zeen supports 8 types of literals: **integer, float, boolean, char, byte-char, str, raw-str, array**.
 
 ## Integer Literals
@@ -71,7 +71,7 @@ To define string use double quotes:
 "Xin Chào, Thế Giới!"
 ```
 
-String literals uses array type: `[N + 1]const char` (N chars + 1 for null terminator).
+String literals use array type `[N + 1]char` (N chars + 1 for null terminator) and convert implicitly to `[]const char`.
 
 ## Raw String
 Raw strings are just another way to bake your string in source code and tell compiler where to stop. <br/>
@@ -87,13 +87,13 @@ ends only now
 ```
 
 ## Array
-Array is a basic collection of ordered data sequence in memory with compile-time known size. <br/>
+An array is a basic collection of ordered data in memory with a compile-time known size. <br/>
 To define array use brackets:
 ```zn
 [1, 2, 3, 4]
 ```
 
-Array type is `[N]T` (example above is `[4]i32`)
+The array type is `[N]T` (example above is `[4]i32`)
 
 Fast init with repeated value:
 ```zn

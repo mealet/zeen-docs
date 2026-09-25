@@ -2,23 +2,23 @@
 title: Move Semantics
 ---
 
-**Move Semantics** is a key feature of Zeen memory management. Below you can read about it.
+**Move Semantics** is a key feature of Zeen memory management.
 
 ## Principles
 
 1. Every value has one owner.
-2. Taking move-only value applies move operation, which means that new owner takes full ownership of
-the data. Using previous access point is now an error.
-3. Taking copy values applies copy operation. Previous owner is still valid and the new one gets
+2. Taking a move-only value applies a move operation: the new owner takes full ownership of
+the data, and using the previous access point is now an error.
+3. Taking a Copy value applies a copy operation: the previous owner is still valid and the new one gets
 copied data loaded from memory.
-4. Automatic values drops uses move semantics to free data only once by its owner.
+4. Automatic value drops use move semantics to free data only once, by its owner.
 
 ### Examples
 Copy values example:
 ```zeen
 fn main() {
-  let a: i32 = 123; // `i32` - is a Copy type
-  let b = a; // copied value from `a` so its still valid
+  let a: i32 = 123; // `i32` is a Copy type
+  let b = a; // copied value from `a`, so it's still valid
 
   @println("{} {}", a, b);
 }
@@ -43,7 +43,7 @@ fn main() {
   let lang = String.from("Zeen"); // `String` is a move-only struct
   let next_lang = lang; // moved String instance to the `next_lang` variable
 
-  // Lets use `lang` variable after moving its ownership
+  // Let's use the `lang` variable after moving its ownership
   @println("{}", lang);
 }
 ```
@@ -52,7 +52,7 @@ zeen::dataflow::use_after_move
 
   × use of moved value `lang`
    ╭─[test.zn:6:18]
- 5 │   // Lets use `lang` variable after moving its ownership
+ 5 │   // Let's use the `lang` variable after moving its ownership
  6 │   @println("{}", lang);
    ·                  ────
  7 │ }

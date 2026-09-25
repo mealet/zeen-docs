@@ -3,7 +3,7 @@ title: Closures
 ---
 
 ## Literals
-Closure is an anonymous function that captures values from its scope:
+A closure is an anonymous function that captures values from its scope:
 ```zn
 let n = 5;
 let add = fn(x: i32) i32 { return x + n; };

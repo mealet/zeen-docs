@@ -2,13 +2,13 @@
 title: Constructions
 ---
 
-On this page described main Zeen statements/expressions constructions used for controlling program flow.
+This page describes the main Zeen statements and expressions used to control program flow.
 They might be familiar for you from other languages.
 
 ## Basic
 
 ### Calls
-Calls can be: function calls, method calls, macro call. Can be expression that returns value from call <br/>
+Calls can be function calls, method calls or macro calls, and a call can be an expression that returns a value. <br/>
 Syntax:
 ```zeen
 callee(args)
@@ -34,7 +34,7 @@ func(123);
 ```
 
 ### Blocks
-Blocks can be small execution context inside statement or can be expression withh return value.<br/>
+Blocks can be a small execution context inside a statement, or an expression with a return value.<br/>
 Syntax:
 ```zeen
 {
@@ -56,7 +56,7 @@ Usage of `return` keyword will lead to return from function.
 The trailing semicolon after `if` / `while` / `for` / bare block is optional.
 
 ## Conditional Constructions
-Conditional constructions are the basic statements that let you switch branches on provided condition result.
+Conditional constructions are the statements that let you pick a branch based on a condition result.
 
 ### `If` / `If-Else`
 Syntax:
@@ -68,8 +68,8 @@ if (condition) expression else expression
 if (condition) { statements } else { statements }
 ```
 
-The `if` construction is an **expression**, that means you can use it for conditional variables assign,
-or combine it in to get `else if` variation:
+The `if` construction is an **expression**, which means you can use it to assign a variable conditionally,
+or chain it to get the `else if` variation:
 ```zeen
 let a = 5;
 let conditional = if (a == 5) 123 else 321;
@@ -101,10 +101,10 @@ fn main() {
 }
 ```
 
-Full description in [Switch](/functions-closures/switch/) topic.
+Full description in the [Switch](/functions-closures/switch/) topic.
 
 ## Loops
-Loops are constructions type that leads to cyclic statements conditional repeat.
+Loops are constructions that repeat a block of statements while a condition holds.
 
 ### `While`
 Syntax:

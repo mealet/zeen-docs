@@ -9,11 +9,15 @@ import { Badge, Card } from '@astrojs/starlight/components';
 
 > **Usage Example**
 > ```zeen
-> let text = String.from("hello");
+> use std.string;
 > 
-> text.push_str(" world");
+> fn main() {
+>   let text = String.from("hello");
 > 
-> @println("{}", text);
+>   text.push_str(" world");
+> 
+>   @println("{}", text);
+> }
 > ```
 
 ## Structures

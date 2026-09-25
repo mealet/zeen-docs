@@ -2,7 +2,7 @@
 title: Basic Types
 ---
 
-Zeen has 17 builtin types: **signed ints, unsigned ints, floats, bool, char, void, never**.
+Zeen has 16 builtin types: **signed ints, unsigned ints, floats, bool, char, void, never**.
 
 ## Integer Types
 | Length | Signed | Unsigned |

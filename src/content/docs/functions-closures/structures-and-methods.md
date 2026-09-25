@@ -11,7 +11,7 @@ struct Person {
 }
 ```
 
-Construction names every field:
+The construction names every field:
 ```zn
 let person = Person { .age = 26, .name = name };
 ```
@@ -67,7 +67,7 @@ implement[T] Drop : Box[T] {
 ```
 
 ## Methods
-Methods live in struct bodies and take `self` as first receiver. `Self` is the struct type itself.
+Methods live in struct bodies and take `self` as the first receiver. `Self` is the struct type itself.
 
 | Receiver | Mode |
 |----------|------|

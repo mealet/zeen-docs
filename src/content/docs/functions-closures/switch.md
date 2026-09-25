@@ -2,7 +2,7 @@
 title: Switch
 ---
 
-Switch picks the first matching arm, from top to bottom.
+A switch picks the first matching arm, from top to bottom.
 
 An arm can be:
 
@@ -109,7 +109,7 @@ switch (shape) {
 ```
 
 ## Statement Position
-Switch works as a statement too:
+A switch works as a statement too:
 ```zn
 switch (answer) {
   123 => @println("found"),

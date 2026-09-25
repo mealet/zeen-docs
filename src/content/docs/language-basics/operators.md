@@ -3,16 +3,15 @@ title: Operators
 ---
 
 ## Binary Operators
-Arithmetic operations are fundamental mathematical operations available in any programming language. <br/>
-But in Zeen binary operations are not only arithmetic.
+Binary operators in Zeen cover arithmetic, comparison, logical and bitwise operations. <br/>
 
 Table of supported binary operators:
 | Operator | Name | Description |
 |----------|------|-------------|
 | `+` | `Add` | Addition operator |
-| `-` | `Sub` | Substraction operator |
+| `-` | `Sub` | Subtraction operator |
 | `*` | `Mul` | Multiplication operator |
-| `/` | `Div` | Division operator (divison by 0 panics) |
+| `/` | `Div` | Division operator (division by 0 panics) |
 | `%` | `Mod` | Modulus operator (division by 0 panics) |
 |     |     |     |
 | `==` | `Eq` | Equality comparison |
@@ -28,8 +27,8 @@ Table of supported binary operators:
 | `&` | `BitAnd` | Bits level AND operation |
 | `\|` | `BitOr` | Bits level OR operation |
 | `^` | `BitXor` | Bits level XOR operation |
-| `<<` | `BitShl` | Shift **left** by **N right** bits to left |
-| `>>` | `BitShr` | Shift **left** by **N right** bits to right |
+| `<<` | `BitShl` | Shift **left** by the number of bits given by the **right** operand |
+| `>>` | `BitShr` | Shift **right** by the number of bits given by the **right** operand |
 
 `&&` and `||` always evaluate both sides (no short-circuit).
 

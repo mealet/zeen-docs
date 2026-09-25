@@ -3,7 +3,7 @@ title: Enums
 ---
 
 ## Variants
-Enum is a full type system member, just like structs: it can have generics, methods and `implement` blocks. An enum has three kinds of variants: empty, single value and struct. All variants are public automatically.
+An enum is a full type system member, just like structs: it can have generics, methods and `implement` blocks. An enum has three kinds of variants: empty, single value and struct. All variants are public automatically.
 ```zn
 enum Value {
   nothing,
@@ -22,7 +22,7 @@ enum Result[T, E] {
 
 Struct payload fields are all public and carry no methods of their own.
 
-Construction names the variant:
+The construction names the variant:
 ```zn
 let empty_value = Value.nothing;
 let lucky_number = Value.number(5);

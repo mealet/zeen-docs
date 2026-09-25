@@ -3,7 +3,7 @@ title: Type Aliases
 ---
 
 ## Plain Aliases
-Alias names an existing type. It is the same type, not a new one: `Meters` and `f64` are interchangeable. Aliases can be `pub`.
+An alias names an existing type. It is the same type, not a new one: `Meters` and `f64` are interchangeable. Aliases can be `pub`.
 
 ```zn
 alias Meters = f64;

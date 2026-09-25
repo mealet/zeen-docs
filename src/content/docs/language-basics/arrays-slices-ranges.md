@@ -10,7 +10,7 @@ Syntax:
 [0; 1024]
 ```
 
-Array type is `[N]T` (`[0; 1024]` is `[1024]i32`).
+The array type is `[N]T` (`[0; 1024]` is `[1024]i32`).
 
 If elements are not `Copy`, the array is move-only.
 
@@ -26,7 +26,7 @@ numbers[0] = 99;
 Out of bounds access panics in Debug, in Release it is UB.
 
 ## Slices
-Slice is a view into array data with pointer and length. It does not copy data, writes through slice change the original array. <br/>
+A slice is a view into array data with a pointer and a length. It does not copy data, writes through the slice change the original array. <br/>
 Syntax:
 ```zn
 numbers[1..4]
@@ -36,7 +36,7 @@ numbers[2..]
 numbers[1..=3]
 ```
 
-Slice type is `[]T`. Slices have `.len` and `.ptr` fields. Slice is always `Copy`, it is just a view.
+The slice type is `[]T`. Slices have `.len` and `.ptr` fields. A slice is always `Copy`, it is just a view.
 
 Example:
 ```zn
@@ -51,7 +51,7 @@ slice[0] = 99;
 Out of bounds access panics in Debug, in Release it is UB.
 
 ## Ranges
-Range is a `core` type with optional bounds, used for slicing and iteration. <br/>
+A range is a `core` type with optional bounds, used for slicing and iteration. <br/>
 Syntax:
 ```zn
 lo..hi
@@ -62,7 +62,7 @@ lo..
 ..
 ```
 
-Ranges can be assigned to variable:
+Ranges can be assigned to a variable:
 ```zn
 let range: Range = 1..4;
 ```

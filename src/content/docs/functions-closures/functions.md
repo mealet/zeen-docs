@@ -3,7 +3,7 @@ title: Functions
 ---
 
 ## Declarations
-Function takes params and returns a value. Return type can be omitted for void. Functions are private by default, `pub` makes them visible outside the module. <br/>
+A function takes params and returns a value. Return type can be omitted for void. Functions are private by default, `pub` makes them visible outside the module. <br/>
 Syntax:
 ```zn
 fn add(a: i32, b: i32) i32 {
@@ -15,7 +15,7 @@ pub fn greet() {
 }
 ```
 
-Value can be returned through trailing expression, without `return`:
+A value can be returned through a trailing expression, without `return`:
 ```zn
 fn double(a: i32) i32 {
   a * 2
@@ -25,7 +25,7 @@ fn double(a: i32) i32 {
 The entry point is `fn main()`.
 
 ## Main Function
-Main takes no params, no generics, is not `extern` and cannot be `pub`. It can return `void` or any int: ints go to the exit code, other types return 0.
+The main function takes no params, no generics, is not `extern` and cannot be `pub`. It can return `void` or any int: ints go to the exit code, other types return 0.
 ```zn
 fn main() {
   @println("hi");
