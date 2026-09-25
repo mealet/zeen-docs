@@ -7,6 +7,15 @@ import { Badge, Card } from '@astrojs/starlight/components';
 **Module:** <Badge text="std.string" variant="note" size="medium" /> <br/>
 **Source:** [std/string.zn](https://github.com/mealet/zeen/blob/main/lib/std/string.zn) <br/>
 
+> **Usage Example**
+> ```zeen
+> let text = String.from("hello");
+> 
+> text.push_str(" world");
+> 
+> @println("{}", text);
+> ```
+
 ## Structures
 <Card title="String">
   Dynamic heap-allocated string

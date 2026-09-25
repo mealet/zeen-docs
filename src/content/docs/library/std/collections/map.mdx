@@ -7,6 +7,24 @@ import { Badge, Card } from '@astrojs/starlight/components';
 **Module:** <Badge text="std.collections.map" variant="note" size="medium" /> <br/>
 **Source:** [std/collections/map.zn](https://github.com/mealet/zeen/blob/main/lib/std/collections/map.zn) <br/>
 
+> **Usage Example**
+> ```zeen
+> use std.collections.map;
+> 
+> fn main() {
+>   let map = HashMap#[String, i32].new();
+> 
+>   map.insert(String.from("a"), 1);
+> 
+>   switch (
+>     map.get(&String.from("a"))
+>   ) {
+>     .Some(value) => @println("{}", *value),
+>     .None => @println("Nothing"),
+>   };
+> }
+> ```
+
 ## Structures
 <Card title="HashMap[K: Hash + Eq, V]">
   Separate-chaining hash map over `List[List[Entry]]`, load factor 0.75

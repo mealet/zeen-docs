@@ -7,6 +7,20 @@ import { Badge, Card } from '@astrojs/starlight/components';
 **Module:** <Badge text="std.collections.list" variant="note" size="medium" /> <br/>
 **Source:** [std/collections/list.zn](https://github.com/mealet/zeen/blob/main/lib/std/collections/list.zn) <br/>
 
+> **Usage Example**
+> ```zeen
+> use std.collections.list;
+> 
+> fn main() {
+>   let items = List#[i32].new();
+> 
+>   items.push(1);
+>   items.push(2);
+> 
+>   @println("len: {}", items.len());
+> }
+> ```
+
 ## Structures
 <Card title="List[T]">
   Dynamic heap-allocated array buffer
