@@ -1,3 +1,68 @@
 ---
 title: Meta
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.meta" variant="note" size="medium" /> <br/>
+**Source:** [std/meta.zn](https://github.com/mealet/zeen/blob/main/lib/std/meta.zn) <br/>
+
+### Versioning Comment
+> Standard library versioning is separated from compiler. Its form looks like:
+>
+> ```
+>  v1.2.3
+>     │
+>     ▼
+> ┌─┐┌─┐┌─┐
+> │1││2││3│
+> └┬┘└┬┘└┬┘
+>  └──┼──┼► Compiler's major version
+>     │  │
+>     └──┼► Compiler's minor version
+>        │
+>        └► Library's revision
+> ```
+>
+> Numbers 1 and 2 are compiler's compatibility line, they show which compiler version this library is related to.
+
+## Constants
+<Card title="STD_VERSION">
+  Full version string
+
+  ----
+
+  ```zeen
+  pub const STD_VERSION: []const char
+  ```
+</Card>
+
+<Card title="STD_VERSION_MAJOR">
+  Major
+
+  ----
+
+  ```zeen
+  pub const STD_VERSION_MAJOR: u8
+  ```
+</Card>
+
+<Card title="STD_VERSION_MINOR">
+  Minor
+
+  ----
+
+  ```zeen
+  pub const STD_VERSION_MINOR: u8
+  ```
+</Card>
+
+<Card title="STD_VERSION_REVISION">
+  Revision
+
+  ----
+
+  ```zeen
+  pub const STD_VERSION_REVISION: u8
+  ```
+</Card>
