@@ -1,3 +1,135 @@
 ---
 title: List
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.collections.list" variant="note" size="medium" /> <br/>
+**Source:** [std/collections/list.zn](https://github.com/mealet/zeen/blob/main/lib/std/collections/list.zn) <br/>
+
+## Structures
+<Card title="List[T]">
+  Dynamic heap-allocated array buffer
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: [*]T,
+  _len: usize,
+  _capacity: usize,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+  ```zeen
+  pub fn with_capacity(capacity: usize) Self;
+  ```
+  ```zeen
+  pub fn from[T: Copy](value: []const T) Self;
+  ```
+  ```zeen
+  pub fn from_clone[T: Clone](value: []const T) Self;
+  ```
+  ```zeen
+  pub fn from_raw_parts(ptr: [*]T, len: usize, capacity: usize) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn len(*const self) usize;
+  ```
+  ```zeen
+  pub fn capacity(*const self) usize;
+  ```
+  ```zeen
+  pub fn is_empty(*const self) bool;
+  ```
+  ```zeen
+  pub fn get[T: Copy](*const self, index: usize) Option[T];
+  ```
+  ```zeen
+  pub fn get_ptr(*const self, index: usize) Option[*T];
+  ```
+  ```zeen
+  pub fn first[T: Copy](*const self) Option[T];
+  ```
+  ```zeen
+  pub fn last[T: Copy](*const self) Option[T];
+  ```
+  ```zeen
+  pub fn find[T: Eq](*const self, value: *const T) Option[usize];
+  ```
+  ```zeen
+  pub fn binary_search[T: Ord](*const self, value: *const T) Option[usize];
+  ```
+
+  **Mutations:**
+  ```zeen
+  pub fn push(*self, value: T);
+  ```
+  ```zeen
+  pub fn pop(*self) Option[T];
+  ```
+  ```zeen
+  pub fn remove(*self, index: usize) Option[T];
+  ```
+  ```zeen
+  pub fn set(*self, index: usize, value: T) Option[T];
+  ```
+  ```zeen
+  pub fn insert(*self, index: usize, value: T);
+  ```
+  ```zeen
+  pub fn append(*self, other: List[T]);
+  ```
+  ```zeen
+  pub fn swap_remove(*self, index: usize) Option[T];
+  ```
+  ```zeen
+  pub fn reverse(*self);
+  ```
+  ```zeen
+  pub fn clear(*self);
+  ```
+  ```zeen
+  pub fn truncate(*self, new_len: usize);
+  ```
+  ```zeen
+  pub fn reserve(*self, additional: usize);
+  ```
+
+  **Sort:**
+  ```zeen
+  pub fn sort[T: Ord](*self);
+  ```
+  ```zeen
+  pub fn sort_by(*self, compare: fn(*const T, *const T) Ordering);
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`, `Clone` (when `T: Clone`), `Eq` (when `T: Eq`), `Index` (when `T: Copy`), `IndexPtr`, `Sliceable`
+  - `core.iter` : `PtrIterator` (when `T: Copy`), `OwnedIterator` (when `T: Copy`)
+  - `core.io` : `Debug` (when `T: Debug`)
+</Card>
+
+<Card title="ListIter[T]">
+  Borrowing iterator over `List` elements
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: [*]T,
+  len: usize,
+  idx: usize,
+  ```
+  **Methods:**
+  ```zeen
+  // No Methods
+  ```
+
+  **Interfaces:**
+  - `core.iter` : `Iterator` (when `T: Copy`)
+</Card>
