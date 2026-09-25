@@ -3,40 +3,43 @@ title: Installation
 description: Instruction to install Zeen
 ---
 
-import { Aside, Steps, FileTree, Code } from '@astrojs/starlight/components'
+import { Aside, Steps, FileTree, Code, Tabs, TabItem } from '@astrojs/starlight/components'
 
 ## Quick Installation
 
-### Linux / MacOS / FreeBSD
-<Steps>
+<Tabs>
+   <TabItem label="Linux / MacOS / FreeBSD" icon="linux">
+      <Steps>
 
-1. Install Zeen's latest version:
-   ```bash
-   curl -fsSL https://github.com/mealet/zeen/releases/latest/download/install.sh | sh
-   ```
+      1. Install Zeen's latest version:
+         ```bash
+         curl -fsSL https://github.com/mealet/zeen/releases/latest/download/install.sh | sh
+         ```
 
-2. Check the version with:
-   ```bash
-   zeen --version
-   ```
+      2. Check the version with:
+         ```bash
+         zeen --version
+         ```
 
-</Steps>
+      </Steps>
+   </TabItem>
 
-### Windows
-<Steps>
+   <TabItem label="Windows" icon="seti:windows">
+      <Steps>
 
-1. Install Zeen's latest version (with powershell):
-   ```bash
-   [Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))
-   ```
+      1. Install Zeen's latest version (with powershell):
+         ```bash
+         [Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))
+         ```
 
-2. Check the version with:
-   ```bash
-   zeen --version
-   ```
+      2. Check the version with:
+         ```bash
+         zeen --version
+         ```
 
-</Steps>
-
+      </Steps>
+   </TabItem
+</Tabs>
 
 ## Build From Source
 
