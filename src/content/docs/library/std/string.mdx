@@ -1,3 +1,129 @@
 ---
 title: String
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.string" variant="note" size="medium" /> <br/>
+**Source:** [std/string.zn](https://github.com/mealet/zeen/blob/main/lib/std/string.zn) <br/>
+
+## Structures
+<Card title="String">
+  Dynamic heap-allocated string
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: [*]char,
+  _len: usize,
+  _capacity: usize,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn new() Self;
+  ```
+  ```zeen
+  pub fn with_capacity(capacity: usize) Self;
+  ```
+  ```zeen
+  pub fn from(value: []const char) Self;
+  ```
+  ```zeen
+  pub fn from_cstr(value: [*]const char) Self;
+  ```
+  ```zeen
+  pub fn from_raw_parts(ptr: *void, len: usize, capacity: usize) Self;
+  ```
+  ```zeen
+  pub fn from_list(value: *const List[char]) Self;
+  ```
+  ```zeen
+  pub fn len(*const self) usize;
+  ```
+  ```zeen
+  pub fn capacity(*const self) usize;
+  ```
+  ```zeen
+  pub fn is_empty(*const self) bool;
+  ```
+  ```zeen
+  pub fn push(*self, value: char);
+  ```
+  ```zeen
+  pub fn push_str(*self, value: []const char);
+  ```
+  ```zeen
+  pub fn push_string(*self, value: *Self);
+  ```
+  ```zeen
+  pub fn pop(*self) Option[char];
+  ```
+  ```zeen
+  pub fn remove(*self, index: usize) Option[char];
+  ```
+  ```zeen
+  pub fn get(*const self, index: usize) Option[char];
+  ```
+  ```zeen
+  pub fn get_ptr(*const self, index: usize) Option[*char];
+  ```
+  ```zeen
+  pub fn set(*self, index: usize, value: char) Option[char];
+  ```
+  ```zeen
+  pub fn contains(*const self, value: char) bool;
+  ```
+  ```zeen
+  pub fn contains_str(*const self, value: []const char) bool;
+  ```
+  ```zeen
+  pub fn contains_cstr(*const self, value: [*]const char) bool;
+  ```
+  ```zeen
+  pub fn find(*const self, value: char) Option[usize];
+  ```
+  ```zeen
+  pub fn find_str(*const self, value: []const char) Option[usize];
+  ```
+  ```zeen
+  pub fn find_cstr(*const self, value: [*]const char) Option[usize];
+  ```
+  ```zeen
+  pub fn to_uppercase(*self);
+  ```
+  ```zeen
+  pub fn to_lowercase(*self);
+  ```
+  ```zeen
+  pub fn replace(*self, from: [*]const char, to: [*]const char);
+  ```
+  ```zeen
+  pub fn reverse(*self);
+  ```
+  ```zeen
+  pub fn clear(*self);
+  ```
+  ```zeen
+  pub fn truncate(*self, new_len: usize);
+  ```
+  ```zeen
+  pub fn to_list(*const self) List[char];
+  ```
+  ```zeen
+  pub fn trim(*const self) []const char;
+  ```
+  ```zeen
+  pub fn trim_start(*const self) []const char;
+  ```
+  ```zeen
+  pub fn trim_end(*const self) []const char;
+  ```
+  ```zeen
+  pub fn split(*const self, delim: char) List[String];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Clone`, `Drop`, `Eq`, `Hash`, `Index`, `IndexPtr`, `Sliceable`
+  - `core.io` : `Display`, `Debug`, `StrWriter`
+</Card>
