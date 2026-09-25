@@ -19,6 +19,8 @@ import { Badge, Card } from '@astrojs/starlight/components';
   _len: usize,
   _capacity: usize,
   ```
+  ----
+
   **Constructors:**
   ```zeen
   pub fn new() Self;
@@ -108,6 +110,8 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn sort_by(*self, compare: fn(*const T, *const T) Ordering);
   ```
 
+  ----
+
   **Interfaces:**
   - `core.ops` : `Drop`, `Clone` (when `T: Clone`), `Eq` (when `T: Eq`), `Index` (when `T: Copy`), `IndexPtr`, `Sliceable`
   - `core.iter` : `PtrIterator` (when `T: Copy`), `OwnedIterator` (when `T: Copy`)
@@ -125,10 +129,14 @@ import { Badge, Card } from '@astrojs/starlight/components';
   len: usize,
   idx: usize,
   ```
+  ----
+
   **Methods:**
   ```zeen
   // No Methods
   ```
+
+  ----
 
   **Interfaces:**
   - `core.iter` : `Iterator` (when `T: Copy`)
