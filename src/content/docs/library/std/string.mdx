@@ -134,6 +134,26 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn truncate(*self, new_len: usize);
   ```
 
+  **Parsing:**
+  ```zeen
+  pub fn parse_i32(*const self) Option[i32];
+  ```
+  ```zeen
+  pub fn parse_i64(*const self) Option[i64];
+  ```
+  ```zeen
+  pub fn parse_u32(*const self) Option[u32];
+  ```
+  ```zeen
+  pub fn parse_u64(*const self) Option[u64];
+  ```
+  ```zeen
+  pub fn parse_f32(*const self) Option[f32];
+  ```
+  ```zeen
+  pub fn parse_f64(*const self) Option[f64];
+  ```
+
   ----
 
   **Interfaces:**

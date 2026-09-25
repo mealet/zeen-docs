@@ -1,0 +1,78 @@
+---
+title: Ptr
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.ptr" variant="note" size="medium" /> <br/>
+**Source:** [std/ptr.zn](https://github.com/mealet/zeen/blob/main/lib/std/ptr.zn) <br/>
+
+## Structures
+<Card title="Unique[T]">
+  Exclusive owning smart pointer to a heap value
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: *T,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(value: T) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn get(*const self) *const T;
+  ```
+  ```zeen
+  pub fn get_mut(*self) *T;
+  ```
+
+  **Ownership:**
+  ```zeen
+  pub fn release(self) *T;
+  ```
+  ```zeen
+  pub fn reset(*self, value: T);
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`, `Deref` (when `T: Copy`), `DerefPtr`
+  - `core.io` : `Display` (when `T: Display`), `Debug` (when `T: Debug`)
+</Card>
+
+<Card title="Shared[T]">
+  Shared ownership with a strong count (single threaded). Cloning shares the value and bumps the count. The value is freed once the last owner goes out of scope. The count lives in its own heap cell next to the value
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: *T,
+  count: *usize,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(value: T) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn use_count(*const self) usize;
+  ```
+  ```zeen
+  pub fn is_unique(*const self) bool;
+  ```
+  ```zeen
+  pub fn get(*const self) *const T;
+  ```
+  ```zeen
+  pub fn get_mut(*self) *T;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Clone`, `Drop`, `Deref` (when `T: Copy`), `DerefPtr`
+  - `core.io` : `Display` (when `T: Display`), `Debug` (when `T: Debug`)
+</Card>

@@ -190,12 +190,16 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{
-									label: 'ops',
-									slug: 'library/core/ops',
-								},
-								{
 									label: 'io',
 									slug: 'library/core/io',
+								},
+								{
+									label: 'iter',
+									slug: 'library/core/iter',
+								},
+								{
+									label: 'ops',
+									slug: 'library/core/ops',
 								},
 								{
 									label: 'option',
@@ -204,10 +208,6 @@ export default defineConfig({
 								{
 									label: 'result',
 									slug: 'library/core/result',
-								},
-								{
-									label: 'iter',
-									slug: 'library/core/iter',
 								},
 								{
 									label: 'slice',
@@ -268,8 +268,16 @@ export default defineConfig({
 									slug: 'library/std/fn',
 								},
 								{
-									label: 'string',
-									slug: 'library/std/string',
+									label: 'fs',
+									slug: 'library/std/fs',
+								},
+								{
+									label: 'http',
+									slug: 'library/std/http',
+								},
+								{
+									label: 'io',
+									slug: 'library/std/io',
 								},
 								{
 									label: 'math',
@@ -280,20 +288,16 @@ export default defineConfig({
 									slug: 'library/std/meta',
 								},
 								{
-									label: 'io',
-									slug: 'library/std/io',
-								},
-								{
-									label: 'fs',
-									slug: 'library/std/fs',
-								},
-								{
 									label: 'net',
 									slug: 'library/std/net',
 								},
 								{
-									label: 'http',
-									slug: 'library/std/http',
+									label: 'ptr',
+									slug: 'library/std/ptr',
+								},
+								{
+									label: 'string',
+									slug: 'library/std/string',
 								},
 							],
 						},
