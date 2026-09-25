@@ -1,0 +1,24 @@
+---
+title: Linking
+---
+
+The object file from codegen links into a binary with a toolchain picked by the target.
+
+## Selection
+| Target | Toolchain |
+|--------|-----------|
+| gnu | gcc-family alias (`x86_64-linux-gnu-gcc` …) |
+| native `cc`/`gcc` when host matches target | |
+| otherwise | `clang -target <triple>` |
+| Windows MSVC | `link.exe` only on Windows |
+| Wasm | `wasm-ld --allow-undefined` |
+
+Probe order: family alias, then `clang`. Missing symbols in Wasm become imports due to `--allow-undefined`.
+
+## Overrides
+| Flag | Effect |
+|------|--------|
+| `--linker-path <program>` | override detected linker |
+| `extern link "file.c"` | append after object, skipped with warning on object-only toolchains |
+
+Output suffix follows the target: `.exe` on Windows, `.wasm` on Wasm.

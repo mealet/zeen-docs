@@ -246,19 +246,19 @@ export default defineConfig({
 									collapsed: true,
 									items: [
 										{
-											label: 'overview',
+											label: 'Overview',
 											slug: 'library/std/c/overview',
 										},
 										{
-											label: 'libc',
+											label: 'Libc',
 											slug: 'library/std/c/libc',
 										},
 										{
-											label: 'posix',
+											label: 'Posix',
 											slug: 'library/std/c/posix',
 										},
 										{
-											label: 'windows',
+											label: 'Windows',
 											slug: 'library/std/c/windows',
 										},
 									],
@@ -308,10 +308,6 @@ export default defineConfig({
 				{
 					label: 'Toolchain',
 					items: [
-						{
-							label: 'Targets',
-							slug: 'toolchain/targets',
-						},
 						{
 							label: 'Linking',
 							slug: 'toolchain/linking',
