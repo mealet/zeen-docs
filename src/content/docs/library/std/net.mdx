@@ -1,3 +1,150 @@
 ---
 title: Net
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.net" variant="note" size="medium" /> <br/>
+**Source:** [std/net.zn](https://github.com/mealet/zeen/blob/main/lib/std/net.zn) <br/>
+
+## Structures
+<Card title="SocketAddr">
+  IPv4 socket address. The ip holds octets in host order
+
+  ----
+
+  **Fields:**
+  ```zeen
+  _ip: u32,
+  _port: u16,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(ip: u32, port: u16) Self;
+  ```
+  ```zeen
+  pub fn loopback(port: u16) Self;
+  ```
+  ```zeen
+  pub fn any(port: u16) Self;
+  ```
+  ```zeen
+  pub fn from_str(s: []const char) Result[Self, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn ip(*const self) u32;
+  ```
+  ```zeen
+  pub fn port(*const self) u16;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Copy`
+  - `core.io` : `Display`
+</Card>
+
+<Card title="TcpListener">
+  Listening TCP socket
+
+  ----
+
+  **Fields:**
+  ```zeen
+  fd: c_int,
+  handle: *void,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn bind(addr: *const SocketAddr) Result[Self, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn accept(*const self) Result[TcpStream, IoError];
+  ```
+  ```zeen
+  pub fn local_addr(*const self) Result[SocketAddr, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="TcpStream">
+  Connected TCP stream
+
+  ----
+
+  **Fields:**
+  ```zeen
+  fd: c_int,
+  handle: *void,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn connect(addr: *const SocketAddr) Result[Self, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn local_addr(*const self) Result[SocketAddr, IoError];
+  ```
+  ```zeen
+  pub fn peer_addr(*const self) Result[SocketAddr, IoError];
+  ```
+
+  **Mutations:**
+  ```zeen
+  pub fn read(*self, buf: *String) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn read_exact(*self, buf: *String, n: usize) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn read_to_string(*self, buf: *String) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn write(*self, buf: []const char) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn write_all(*self, buf: []const char) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn shutdown(*const self) Result[void, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="UdpSocket">
+  Connected or connectionless UDP socket
+
+  ----
+
+  **Fields:**
+  ```zeen
+  fd: c_int,
+  handle: *void,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn bind(addr: *const SocketAddr) Result[Self, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn send_to(*const self, buf: []const char, addr: *const SocketAddr) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn recv_from(*self, buf: *String) Result[SocketAddr, IoError];
+  ```
+  ```zeen
+  pub fn local_addr(*const self) Result[SocketAddr, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
