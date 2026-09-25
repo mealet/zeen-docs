@@ -7,9 +7,36 @@ import { Aside, Steps, FileTree, Code } from '@astrojs/starlight/components'
 
 ## Quick Installation
 
-<Aside>
-  Currently quick installation for Zeen is not available, you can follow the development process, or provide your help for faster implementation on [GitHub](https://github.com/mealet/zeen)
-</Aside>
+### Linux / MacOS / FreeBSD
+<Steps>
+
+1. Install Zeen's latest version:
+   ```bash
+   curl -fsSL https://github.com/mealet/zeen/releases/latest/download/install.sh | sh
+   ```
+
+2. Check the version with:
+   ```bash
+   zeen --version
+   ```
+
+</Steps>
+
+### Windows
+<Steps>
+
+1. Install Zeen's latest version (with powershell):
+   ```bash
+   [Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))
+   ```
+
+2. Check the version with:
+   ```bash
+   zeen --version
+   ```
+
+</Steps>
+
 
 ## Build From Source
 

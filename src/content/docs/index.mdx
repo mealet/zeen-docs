@@ -20,10 +20,11 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, Code } from '@astrojs/starlight/components';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import QuickInstall from '../../components/QuickInstall.astro';
 
 <Card title="Quick Installation" icon="down-arrow">
-  <Code code="Not Available" lang="bash" />
+  <QuickInstall />
 </Card>
 
 <CardGrid>

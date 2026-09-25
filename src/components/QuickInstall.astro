@@ -1,0 +1,22 @@
+---
+import { Code } from '@astrojs/starlight/components';
+---
+
+<div data-quick-install="unix">
+  <Code code="curl -fsSL https://github.com/mealet/zeen/releases/latest/download/install.sh | sh" lang="bash" />
+</div>
+
+<div data-quick-install="windows" hidden>
+  <Code
+    code="[Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))"
+    lang="powershell"
+  />
+</div>
+
+<script is:inline>
+  if (navigator.userAgent.includes('Windows')) {
+    document.querySelectorAll('[data-quick-install]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-quick-install') !== 'windows';
+    });
+  }
+</script>
