@@ -1,12 +1,13 @@
 ---
 title: Extern
+description: Linking native symbols with extern functions, variables and sources.
 ---
 
 Extern declarations use external linkage: symbols resolve at link time by the system linker. Missing symbols fail the link step.
 
 ## Functions
 `extern fn` without a body declares an imported symbol. Calls use the C calling convention:
-```zn
+```zeen
 extern fn malloc(usize) *void;
 extern fn free(*void);
 
@@ -18,26 +19,26 @@ fn main() {
 ```
 
 `extern fn` with a body exports the symbol for native callers:
-```zn
+```zeen
 extern fn hello() {
   @println("hi from Zeen");
 }
 ```
 
 Varargs with `...`:
-```zn
+```zeen
 extern fn printf([*]const char, ...);
 ```
 
 ## Variables
 `extern let` declares an imported global. Storage lives in native code, no value allowed:
-```zn
+```zeen
 extern let errno: i32;
 ```
 
 ## Link
 `extern link` appends native files after the compiled object in the link step:
-```zn
+```zeen
 extern link "helpers.c";
 ```
 

@@ -1,12 +1,13 @@
 ---
 title: Zeen Modules
+description: Source files as modules, code levels and project layout.
 ---
 
-# Modules
+## Modules
 Modules in Zeen are just source code files with a `.zn` extension. The name of the module is just the file name without extension (no extra declarations required).
 
 Mostly module can look like this:
-```zn
+```zeen
 fn main() {
   let calculation = 2 + 2 * 2;
 
@@ -20,7 +21,7 @@ Code separates into 3 different levels:
 3. Expressions - little elements of data operating (like arithmetic, comparison, literals annotation, etc.)
 
 We can split up our previous code with these levels:
-```zn
+```zeen
 // Declarations Level
 
 // `main` is a function declaration

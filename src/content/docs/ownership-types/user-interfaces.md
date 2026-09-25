@@ -1,10 +1,11 @@
 ---
 title: User Interfaces
+description: Declaring interfaces, implementing them for types and bounding generics.
 ---
 
 ## Declaration
 An interface declares a behavior shared by many types. Any struct or enum can promise it:
-```zn
+```zeen
 interface Pet {
   pub fn name(*const self) String;
 }
@@ -12,7 +13,7 @@ interface Pet {
 
 ## Implement
 Types opt in with `implement` blocks and write the promised methods inside. There are no inherent impl blocks: free functions and methods live in struct bodies, interfaces only describe them.
-```zn
+```zeen
 use std.string;
 
 struct Cat {
@@ -28,7 +29,7 @@ implement Pet : Cat {
 
 ## Bounds
 Interfaces bound generics. A function over `T: Pet` accepts any type with that behavior and nothing else:
-```zn
+```zeen
 fn greet[T: Pet](pet: T) {
   @println("hi {}", pet.name());
 }
@@ -37,6 +38,6 @@ greet(Cat { .nickname = String.from("tom") });
 ```
 
 `implement` blocks can be generic and bounded too: `Box[T]` is `Copy` exactly when `T` is.
-```zn
+```zeen
 implement[T: Copy] Copy : Box[T] {}
 ```

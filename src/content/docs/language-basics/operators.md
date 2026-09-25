@@ -1,5 +1,6 @@
 ---
 title: Operators
+description: Binary, unary and overloadable operators with their interfaces.
 ---
 
 ## Binary Operators

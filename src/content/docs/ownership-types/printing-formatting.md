@@ -1,5 +1,6 @@
 ---
 title: Printing and Formatting
+description: Format macros, specifiers and Display or Debug implementations.
 ---
 
 | Macros | Return type | Description |
@@ -23,7 +24,7 @@ Only `{:?}` and `{:.N}` are written with a colon, the other specifiers are bare:
 
 ## Display and Debug
 Structs opt in through `core.io` interfaces. The sink is any `StrWriter`, so the same code feeds stdout and `String`:
-```zn
+```zeen
 implement Display : Point {
   fn display[W: StrWriter](*const self, out: *W) void {
     out.write_str("point");

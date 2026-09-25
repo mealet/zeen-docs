@@ -1,5 +1,6 @@
 ---
 title: Compiler Interfaces
+description: Core interfaces for operators, formatting and iteration behavior.
 ---
 
 Interfaces with compiler meaning live in `core`. They split by module.

@@ -1,5 +1,6 @@
 ---
 title: Constant Literals
+description: Compile time literals for numbers, strings, chars and arrays.
 ---
 
 A constant literal is compile-time data you set in your code. <br/>
@@ -10,7 +11,7 @@ There are 4 numerical systems supported by the compiler: decimal, hexadecimal, b
 Besides that language allows you to use `_` separator for big numbers (idea taken from Rust).
 
 Example:
-```zn
+```zeen
 /* 6 WAYS TO WRITE "1000" */
 
 1000 // decimal
@@ -27,7 +28,7 @@ Default integer literal type is `i32`.
 Float (or floating point numbers) are the same with other languages.
 
 Example:
-```zn
+```zeen
 1.0 // default number
 1. // same number but shorter
 3.1415926535897932384626 // big number
@@ -38,7 +39,7 @@ Default float literal type is `f64`.
 ## Boolean Literals
 Boolean constants are keywords with specified type. <br/>
 Keywords to use:
-```zn
+```zeen
 true, false
 ```
 
@@ -47,7 +48,7 @@ Boolean literal type is `bool`.
 ## Char
 A _char_ is essentially an unsigned 1-byte integer that contains symbol representation inside. <br/>
 To define char use single quote:
-```zn
+```zeen
 'a', '\n'
 ```
 
@@ -56,7 +57,7 @@ Character literal type is `char`.
 ## Byte Char
 Byte character literal is similar as _char_, but it returns `u8` (unsigned 1 byte integer) type. <br/>
 Usage:
-```zn
+```zeen
 b'a', b'\n'
 ```
 
@@ -65,7 +66,7 @@ Strings in Zeen may seem familiar like in C programming language. <br/>
 Core mechanics are similar: string literal ends with '\0' terminator.
 
 To define string use double quotes:
-```zn
+```zeen
 "Hello, World!"
 "Привет, Мир!"
 "Xin Chào, Thế Giới!"
@@ -77,7 +78,7 @@ String literals use array type `[N + 1]char` (N chars + 1 for null terminator) a
 Raw strings are just another way to bake your string in source code and tell compiler where to stop. <br/>
 It starts with `r#"` and ends with `"#`, that allows user to use any other symbols in this literal.
 
-```zn
+```zeen
 r#"
 String literal,
 still string,
@@ -89,14 +90,14 @@ ends only now
 ## Array
 An array is a basic collection of ordered data in memory with a compile-time known size. <br/>
 To define array use brackets:
-```zn
+```zeen
 [1, 2, 3, 4]
 ```
 
 The array type is `[N]T` (example above is `[4]i32`)
 
 Fast init with repeated value:
-```zn
+```zeen
 [0; 1024]
 ```
 

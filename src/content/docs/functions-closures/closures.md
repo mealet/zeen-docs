@@ -1,10 +1,11 @@
 ---
 title: Closures
+description: Anonymous functions, capture semantics and fat Fn and FnOnce types.
 ---
 
 ## Literals
 A closure is an anonymous function that captures values from its scope:
-```zn
+```zeen
 let n = 5;
 let add = fn(x: i32) i32 { return x + n; };
 
@@ -16,7 +17,7 @@ A closure without captures is a basic `fn` pointer and is `Copy`.
 ## Fat Types
 A capturing closure has a fat type: `Fn` or `FnOnce`. Both are move-only: captures live in a heap block that travels with the value and is dropped with it. Calls dispatch through the stored pointer, an `Fn` value can be called many times, `FnOnce` at most once. Both types are plain structs with static layout (`{ ptr, env }`) and `Drop`.
 
-```zn
+```zeen
 fn apply(f: Fn(i32) i32, x: i32) i32 {
   return f(x);
 }
@@ -35,7 +36,7 @@ let r = apply(fn(x: i32) i32 { return x * m; }, 2);
 
 ## Generics
 Functions over fat params monomorphize per call site:
-```zn
+```zeen
 fn apply[T](val: T, f: FnOnce(T) T) T {
   f(val)
 }

@@ -1,5 +1,6 @@
 ---
 title: Move Semantics
+description: Ownership rules, copying, forced Copy and drop behavior.
 ---
 
 **Move Semantics** is a key feature of Zeen memory management.
@@ -77,7 +78,7 @@ Table of compiler marked `Copy` types:
 ## Forced Copy
 `implement Copy` forces a type to be `Copy` regardless of its fields.
 This is a promise: the type must really be trivially copyable, the compiler trusts it.
-```zn
+```zeen
 implement Copy : StructName {}
 ```
 

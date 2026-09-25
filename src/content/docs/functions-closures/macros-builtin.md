@@ -1,5 +1,6 @@
 ---
 title: Builtin Macros
+description: Compiler macros for casts, sizes, printing, panic and debug output.
 ---
 
 Compiler macros use `@name(...)` syntax.

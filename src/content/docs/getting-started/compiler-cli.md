@@ -1,5 +1,6 @@
 ---
 title: Compiler CLI
+description: Command line flags and usage examples for the Zeen compiler.
 ---
 
 Basic usage:

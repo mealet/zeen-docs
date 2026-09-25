@@ -1,5 +1,6 @@
 ---
 title: Conditional Compilation
+description: Target and mode directives for declarations, statements and expressions.
 ---
 
 Directives pick code by target and mode. They work at three levels: declarations, statements and expressions. Non-matching branches never reach resolve and typecheck.
@@ -16,7 +17,7 @@ Directives pick code by target and mode. They work at three levels: declarations
 | `@release` | none | Release mode |
 
 Values with `|` mean OR. Directives chain with `else`:
-```zn
+```zeen
 @os[linux] {
   fn platform() i32 {
     return 1;
@@ -35,7 +36,7 @@ else {
 ```
 
 Statements flatten inline, expressions pick a branch value:
-```zn
+```zeen
 @os[linux] {
   @println("linux");
 }
@@ -56,7 +57,7 @@ let threads = @debug { 1 } else { 8 };
 | `@var[debug]` | bool |
 | `@var[release]` | bool |
 
-```zn
+```zeen
 fn main() {
   let os = @var[os];
   let arch = @var[arch];

@@ -1,5 +1,6 @@
 ---
 title: Switch
+description: Pattern matching over values, ranges, strings, binds and enum variants.
 ---
 
 A switch picks the first matching arm, from top to bottom.
@@ -13,7 +14,7 @@ An arm can be:
 - a wildcard: `_ => ...`
 - a wildcard with guard: `_ if (ready) => ...`
 
-```zn
+```zeen
 let answer = 123;
 
 let points = switch (answer) {
@@ -24,7 +25,7 @@ let points = switch (answer) {
 
 ## Values
 Bools and chars match the same way:
-```zn
+```zeen
 let flag = true;
 
 let code = switch (flag) {
@@ -42,7 +43,7 @@ let group = switch (letter) {
 
 ## Strings
 String literals and slices match by content:
-```zn
+```zeen
 let name = "mealet";
 
 let id = switch (name) {
@@ -54,7 +55,7 @@ let id = switch (name) {
 
 ## Ranges
 Ranges match inclusive-exclusive intervals, chars included. Ranges combine with `|` like plain values:
-```zn
+```zeen
 let level = 12;
 
 let tier = switch (level) {
@@ -74,7 +75,7 @@ let kind = switch (index) {
 
 ## Binds and Guards
 An arm binds the scrutinee to a name, with an optional guard after it. A wildcard arm binds nothing, `_ if` checks only the guard. `return` is a statement, so returning arms need `{ }` blocks.
-```zn
+```zeen
 let score = 500;
 
 let bonus = switch (score) {
@@ -85,7 +86,7 @@ let bonus = switch (score) {
 
 ## Enums
 Enum arms name the variant with a dot. Payload variants bind the payload, guards can check it. A wildcard catches the rest.
-```zn
+```zeen
 enum Shape {
   dot,
   rect: i32,
@@ -101,7 +102,7 @@ let area = switch (shape) {
 ```
 
 With `&` the arm binds a pointer into the value instead of moving it out. `&_` discards:
-```zn
+```zeen
 switch (shape) {
   .rect(&side) => @println("side: {}", *side),
   _ => @println("other"),
@@ -110,7 +111,7 @@ switch (shape) {
 
 ## Statement Position
 A switch works as a statement too:
-```zn
+```zeen
 switch (answer) {
   123 => @println("found"),
   _ => @println("missing"),

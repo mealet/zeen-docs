@@ -1,5 +1,6 @@
 ---
 title: Imports and Visibility
+description: Module resolution, use paths, implicit core imports and pub visibility.
 ---
 
 import { FileTree } from '@astrojs/starlight/components';
@@ -21,7 +22,7 @@ Names declared in `core` are reserved: a custom item with the same name is an er
 
 ## Use
 Dots map to directories, the last segment to a `.zn` file:
-```zn
+```zeen
 use std.string;
 use std.c.posix.pthread;
 ```
@@ -35,7 +36,7 @@ The first segment picks the base:
 | `std` | std root (`--std`, `$ZEEN_STD` or `~/.zeen/std`) |
 | (none) | dir of current file |
 
-```zn
+```zeen
 use root.utils.helpers;
 use super.library;
 ```
@@ -44,7 +45,7 @@ Mentioning `String` or `List` pulls in `std.string` / `std.collections.list` aut
 
 ## Visibility
 Items are private by default, `pub` opens them for other modules:
-```zn
+```zeen
 pub fn triangulate() { /* ... */ }
 ```
 

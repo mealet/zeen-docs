@@ -1,10 +1,11 @@
 ---
 title: Structures and Methods
+description: Struct fields, generic types, method receivers, Copy and Drop behavior.
 ---
 
 ## Structures
 A struct is a custom type that holds several values together under one name. Each value is a field with its own name and type. Fields are private by default, `pub` makes them visible outside the module.
-```zn
+```zeen
 struct Person {
   age: u32,
   pub name: String,
@@ -12,18 +13,18 @@ struct Person {
 ```
 
 The construction names every field:
-```zn
+```zeen
 let person = Person { .age = 26, .name = name };
 ```
 
 Fields read with dot, writes need a mutable pointer receiver or owned value:
-```zn
+```zeen
 @println("{}", person.age);
 ```
 
 ## Generic Structures
 Structs take generics, with bounds if needed:
-```zn
+```zeen
 struct Box[T] {
   pub inner: *T,
 }
@@ -35,7 +36,7 @@ struct DisplayBox[T: Display] {
 
 ## Generic Methods
 Methods can declare their own generics on top of the struct ones:
-```zn
+```zeen
 struct Wrap[T] {
   inner: T,
 
@@ -47,7 +48,7 @@ struct Wrap[T] {
 
 ## Copy and Drop
 A struct is `Copy` only if all its fields are, otherwise it is move-only. A type with `Drop` cannot be `Copy`: pick one. If `Drop` is not implemented explicitly, all fields drop recursively at scope end.
-```zn
+```zeen
 implement Copy : Tag {}
 
 implement Drop : Tag {
@@ -58,7 +59,7 @@ implement Drop : Tag {
 ```
 
 `implement` blocks can be generic too:
-```zn
+```zeen
 implement[T] Drop : Box[T] {
   fn drop(self) {
     free(self.inner);
@@ -77,7 +78,7 @@ Methods live in struct bodies and take `self` as the first receiver. `Self` is t
 | `*const self` | read-only borrow |
 
 Example:
-```zn
+```zeen
 struct Person {
   age: u32,
 
@@ -88,7 +89,7 @@ struct Person {
 ```
 
 Static calls go through the type, method calls through the value:
-```zn
+```zeen
 let person = Person.new(26);
 person.birthday();
 ```

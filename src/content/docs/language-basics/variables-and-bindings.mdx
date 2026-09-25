@@ -1,5 +1,6 @@
 ---
 title: Variables and Bindings
+description: Mutable let bindings, constants, globals and discarded values.
 ---
 
 ## Explanation
@@ -9,7 +10,7 @@ Variables may be left unassigned at initialization, but they cannot be used befo
 By default locals in Zeen are mutable, you can use the `const` modifier to disable mutability.
 
 ### Syntax:
-```zn
+```zeen
 // mutable
 let identifier: type;
 let identifier: type = value;
@@ -22,7 +23,7 @@ const identifier = value;
 ```
 
 Examples:
-```zn
+```zeen
 // Init without value
 let var: i32;
 
@@ -37,13 +38,13 @@ let var = 123;
 
 Top-level globals need explicit type and value. <br/>
 Syntax:
-```zn
+```zeen
 const NAME: type = value;
 let name: type = value;
 ```
 
 Example:
-```zn
+```zeen
 const MAX: i32 = 100;
 let counter: i32 = 0;
 ```
@@ -51,7 +52,7 @@ let counter: i32 = 0;
 ## Discard
 
 Use `_` to discard value without drop:
-```zn
+```zeen
 let _ = foo();
 ```
 
@@ -64,7 +65,7 @@ Pointers are also stack-allocated values, more explanation about pointers you'll
 ----
 
 Code:
-```zn
+```zeen
 fn main() {
     let a = 1234;
     let ptr = &a;

@@ -1,5 +1,6 @@
 ---
 title: Generic Types
+description: Generic declarations, monomorphization, bounds and where they live.
 ---
 
 Generics let one definition work with many types: write once, the compiler stamps a copy per type used.
@@ -19,7 +20,7 @@ Box[f64]
 ```
 
 In value expressions:
-```zn
+```zeen
 Box #[i32].new(5)
 ```
 
@@ -28,7 +29,7 @@ Generics stamp a separate copy per concrete type: `Box[i32]` and `Box[f64]` are 
 
 ## Bounds
 Bounds restrict what types pass. A concrete arg must implement the interface, a generic arg must declare the bound:
-```zn
+```zeen
 fn min[T: Ord](a: T, b: T) T {
   if (a < b) {
     return a;
@@ -40,7 +41,7 @@ fn min[T: Ord](a: T, b: T) T {
 
 ## Where
 Generics live in functions, structs, enums, their methods and aliases:
-```zn
+```zeen
 fn first[T](items: []T) T { ... }
 
 struct Box[T] { ... }
@@ -51,7 +52,7 @@ alias Ptr[T] = *T;
 ```
 
 Struct and enum methods add their own on top:
-```zn
+```zeen
 struct Wrap[T] {
   inner: T,
 

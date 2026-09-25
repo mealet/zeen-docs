@@ -4,14 +4,14 @@ description: Small code examples
 ---
 
 ## Hello World
-```zn
+```zeen
 fn main() {
   @println("Hello, World!");
 }
 ```
 
 ## Formatting Strings
-```zn
+```zeen
 fn greet_message(name: []const char) String {
   @format("Hello, {}!", name)
 }
@@ -22,7 +22,7 @@ fn main() {
 ```
 
 ## Structures
-```zn
+```zeen
 struct Person {
   age: u32,
 
@@ -49,7 +49,7 @@ fn main() {
 ```
 
 ## Generics
-```zn
+```zeen
 fn print_this[T: Display](value: T) {
   @println("Yeah, I've printed this: {}", value);
 }
@@ -61,7 +61,7 @@ fn main() {
 ```
 
 ## Extern functions (with generic example)
-```zn
+```zeen
 /* declaration of extern C functions */
 extern fn malloc(usize) *void;
 extern fn free(*void);
@@ -89,7 +89,7 @@ fn main() {
 ```
 
 ## Result and Switch
-```zn
+```zeen
 fn divide(a: i32, b: i32) Result[i32, String] {
   if (b == 0) {
     return Result.Err(String.from("Division by zero"));
@@ -107,7 +107,7 @@ fn main() {
 ```
 
 ## Iterators
-```zn
+```zeen
 struct Counter {
   cur: i32,
   end: i32,

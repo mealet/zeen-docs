@@ -1,5 +1,6 @@
 ---
 title: Basic Types
+description: Integer, float, bool, char and void types, typeof and casts.
 ---
 
 Zeen has 16 builtin types: **signed ints, unsigned ints, floats, bool, char, void, never**.
@@ -33,7 +34,7 @@ Default float literal type is `f64`.
 
 ## Typeof
 `typeof EXPR` takes the type of an expression without executing it. Combined with `@typename` it names the type:
-```zn
+```zeen
 let func: typeof hello = hello;
 @println("{}", @typename(typeof 123));
 ```
@@ -41,7 +42,7 @@ let func: typeof hello = hello;
 ## Casts
 Implicit casts happen right in expression. <br/>
 Explicit casts use `@as`:
-```zn
+```zeen
 let a = @as(u8, 123);
 ```
 

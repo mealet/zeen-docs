@@ -1,10 +1,11 @@
 ---
 title: Iterators
+description: The for loop, iterable types and custom iterators.
 ---
 
 ## For
 Iteration goes through the `for` loop:
-```zn
+```zeen
 for (item : items) {
   @println("{}", item);
 }
@@ -22,13 +23,13 @@ Containers like `List` iterate through `.iter()`:
 
 ----
 
-```zn
+```zeen
 for (x : items.iter()) {}
 ```
 
 ## Custom Iterators
 A type iterates by implementing `Iterator`: `next` returns `Some(element)` or `None` when done.
-```zn
+```zeen
 struct Counter {
   cur: i32,
   end: i32,
