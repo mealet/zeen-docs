@@ -1,3 +1,212 @@
 ---
 title: Fs
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.fs" variant="note" size="medium" /> <br/>
+**Source:** [std/fs.zn](https://github.com/mealet/zeen/blob/main/lib/std/fs.zn) <br/>
+
+## Structures
+<Card title="Fs">
+  Namespace for filesystem operations
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn metadata(path: []const char) Result[Metadata, IoError];
+  ```
+  ```zeen
+  pub fn symlink_metadata(path: []const char) Result[Metadata, IoError];
+  ```
+  ```zeen
+  pub fn exists(path: []const char) bool;
+  ```
+  ```zeen
+  pub fn remove_file(path: []const char) Result[void, IoError];
+  ```
+  ```zeen
+  pub fn remove_dir(path: []const char) Result[void, IoError];
+  ```
+  ```zeen
+  pub fn create_dir(path: []const char) Result[void, IoError];
+  ```
+  ```zeen
+  pub fn rename(from: []const char, to: []const char) Result[void, IoError];
+  ```
+  ```zeen
+  pub fn read_dir(path: []const char) Result[List[DirEntry], IoError];
+  ```
+  ```zeen
+  pub fn read_to_string(path: []const char) Result[String, IoError];
+  ```
+  ```zeen
+  pub fn write(path: []const char, contents: []const char) Result[usize, IoError];
+  ```
+</Card>
+
+<Card title="File">
+  Owned file handle. Closes itself on drop
+
+  ----
+
+  **Fields:**
+  ```zeen
+  fd: c_int,
+  handle: *void,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn open(path: []const char) Result[File, IoError];
+  ```
+  ```zeen
+  pub fn create(path: []const char) Result[File, IoError];
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn metadata(*const self) Result[Metadata, IoError];
+  ```
+
+  **Mutations:**
+  ```zeen
+  pub fn read(*self, buf: *String) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn read_exact(*self, buf: *String, n: usize) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn read_to_string(*self, buf: *String) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn write(*self, buf: []const char) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn write_all(*self, buf: []const char) Result[usize, IoError];
+  ```
+  ```zeen
+  pub fn sync_all(*const self) Result[void, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="OpenOptions">
+  Builder for `File` open flags
+
+  ----
+
+  **Fields:**
+  ```zeen
+  read: bool,
+  write: bool,
+  append: bool,
+  truncate: bool,
+  create: bool,
+  create_new: bool,
+  mode: u32,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+
+  **Setters:**
+  ```zeen
+  pub fn read(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn write(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn append(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn truncate(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn create(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn create_new(self, value: bool) Self;
+  ```
+  ```zeen
+  pub fn mode(self, value: u32) Self;
+  ```
+
+  **Openers:**
+  ```zeen
+  pub fn open(*const self, path: []const char) Result[File, IoError];
+  ```
+</Card>
+
+<Card title="Metadata">
+  File metadata snapshot
+
+  ----
+
+  **Fields:**
+  ```zeen
+  len: u64,
+  is_dir: bool,
+  is_file: bool,
+  is_symlink: bool,
+  mode: u32,
+  ```
+  **Getters:**
+  ```zeen
+  pub fn len(*const self) u64;
+  ```
+  ```zeen
+  pub fn is_empty(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_dir(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_file(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_symlink(*const self) bool;
+  ```
+  ```zeen
+  pub fn mode(*const self) u32;
+  ```
+</Card>
+
+<Card title="DirEntry">
+  Single entry from `read_dir`
+
+  ----
+
+  **Fields:**
+  ```zeen
+  name: String,
+  path: String,
+  meta: Metadata,
+  ```
+  **Getters:**
+  ```zeen
+  pub fn into_name(self) String;
+  ```
+  ```zeen
+  pub fn into_path(self) String;
+  ```
+  ```zeen
+  pub fn is_dir(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_file(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_symlink(*const self) bool;
+  ```
+</Card>
