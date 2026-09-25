@@ -1,3 +1,631 @@
 ---
 title: Math
 ---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.math" variant="note" size="medium" /> <br/>
+**Source:** [std/math.zn](https://github.com/mealet/zeen/blob/main/lib/std/math.zn) <br/>
+
+## Constants
+<Card title="PI">
+  Pi circle constant
+
+  ----
+
+  ```zeen
+  pub const PI: f64
+  ```
+</Card>
+
+<Card title="TAU">
+  Full circle constant (`2 * PI`)
+
+  ----
+
+  ```zeen
+  pub const TAU: f64
+  ```
+</Card>
+
+<Card title="E">
+  Euler number
+
+  ----
+
+  ```zeen
+  pub const E: f64
+  ```
+</Card>
+
+## Functions
+<Card title="min">
+  Smaller of two values
+
+  ----
+
+  ```zeen
+  pub fn min[T: Ord](a: T, b: T) T
+  ```
+</Card>
+
+<Card title="max">
+  Greater of two values
+
+  ----
+
+  ```zeen
+  pub fn max[T: Ord](a: T, b: T) T
+  ```
+</Card>
+
+<Card title="clamp">
+  Clamp value into `[lo, hi]`
+
+  ----
+
+  ```zeen
+  pub fn clamp[T: Ord](value: T, lo: T, hi: T) T
+  ```
+</Card>
+
+<Card title="lerp">
+  Linear interpolation between `a` and `b`
+
+  ----
+
+  ```zeen
+  pub fn lerp(a: f64, b: f64, t: f64) f64
+  ```
+</Card>
+
+<Card title="lerpf">
+  Linear interpolation between `a` and `b` (single precision)
+
+  ----
+
+  ```zeen
+  pub fn lerpf(a: f32, b: f32, t: f32) f32
+  ```
+</Card>
+
+<Card title="gcd">
+  Greatest common divisor (always non-negative)
+
+  ----
+
+  ```zeen
+  pub fn gcd(a: i64, b: i64) i64
+  ```
+</Card>
+
+<Card title="lcm">
+  Least common multiple (zero if either side is zero)
+
+  ----
+
+  ```zeen
+  pub fn lcm(a: i64, b: i64) i64
+  ```
+</Card>
+
+<Card title="is_nan">
+  `true` for NaN values
+
+  ----
+
+  ```zeen
+  pub fn is_nan(value: f64) bool
+  ```
+</Card>
+
+<Card title="is_nanf">
+  `true` for NaN values (single precision)
+
+  ----
+
+  ```zeen
+  pub fn is_nanf(value: f32) bool
+  ```
+</Card>
+
+<Card title="is_inf">
+  `true` for infinite values
+
+  ----
+
+  ```zeen
+  pub fn is_inf(value: f64) bool
+  ```
+</Card>
+
+<Card title="is_inff">
+  `true` for infinite values (single precision)
+
+  ----
+
+  ```zeen
+  pub fn is_inff(value: f32) bool
+  ```
+</Card>
+
+## From `std.c.math`
+<Card title="fabs / fabsf">
+  ```zeen
+  pub extern fn fabs(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn fabsf(x: f32) f32
+  ```
+</Card>
+
+<Card title="fmod / fmodf">
+  ```zeen
+  pub extern fn fmod(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn fmodf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="remainder / remainderf">
+  ```zeen
+  pub extern fn remainder(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn remainderf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="exp / expf">
+  ```zeen
+  pub extern fn exp(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn expf(x: f32) f32
+  ```
+</Card>
+
+<Card title="exp2 / exp2f">
+  ```zeen
+  pub extern fn exp2(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn exp2f(x: f32) f32
+  ```
+</Card>
+
+<Card title="expm1 / expm1f">
+  ```zeen
+  pub extern fn expm1(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn expm1f(x: f32) f32
+  ```
+</Card>
+
+<Card title="log / logf">
+  ```zeen
+  pub extern fn log(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn logf(x: f32) f32
+  ```
+</Card>
+
+<Card title="log10 / log10f">
+  ```zeen
+  pub extern fn log10(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn log10f(x: f32) f32
+  ```
+</Card>
+
+<Card title="log2 / log2f">
+  ```zeen
+  pub extern fn log2(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn log2f(x: f32) f32
+  ```
+</Card>
+
+<Card title="log1p / log1pf">
+  ```zeen
+  pub extern fn log1p(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn log1pf(x: f32) f32
+  ```
+</Card>
+
+<Card title="pow / powf">
+  ```zeen
+  pub extern fn pow(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn powf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="sqrt / sqrtf">
+  ```zeen
+  pub extern fn sqrt(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn sqrtf(x: f32) f32
+  ```
+</Card>
+
+<Card title="cbrt / cbrtf">
+  ```zeen
+  pub extern fn cbrt(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn cbrtf(x: f32) f32
+  ```
+</Card>
+
+<Card title="hypot / hypotf">
+  ```zeen
+  pub extern fn hypot(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn hypotf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="sin / sinf">
+  ```zeen
+  pub extern fn sin(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn sinf(x: f32) f32
+  ```
+</Card>
+
+<Card title="cos / cosf">
+  ```zeen
+  pub extern fn cos(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn cosf(x: f32) f32
+  ```
+</Card>
+
+<Card title="tan / tanf">
+  ```zeen
+  pub extern fn tan(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn tanf(x: f32) f32
+  ```
+</Card>
+
+<Card title="asin / asinf">
+  ```zeen
+  pub extern fn asin(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn asinf(x: f32) f32
+  ```
+</Card>
+
+<Card title="acos / acosf">
+  ```zeen
+  pub extern fn acos(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn acosf(x: f32) f32
+  ```
+</Card>
+
+<Card title="atan / atanf">
+  ```zeen
+  pub extern fn atan(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn atanf(x: f32) f32
+  ```
+</Card>
+
+<Card title="atan2 / atan2f">
+  ```zeen
+  pub extern fn atan2(y: f64, x: f64) f64
+  ```
+  ```zeen
+  pub extern fn atan2f(y: f32, x: f32) f32
+  ```
+</Card>
+
+<Card title="sinh / sinhf">
+  ```zeen
+  pub extern fn sinh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn sinhf(x: f32) f32
+  ```
+</Card>
+
+<Card title="cosh / coshf">
+  ```zeen
+  pub extern fn cosh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn coshf(x: f32) f32
+  ```
+</Card>
+
+<Card title="tanh / tanhf">
+  ```zeen
+  pub extern fn tanh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn tanhf(x: f32) f32
+  ```
+</Card>
+
+<Card title="asinh / asinhf">
+  ```zeen
+  pub extern fn asinh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn asinhf(x: f32) f32
+  ```
+</Card>
+
+<Card title="acosh / acoshf">
+  ```zeen
+  pub extern fn acosh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn acoshf(x: f32) f32
+  ```
+</Card>
+
+<Card title="atanh / atanhf">
+  ```zeen
+  pub extern fn atanh(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn atanhf(x: f32) f32
+  ```
+</Card>
+
+<Card title="erf / erff">
+  ```zeen
+  pub extern fn erf(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn erff(x: f32) f32
+  ```
+</Card>
+
+<Card title="erfc / erfcf">
+  ```zeen
+  pub extern fn erfc(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn erfcf(x: f32) f32
+  ```
+</Card>
+
+<Card title="tgamma / tgammaf">
+  ```zeen
+  pub extern fn tgamma(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn tgammaf(x: f32) f32
+  ```
+</Card>
+
+<Card title="lgamma / lgammaf">
+  ```zeen
+  pub extern fn lgamma(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn lgammaf(x: f32) f32
+  ```
+</Card>
+
+<Card title="ceil / ceilf">
+  ```zeen
+  pub extern fn ceil(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn ceilf(x: f32) f32
+  ```
+</Card>
+
+<Card title="floor / floorf">
+  ```zeen
+  pub extern fn floor(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn floorf(x: f32) f32
+  ```
+</Card>
+
+<Card title="round / roundf">
+  ```zeen
+  pub extern fn round(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn roundf(x: f32) f32
+  ```
+</Card>
+
+<Card title="trunc / truncf">
+  ```zeen
+  pub extern fn trunc(x: f64) f64
+  ```
+  ```zeen
+  pub extern fn truncf(x: f32) f32
+  ```
+</Card>
+
+<Card title="lround / lroundf">
+  ```zeen
+  pub extern fn lround(x: f64) c_long
+  ```
+  ```zeen
+  pub extern fn lroundf(x: f32) c_long
+  ```
+</Card>
+
+<Card title="llround / llroundf">
+  ```zeen
+  pub extern fn llround(x: f64) c_longlong
+  ```
+  ```zeen
+  pub extern fn llroundf(x: f32) c_longlong
+  ```
+</Card>
+
+<Card title="lrint / lrintf">
+  ```zeen
+  pub extern fn lrint(x: f64) c_long
+  ```
+  ```zeen
+  pub extern fn lrintf(x: f32) c_long
+  ```
+</Card>
+
+<Card title="llrint / llrintf">
+  ```zeen
+  pub extern fn llrint(x: f64) c_longlong
+  ```
+  ```zeen
+  pub extern fn llrintf(x: f32) c_longlong
+  ```
+</Card>
+
+<Card title="ldexp / ldexpf">
+  ```zeen
+  pub extern fn ldexp(x: f64, exp: c_int) f64
+  ```
+  ```zeen
+  pub extern fn ldexpf(x: f32, exp: c_int) f32
+  ```
+</Card>
+
+<Card title="frexp / frexpf">
+  ```zeen
+  pub extern fn frexp(x: f64, exp: *c_int) f64
+  ```
+  ```zeen
+  pub extern fn frexpf(x: f32, exp: *c_int) f32
+  ```
+</Card>
+
+<Card title="modf / modff">
+  ```zeen
+  pub extern fn modf(x: f64, iptr: *f64) f64
+  ```
+  ```zeen
+  pub extern fn modff(x: f32, iptr: *f32) f32
+  ```
+</Card>
+
+<Card title="scalbn / scalbnf">
+  ```zeen
+  pub extern fn scalbn(x: f64, n: c_int) f64
+  ```
+  ```zeen
+  pub extern fn scalbnf(x: f32, n: c_int) f32
+  ```
+</Card>
+
+<Card title="scalbln / scalblnf">
+  ```zeen
+  pub extern fn scalbln(x: f64, n: c_long) f64
+  ```
+  ```zeen
+  pub extern fn scalblnf(x: f32, n: c_long) f32
+  ```
+</Card>
+
+<Card title="copysign / copysignf">
+  ```zeen
+  pub extern fn copysign(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn copysignf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="isnan / isnanf">
+  ```zeen
+  pub extern fn isnan(x: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isnanf(x: f32) c_int
+  ```
+</Card>
+
+<Card title="isinf / isinff">
+  ```zeen
+  pub extern fn isinf(x: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isinff(x: f32) c_int
+  ```
+</Card>
+
+<Card title="isfinite / isfinitef">
+  ```zeen
+  pub extern fn isfinite(x: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isfinitef(x: f32) c_int
+  ```
+</Card>
+
+<Card title="isgreater / isgreaterequal / isless / islessequal / islessgreater / isunordered">
+  ```zeen
+  pub extern fn isgreater(x: f64, y: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isgreaterequal(x: f64, y: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isless(x: f64, y: f64) c_int
+  ```
+  ```zeen
+  pub extern fn islessequal(x: f64, y: f64) c_int
+  ```
+  ```zeen
+  pub extern fn islessgreater(x: f64, y: f64) c_int
+  ```
+  ```zeen
+  pub extern fn isunordered(x: f64, y: f64) c_int
+  ```
+</Card>
+
+<Card title="nextafter / nextafterf">
+  ```zeen
+  pub extern fn nextafter(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn nextafterf(x: f32, y: f32) f32
+  ```
+</Card>
+
+<Card title="nexttoward / nexttowardf">
+  ```zeen
+  pub extern fn nexttoward(x: f64, y: f64) f64
+  ```
+  ```zeen
+  pub extern fn nexttowardf(x: f32, y: f64) f32
+  ```
+</Card>
+
+<Card title="fma / fmaf">
+  ```zeen
+  pub extern fn fma(x: f64, y: f64, z: f64) f64
+  ```
+  ```zeen
+  pub extern fn fmaf(x: f32, y: f32, z: f32) f32
+  ```
+</Card>
