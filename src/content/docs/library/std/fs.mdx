@@ -7,6 +7,26 @@ import { Badge, Card } from '@astrojs/starlight/components';
 **Module:** <Badge text="std.fs" variant="note" size="medium" /> <br/>
 **Source:** [std/fs.zn](https://github.com/mealet/zeen/blob/main/lib/std/fs.zn) <br/>
 
+> **Usage Example**
+> ```zeen
+> use std.fs;
+> 
+> fn main() {
+>   // create dir
+>   Fs.create_dir("/tmp/demo").unwrap();
+>   // write file
+>   Fs.write("/tmp/demo/hello.txt", "hello fs").unwrap();
+> 
+>   // read file
+>   let text = Fs.read_to_string("/tmp/demo/hello.txt").unwrap();
+>   @println("{}", text);
+> 
+>   // list dir
+>   let entries = Fs.read_dir("/tmp/demo").unwrap();
+>   @println("entries: {}", entries.len());
+> }
+> ```
+
 ## Structures
 <Card title="Fs">
   Namespace for filesystem operations
