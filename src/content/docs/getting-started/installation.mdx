@@ -29,7 +29,7 @@ import { Aside, Steps, FileTree, Code, Tabs, TabItem } from '@astrojs/starlight/
 
       1. Install Zeen's latest version (with powershell):
          ```bash
-         [Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))
+	 irm https://github.com/mealet/zeen/releases/latest/download/install.ps1 | iex
          ```
 
       2. Check the version with:
