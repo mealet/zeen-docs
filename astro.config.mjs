@@ -142,10 +142,6 @@ export default defineConfig({
 							label: 'Builtin Macros',
 							slug: 'functions-closures/macros-builtin',
 						},
-						{
-							label: 'Conditional Compilation',
-							slug: 'functions-closures/conditional-compilation',
-						},
 					],
 				},
 
@@ -311,6 +307,10 @@ export default defineConfig({
 						{
 							label: 'Linking',
 							slug: 'toolchain/linking',
+						},
+						{
+							label: 'Conditional Compilation',
+							slug: 'toolchain/conditional-compilation',
 						},
 					],
 				},
