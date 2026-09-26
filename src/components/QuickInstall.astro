@@ -8,8 +8,8 @@ import { Code } from '@astrojs/starlight/components';
 
 <div data-quick-install="windows" hidden>
   <Code
-    code="[Net.ServicePointManager]::SecurityProtocol=[Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;iex ((New-Object Net.WebClient).DownloadString('https://github.com/mealet/zeen/releases/latest/download/install.ps1'))"
-    lang="powershell"
+    code="irm https://github.com/mealet/zeen/releases/latest/download/install.ps1 | iex"
+    lang="bash"
   />
 </div>
 
