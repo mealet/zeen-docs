@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import vercel from '@astrojs/vercel';
 
 import zeenGrammarFile from './src/assets/zeen.tmLanguage.json';
 
@@ -12,6 +13,11 @@ const zeenLanguage = {
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://zeen-lang.tech',
+	adapter: vercel({
+		webAnalytics: {
+			enabled: true,
+		},
+	}),
 	integrations: [
 		starlight({
 			// branding
