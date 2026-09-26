@@ -21,5 +21,3 @@ Compiler macros use `@name(...)` syntax.
 | `@uninit()` | any, uninitialized value (reading it is UB) |
 | `@enumTag(expr)` | `u8`, enum variant tag |
 | `@void()` | `void` |
-
-`@todo()` and `@unreachable()` lower to `@panic` with a message. Format strings use `{}` for values and `{:?}` for `Debug`.
