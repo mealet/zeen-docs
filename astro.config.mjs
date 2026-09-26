@@ -16,6 +16,7 @@ export default defineConfig({
 		starlight({
 			// branding
 			title: 'Zeen',
+			description: 'Zeen is a modern systems programming languaged focused on performance, safety and simplicity',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/mealet/zeen' }],
 			logo: {
 				light: './public/Zeen.png',
