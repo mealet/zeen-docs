@@ -43,7 +43,8 @@ export default defineConfig({
 				'./src/styles/landing.css',
 			],
 			components: {
-				ThemeSelect: './src/components/ThemeSelect.astro'
+				ThemeSelect: './src/components/ThemeSelect.astro',
+				Head: './src/components/Head.astro',
 			},
 
 			// sidebar
