@@ -1,0 +1,12 @@
+---
+import { inject } from '@vercel/analytics';
+
+const { head } = Astro.locals.starlightRoute;
+---
+
+{head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+
+<script>
+	import { inject } from '@vercel/analytics';
+	inject();
+</script>
