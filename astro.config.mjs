@@ -11,6 +11,7 @@ const zeenLanguage = {
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://zeen-lang.tech',
 	integrations: [
 		starlight({
 			// branding

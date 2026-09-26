@@ -20,8 +20,6 @@ description: Format macros, specifiers and Display or Debug implementations.
 | `{bin}` | binary |
 | `{:.N}` | float with N decimals |
 
-Only `{:?}` and `{:.N}` are written with a colon, the other specifiers are bare: `{hex}`, not `{:hex}`.
-
 ## Display and Debug
 Structs opt in through `core.io` interfaces. The sink is any `StrWriter`, so the same code feeds stdout and `String`:
 ```zeen
