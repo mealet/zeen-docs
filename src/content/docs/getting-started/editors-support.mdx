@@ -3,7 +3,7 @@ title: Editors Support
 description: Use Zeen with your editor
 ---
 
-import { Card, Steps } from '@astrojs/starlight/components'
+import { Card, Steps, LinkCard } from '@astrojs/starlight/components'
 
 ## Plugins
 <Card title="Visual Studio Code" icon="vscode">
@@ -64,4 +64,9 @@ import { Card, Steps } from '@astrojs/starlight/components'
 
 If your favourite editor is not supported you can use **Zeen LSP**. <br/>
 It ships as `zeen-lsp` binary in each release (starting from v0.2.0). <br/>
-Source code is located at [zeen/lsp](https://github.com/mealet/zeen/tree/main/lsp).
+
+<LinkCard
+  title = "Zeen LSP"
+  href="https://github.com/mealet/zeen/tree/main/lsp"
+  description="Language server source code on GitHub"
+/>
