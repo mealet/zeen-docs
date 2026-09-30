@@ -12,15 +12,15 @@ import { Aside, Steps, FileTree, Code, Tabs, TabItem } from '@astrojs/starlight/
         Plugin repository: [zeen-vscode](https://github.com/mealet/zeen-vscode)
           
         <Steps>
-        1. Make sure you have `zeen-lsp` installed (support starts from Zeen v0.2.0): [Latest Release](https://github.com/mealet/zeen/releases/latest)
-        2. Search or install from link [Zeen extensions](https://marketplace.visualstudio.com/items?itemName=mealet.zeen).
+        1. Make sure you have `zeen-lsp` installed (support starts from Zeen v0.2.0).
+        2. Search or install from link [Zeen](https://marketplace.visualstudio.com/items?itemName=mealet.zeen) extensions.
         </Steps>
    </TabItem>
    <TabItem label="Neovim / Vim" icon="vim">
        Plugin repository: [zeen-nvim](https://github.com/mealet/zeen-nvim)
        
        <Steps>
-       1. Make sure you have `zeen-lsp` installed (support starts from Zeen v0.2.0): [Latest Release](https://github.com/mealet/zeen/releases/latest)
+       1. Make sure you have `zeen-lsp` installed (support starts from Zeen v0.2.0).
        2. Install `zeen-lsp` plugin for Neovim:
           **Lazy:**
           ```lua
@@ -62,3 +62,8 @@ import { Aside, Steps, FileTree, Code, Tabs, TabItem } from '@astrojs/starlight/
        </Steps>
    </TabItem>
 </Tabs>
+
+## Language Server
+If your favourite editor is not supported you can use Zeen LSP. <br/>
+It ships as `zeen-lsp` binary in each release (starting from v0.2.0). <br/>
+Source code is located at [zeen/lsp](https://github.com/mealet/zeen/tree/main/lsp).
