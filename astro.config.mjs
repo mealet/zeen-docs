@@ -65,10 +65,10 @@ export default defineConfig({
 							label: 'Compiler CLI',
 							slug: 'getting-started/compiler-cli',
 						},
-						// {
-						// 	label: 'Editors Support',
-						// 	slug: 'getting-started/editors-support',
-						// },
+						{
+							label: 'Editors Support',
+							slug: 'getting-started/editors-support',
+						},
 						{
 							label: 'Examples',
 							slug: 'getting-started/examples',
