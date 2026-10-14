@@ -22,17 +22,25 @@ import { Card, Steps, LinkCard } from '@astrojs/starlight/components'
     2. Install `zeen-lsp` plugin for Neovim:
         **Lazy:**
         ```lua
-        return { "mealet/zeen-nvim" }
+        return {
+            "mealet/zeen-nvim"
+        }
         ```
         With settings:
         ```lua
         return {
             "mealet/zeen-nvim",
+
             opts = {
                 cmd = { "zeen-lsp" },
-                root_markers = { ".git" },
+                root_markers = {
+                    ".git",
+                    "Zora.toml",
+                    "Zora.lock",
+                },
                 inlay_hints = true,
             },
+
             config = function(_, opts)
                 require("zeen-lsp").setup(opts)
             end,
