@@ -1,0 +1,34 @@
+---
+title: Testing
+description: Assertion helpers for tests.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.testing" variant="note" size="medium" /> <br/>
+**Source:** [std/testing.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/testing.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.testing;
+>
+> fn main() {
+>   assert(2 + 2 == 4);
+>   assert_eq(2 + 2, 4);
+>   assert_eq_msg(3 * 3, 9, "square");
+> }
+> ```
+
+## Functions
+```zeen
+pub fn assert(condition: bool);
+```
+```zeen
+pub fn assert_msg(condition: bool, errorMessage: []const char);
+```
+```zeen
+pub fn assert_eq[T: Eq + Display](actual: T, expected: T);
+```
+```zeen
+pub fn assert_eq_msg[T: Eq + Display](actual: T, expected: T, errorMessage: []const char);
+```

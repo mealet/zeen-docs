@@ -62,16 +62,27 @@ export default defineConfig({
 							slug: 'getting-started/installation',
 						},
 						{
-							label: 'Compiler CLI',
-							slug: 'getting-started/compiler-cli',
-						},
-						{
-							label: 'Editors Support',
-							slug: 'getting-started/editors-support',
-						},
-						{
 							label: 'Examples',
 							slug: 'getting-started/examples',
+						},
+					],
+				},
+
+				// Toolchain
+				{
+					label: 'Toolchain',
+					items: [
+						{
+							label: 'Compiler',
+							slug: 'toolchain/compiler',
+						},
+						{
+							label: 'Editors Plugins',
+							slug: 'toolchain/editors-plugins',
+						},
+						{
+							label: 'Package Manager',
+							slug: 'toolchain/package-manager',
 						},
 					],
 				},
@@ -251,6 +262,28 @@ export default defineConfig({
 									],
 								},
 								{
+									label: 'crypto/',
+									collapsed: true,
+									items: [
+										{
+											label: 'base64',
+											slug: 'library/std/crypto/base64',
+										},
+										{
+											label: 'hash',
+											slug: 'library/std/crypto/hash',
+										},
+										{
+											label: 'rand',
+											slug: 'library/std/crypto/rand',
+										},
+										{
+											label: 'sha256',
+											slug: 'library/std/crypto/sha256',
+										},
+									],
+								},
+								{
 									label: 'c/',
 									collapsed: true,
 									items: [
@@ -277,6 +310,10 @@ export default defineConfig({
 									slug: 'library/std/alloc',
 								},
 								{
+									label: 'env',
+									slug: 'library/std/env',
+								},
+								{
 									label: 'fn',
 									slug: 'library/std/fn',
 								},
@@ -293,16 +330,28 @@ export default defineConfig({
 									slug: 'library/std/io',
 								},
 								{
+									label: 'json',
+									slug: 'library/std/json',
+								},
+								{
+									label: 'log',
+									slug: 'library/std/log',
+								},
+								{
 									label: 'math',
 									slug: 'library/std/math',
 								},
 								{
-									label: 'meta',
-									slug: 'library/std/meta',
-								},
-								{
 									label: 'net',
 									slug: 'library/std/net',
+								},
+								{
+									label: 'path',
+									slug: 'library/std/path',
+								},
+								{
+									label: 'process',
+									slug: 'library/std/process',
 								},
 								{
 									label: 'ptr',
@@ -312,14 +361,30 @@ export default defineConfig({
 									label: 'string',
 									slug: 'library/std/string',
 								},
+								{
+									label: 'sync',
+									slug: 'library/std/sync',
+								},
+								{
+									label: 'testing',
+									slug: 'library/std/testing',
+								},
+								{
+									label: 'thread',
+									slug: 'library/std/thread',
+								},
+								{
+									label: 'time',
+									slug: 'library/std/time',
+								},
 							],
 						},
 					],
 				},
 
-				// Toolchain
+				// Build & Targets
 				{
-					label: 'Toolchain',
+					label: 'Build & Targets',
 					items: [
 						{
 							label: 'Linking',

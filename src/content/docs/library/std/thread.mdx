@@ -1,0 +1,85 @@
+---
+title: Thread
+description: OS thread spawning, joining and yielding.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.thread" variant="note" size="medium" /> <br/>
+**Source:** [std/thread.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/thread.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.thread;
+> use std.sync;
+>
+> fn main() {
+>   let counter = Arc.new(Mutex.new(0));
+>
+>   let p1 = counter.clone();
+>   let p2 = counter.clone();
+>
+>   let t1 = Thread.spawn(fn() i32 {
+>     let guard = p1.get_mut().lock();
+>     *guard += 1;
+>
+>     return *guard;
+>   });
+>
+>   let t2 = Thread.spawn(fn() i32 {
+>     let guard = p2.get_mut().lock();
+>     *guard += 1;
+>
+>     return *guard;
+>   });
+>
+>   let j1 = t1.join();
+>   let j2 = t2.join();
+>
+>   @println("thread 1: {}", j1);
+>   @println("thread 2: {}", j2);
+>
+>   @println("counter: {}", (*counter.get()).into_inner());
+> }
+> ```
+
+## Structures
+<Card title="Thread">
+  OS thread spawning and joining
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn spawn[T](f: FnOnce() T) JoinHandle[T];
+  ```
+  ```zeen
+  pub fn yield_now();
+  ```
+</Card>
+
+<Card title="JoinHandle[T]">
+  Running thread handle, owns the result slot
+
+  ----
+
+  **Fields:**
+  ```zeen
+  native: NativeThread,
+  slot: *T,
+  done: bool,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn join(self) T;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>

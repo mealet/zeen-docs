@@ -6,7 +6,7 @@ description: Dynamic array buffer with access, mutation and sorting methods.
 import { Badge, Card } from '@astrojs/starlight/components';
 
 **Module:** <Badge text="std.collections.list" variant="note" size="medium" /> <br/>
-**Source:** [std/collections/list.zn](https://github.com/mealet/zeen/blob/main/lib/std/collections/list.zn) <br/>
+**Source:** [std/collections/list.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/collections/list.zn) <br/>
 
 > **Usage Example**
 > ```zeen
@@ -128,8 +128,8 @@ import { Badge, Card } from '@astrojs/starlight/components';
   ----
 
   **Interfaces:**
-  - `core.ops` : `Drop`, `Clone` (when `T: Clone`), `Eq` (when `T: Eq`), `Index` (when `T: Copy`), `IndexPtr`, `Sliceable`
-  - `core.iter` : `PtrIterator` (when `T: Copy`), `OwnedIterator` (when `T: Copy`)
+  - `core.ops` : `Drop`, `Clone` (when `T: Copy`), `Eq` (when `T: Eq`), `Index` (when `T: Copy`), `IndexPtr`, `Sliceable`
+  - `core.iter` : `PtrIterator`, `OwnedIterator`
   - `core.io` : `Debug` (when `T: Debug`)
 </Card>
 
@@ -145,14 +145,24 @@ import { Badge, Card } from '@astrojs/starlight/components';
   idx: usize,
   ```
   ----
+  **Interfaces:**
+  - `core.iter` : `Iterator`
+</Card>
 
-  **Methods:**
-  ```zeen
-  // No Methods
-  ```
+<Card title="OwnedListIter[T]">
+  Owning iterator over `List` elements, yields moves
 
   ----
 
+  **Fields:**
+  ```zeen
+  ptr: [*]T,
+  len: usize,
+  idx: usize,
+  _capacity: usize,
+  ```
+  ----
   **Interfaces:**
-  - `core.iter` : `Iterator` (when `T: Copy`)
+  - `core.iter` : `Iterator`
+  - `core.ops` : `Drop`
 </Card>

@@ -1,0 +1,163 @@
+---
+title: Json
+description: JSON parsing, querying and serialization as an insert-ordered tree.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.json" variant="note" size="medium" /> <br/>
+**Source:** [std/json.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/json.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.json;
+>
+> fn main() {
+>   let value = JsonValue.parse(r#"{"name":"zeen","tags":[1,2]}"#).unwrap();
+>
+>   let name = value.get("name").unwrap();
+>   @println("name: {}", name.as_str().unwrap());
+>
+>   @println("tags: {}", value.get("tags").unwrap().len());
+>   @println("{}", value.stringify());
+> }
+> ```
+
+## Enums
+<Card title="JsonErrorKind">
+  JSON parse error kinds
+
+  ----
+
+  ```zeen
+  pub enum JsonErrorKind {
+    UnexpectedChar,
+    UnexpectedEnd,
+    TrailingData,
+    DepthExceeded,
+    InvalidNumber,
+    InvalidEscape,
+  }
+  ```
+</Card>
+
+<Card title="JsonValue">
+  JSON value, numbers kept as raw text
+
+  ----
+
+  ```zeen
+  pub enum JsonValue {
+    Null,
+    Bool: bool,
+    Num: String,
+    Str: String,
+    Array: List[JsonValue],
+    Object: JsonObject,
+  }
+  ```
+  **Fields:**
+  ```zeen
+  // Payloads per variant
+  ```
+  **Methods:**
+  ```zeen
+  pub fn parse(text: []const char) Result[JsonValue, JsonError];
+  ```
+  ```zeen
+  pub fn stringify(*const self) String;
+  ```
+  ```zeen
+  pub fn get(*const self, key: []const char) Option[*const JsonValue];
+  ```
+  ```zeen
+  pub fn at(*const self, index: usize) Option[*const JsonValue];
+  ```
+  ```zeen
+  pub fn len(*const self) usize;
+  ```
+  ```zeen
+  pub fn is_null(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_bool(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_num(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_str(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_array(*const self) bool;
+  ```
+  ```zeen
+  pub fn is_object(*const self) bool;
+  ```
+  ```zeen
+  pub fn as_bool(*const self) Option[bool];
+  ```
+  ```zeen
+  pub fn as_num(*const self) Option[String];
+  ```
+  ```zeen
+  pub fn as_i64(*const self) Option[i64];
+  ```
+  ```zeen
+  pub fn as_f64(*const self) Option[f64];
+  ```
+  ```zeen
+  pub fn as_str(*const self) Option[String];
+  ```
+  ```zeen
+  pub fn write_into(*const self, out: *String);
+  ```
+</Card>
+
+## Structures
+<Card title="JsonError">
+  JSON parse error
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub kind: JsonErrorKind,
+  pub pos: usize,
+  ```
+</Card>
+
+<Card title="JsonObject">
+  Object backing in insert order, fast lookup
+
+  ----
+
+  **Fields:**
+  ```zeen
+  map: HashMap[String, JsonValue],
+  keys: List[String],
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn insert(*self, key: String, value: JsonValue);
+  ```
+  ```zeen
+  pub fn get(*const self, key: []const char) Option[*const JsonValue];
+  ```
+  ```zeen
+  pub fn key_at(*const self, index: usize) *String;
+  ```
+  ```zeen
+  pub fn get_at(*const self, index: usize) *const JsonValue;
+  ```
+  ```zeen
+  pub fn len(*const self) usize;
+  ```
+  ```zeen
+  pub fn write_into(*const self, out: *String);
+  ```
+</Card>

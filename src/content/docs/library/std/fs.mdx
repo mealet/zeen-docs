@@ -6,7 +6,7 @@ description: File, directory and metadata operations with error results.
 import { Badge, Card } from '@astrojs/starlight/components';
 
 **Module:** <Badge text="std.fs" variant="note" size="medium" /> <br/>
-**Source:** [std/fs.zn](https://github.com/mealet/zeen/blob/main/lib/std/fs.zn) <br/>
+**Source:** [std/fs.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/fs.zn) <br/>
 
 > **Usage Example**
 > ```zeen
@@ -176,11 +176,11 @@ import { Badge, Card } from '@astrojs/starlight/components';
 
   **Fields:**
   ```zeen
-  len: u64,
-  is_dir: bool,
-  is_file: bool,
-  is_symlink: bool,
-  mode: u32,
+  _len: u64,
+  _is_dir: bool,
+  _is_file: bool,
+  _is_symlink: bool,
+  _mode: u32,
   ```
   **Getters:**
   ```zeen
@@ -210,9 +210,11 @@ import { Badge, Card } from '@astrojs/starlight/components';
 
   **Fields:**
   ```zeen
-  name: String,
-  path: String,
-  meta: Metadata,
+  _name: String,
+  _path: String,
+  _is_dir: bool,
+  _is_file: bool,
+  _is_symlink: bool,
   ```
   **Getters:**
   ```zeen

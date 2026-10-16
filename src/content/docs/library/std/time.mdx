@@ -1,0 +1,107 @@
+---
+title: Time
+description: Durations, monotonic timestamps and thread sleep.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.time" variant="note" size="medium" /> <br/>
+**Source:** [std/time.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/time.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.time;
+>
+> fn main() {
+>   let start = Instant.now();
+>
+>   Time.sleep(Duration.from_millis(20));
+>
+>   @println("elapsed: {}", start.elapsed());
+>   @println("now: {}", Time.now());
+> }
+> ```
+
+## Structures
+<Card title="Duration">
+  Seconds and nanoseconds span
+
+  ----
+
+  **Fields:**
+  ```zeen
+  secs: u64,
+  nanos: u32,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn from_secs(s: u64) Self;
+  ```
+  ```zeen
+  pub fn from_millis(ms: u64) Self;
+  ```
+  ```zeen
+  pub fn from_micros(us: u64) Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn as_secs(*const self) u64;
+  ```
+  ```zeen
+  pub fn subsec_nanos(*const self) u32;
+  ```
+  ```zeen
+  pub fn as_millis(*const self) u64;
+  ```
+  ```zeen
+  pub fn as_nanos(*const self) u64;
+  ```
+  ```zeen
+  pub fn is_zero(*const self) bool;
+  ```
+
+  **Interfaces:**
+  - `core.io` : `Display`
+</Card>
+
+<Card title="Instant">
+  Monotonic timestamp
+
+  ----
+
+  **Fields:**
+  ```zeen
+  secs: i64,
+  nanos: i64,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn now() Self;
+  ```
+
+  **Getters:**
+  ```zeen
+  pub fn elapsed(*const self) Duration;
+  ```
+</Card>
+
+<Card title="Time">
+  Wall clock and sleep
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn now() i64;
+  ```
+  ```zeen
+  pub fn sleep(d: Duration);
+  ```
+</Card>

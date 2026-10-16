@@ -6,7 +6,7 @@ description: Minimal HTTP server, requests, headers and response builders.
 import { Badge, Card } from '@astrojs/starlight/components';
 
 **Module:** <Badge text="std.http" variant="note" size="medium" /> <br/>
-**Source:** [std/http.zn](https://github.com/mealet/zeen/blob/main/lib/std/http.zn) <br/>
+**Source:** [std/http.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/http.zn) <br/>
 
 > **Usage Example**
 > ```zeen
@@ -248,10 +248,31 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn gone(body: []const char) Self;
   ```
   ```zeen
+  pub fn length_required(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn precondition_failed(body: []const char) Self;
+  ```
+  ```zeen
   pub fn payload_too_large(body: []const char) Self;
   ```
   ```zeen
+  pub fn uri_too_long(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn unsupported_media_type(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn range_not_satisfiable(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn expectation_failed(body: []const char) Self;
+  ```
+  ```zeen
   pub fn im_a_teapot(body: []const char) Self;
+  ```
+  ```zeen
+  pub fn misdirected_request(body: []const char) Self;
   ```
   ```zeen
   pub fn unprocessable_content(body: []const char) Self;

@@ -1,0 +1,167 @@
+---
+title: Sync
+description: Mutex, RwLock and Arc for shared synchronization.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.sync" variant="note" size="medium" /> <br/>
+**Source:** [std/sync.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/sync.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.sync;
+>
+> fn main() {
+>   let counter = Arc.new(Mutex.new(0));
+>
+>   {
+>     let guard = counter.get_mut().lock();
+>     *guard += 1;
+>   };
+>
+>   @println("count: {}", *counter.get_mut().lock());
+> }
+> ```
+
+## Structures
+<Card title="Mutex[T]">
+  Mutual exclusion lock protecting shared data
+
+  ----
+
+  **Fields:**
+  ```zeen
+  os: OsMutex,
+  data: T,
+  open: bool,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(value: T) Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn lock(*self) MutexGuard[T];
+  ```
+  ```zeen
+  pub fn try_lock(*self) Option[MutexGuard[T]];
+  ```
+  ```zeen
+  pub fn into_inner(self) T;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="MutexGuard[T]">
+  Held mutex, bind in scope
+
+  ----
+
+  **Fields:**
+  ```zeen
+  lock: *OsMutex,
+  got: *T,
+  ```
+  **Interfaces:**
+  - `core.ops` : `Deref[T: Copy]`, `DerefPtr`, `Drop`
+</Card>
+
+<Card title="RwLock[T]">
+  Shared read, exclusive write lock
+
+  ----
+
+  **Fields:**
+  ```zeen
+  os: OsRwLock,
+  data: T,
+  open: bool,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(value: T) Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn read(*self) RwReadGuard[T];
+  ```
+  ```zeen
+  pub fn try_read(*self) Option[RwReadGuard[T]];
+  ```
+  ```zeen
+  pub fn write(*self) RwWriteGuard[T];
+  ```
+  ```zeen
+  pub fn try_write(*self) Option[RwWriteGuard[T]];
+  ```
+  ```zeen
+  pub fn into_inner(self) T;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="RwReadGuard[T]">
+  Held shared read, bind in scope
+
+  ----
+
+  **Fields:**
+  ```zeen
+  lock: *OsRwLock,
+  got: *T,
+  ```
+  **Interfaces:**
+  - `core.ops` : `Deref[T: Copy]`, `DerefPtr`, `Drop`
+</Card>
+
+<Card title="RwWriteGuard[T]">
+  Held exclusive write, bind in scope
+
+  ----
+
+  **Fields:**
+  ```zeen
+  lock: *OsRwLock,
+  got: *T,
+  ```
+  **Interfaces:**
+  - `core.ops` : `Deref[T: Copy]`, `DerefPtr`, `Drop`
+</Card>
+
+<Card title="Arc[T]">
+  Atomic reference count shared ownership, thread safe version of `Shared`
+
+  ----
+
+  **Fields:**
+  ```zeen
+  ptr: *T,
+  count: *i64,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(value: T) Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn use_count(*const self) i64;
+  ```
+  ```zeen
+  pub fn is_unique(*const self) bool;
+  ```
+  ```zeen
+  pub fn get(*const self) *const T;
+  ```
+  ```zeen
+  pub fn get_mut(*self) *T;
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Clone`, `Drop`, `Deref[T: Copy]`, `DerefPtr`
+  - `core.io` : `Display[T: Display]`, `Debug[T: Debug]`
+</Card>

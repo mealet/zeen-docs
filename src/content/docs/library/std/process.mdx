@@ -1,0 +1,271 @@
+---
+title: Process
+description: Process arguments, working directory, exit and child process spawning.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.process" variant="note" size="medium" /> <br/>
+**Source:** [std/process.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/process.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.process;
+>
+> fn main() {
+>   let out = Command.new("echo").arg("hello").output().unwrap();
+>
+>   @println("status: {}", out.status.success());
+>   @println("stdout: {}", out.stdout.trim_end());
+> }
+> ```
+>
+> ```zeen
+> use std.process;
+>
+> fn main() {
+>   for (arg : Process.args_iter()) {
+>     @println("{}", arg);
+>   }
+> }
+> ```
+
+## Enums
+<Card title="Stdio">
+  Child stdio config
+
+  ----
+
+  ```zeen
+  pub enum Stdio {
+    Piped,
+    Inherit,
+    Null,
+  }
+  ```
+</Card>
+
+## Structures
+<Card title="Process">
+  OS process: arguments, working directory and exit
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn args_count() i32;
+  ```
+  ```zeen
+  pub fn args() List[String];
+  ```
+  ```zeen
+  pub fn args_iter() ArgsIter;
+  ```
+  ```zeen
+  pub fn exit(code: i32) never;
+  ```
+  ```zeen
+  pub fn cwd() Result[String, IoError];
+  ```
+</Card>
+
+<Card title="ArgsIter">
+  Borrowed view over the process arguments, no allocation
+
+  ----
+
+  **Fields:**
+  ```zeen
+  index: i32,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+
+  **Interfaces:**
+  - `core.iter` : `Iterator`
+</Card>
+
+<Card title="ExitStatus">
+  Child exit report
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub exit_code: i32,
+  pub term_signal: i32,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn success(*const self) bool;
+  ```
+  ```zeen
+  pub fn code(*const self) Option[i32];
+  ```
+  ```zeen
+  pub fn signal(*const self) Option[i32];
+  ```
+</Card>
+
+<Card title="Output">
+  Finished child output
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub status: ExitStatus,
+  pub stdout: String,
+  pub stderr: String,
+  ```
+</Card>
+
+<Card title="PipeReader">
+  Owned pipe read end, closes on drop
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub fd: c_int,
+  pub handle: *void,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn read_to_string(*self, out: *String) Result[usize, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="PipeWriter">
+  Owned pipe write end, closes on drop
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub fd: c_int,
+  pub handle: *void,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn write_all(*self, buf: []const char) Result[void, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="Child">
+  Child handle, wait reaps it
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub pid: i32,
+  pub handle: *void,
+  pub in_fd: c_int,
+  pub out_fd: c_int,
+  pub err_fd: c_int,
+  pub win_in: *void,
+  pub win_out: *void,
+  pub win_err: *void,
+  ```
+  **Methods:**
+  ```zeen
+  pub fn id(*const self) i32;
+  ```
+  ```zeen
+  pub fn take_stdin(*self) Option[PipeWriter];
+  ```
+  ```zeen
+  pub fn take_stdout(*self) Option[PipeReader];
+  ```
+  ```zeen
+  pub fn take_stderr(*self) Option[PipeReader];
+  ```
+  ```zeen
+  pub fn wait(*self) Result[ExitStatus, IoError];
+  ```
+  ```zeen
+  pub fn try_wait(*self) Result[Option[ExitStatus], IoError];
+  ```
+  ```zeen
+  pub fn kill(*self) Result[void, IoError];
+  ```
+
+  **Interfaces:**
+  - `core.ops` : `Drop`
+</Card>
+
+<Card title="Command">
+  Pending spawn, chain or rebind builders
+
+  ----
+
+  **Fields:**
+  ```zeen
+  pub program: String,
+  pub argv: List[String],
+  pub envs: List[CommandEnv],
+  pub env_cleared: bool,
+  pub cwd: String,
+  pub has_cwd: bool,
+  pub stdin_mode: Stdio,
+  pub stdout_mode: Stdio,
+  pub stderr_mode: Stdio,
+  ```
+  **Constructors:**
+  ```zeen
+  pub fn new(program: []const char) Self;
+  ```
+  **Mutations:**
+  ```zeen
+  pub fn arg(self, value: []const char) Self;
+  ```
+  ```zeen
+  pub fn args(self, values: *const List[String]) Self;
+  ```
+  ```zeen
+  pub fn env(self, key: []const char, value: []const char) Self;
+  ```
+  ```zeen
+  pub fn env_remove(self, key: []const char) Self;
+  ```
+  ```zeen
+  pub fn env_clear(self) Self;
+  ```
+  ```zeen
+  pub fn current_dir(self, dir: []const char) Self;
+  ```
+  ```zeen
+  pub fn stdin(self, mode: Stdio) Self;
+  ```
+  ```zeen
+  pub fn stdout(self, mode: Stdio) Self;
+  ```
+  ```zeen
+  pub fn stderr(self, mode: Stdio) Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn spawn(*const self) Result[Child, IoError];
+  ```
+  ```zeen
+  pub fn status(*const self) Result[ExitStatus, IoError];
+  ```
+  ```zeen
+  pub fn output(*self) Result[Output, IoError];
+  ```
+</Card>

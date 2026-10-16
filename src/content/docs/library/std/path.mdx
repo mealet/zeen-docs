@@ -1,0 +1,56 @@
+---
+title: Path
+description: Portable path joining, normalization and component helpers.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.path" variant="note" size="medium" /> <br/>
+**Source:** [std/path.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/path.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.path;
+>
+> fn main() {
+>   let p: []const char = "/home/user/main.zn";
+>
+>   @println("base: {}", Path.basename(&p));
+>   @println("dir: {}", Path.dirname(&p));
+>   @println("{}", Path.join("/usr/local", "bin"));
+>   @println("{}", Path.normalize("/usr/./local/../bin"));
+> }
+> ```
+
+## Structures
+<Card title="Path">
+  Namespace for path operations
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn is_absolute(path: []const char) bool;
+  ```
+  ```zeen
+  pub fn basename(path: *[]const char) []const char;
+  ```
+  ```zeen
+  pub fn dirname(path: *[]const char) []const char;
+  ```
+  ```zeen
+  pub fn extension(path: *[]const char) Option[[]const char];
+  ```
+  ```zeen
+  pub fn join(a: []const char, b: []const char) String;
+  ```
+  ```zeen
+  pub fn normalize(path: []const char) String;
+  ```
+</Card>

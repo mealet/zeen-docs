@@ -1,0 +1,42 @@
+---
+title: Base64
+description: Standard alphabet base64 encoding and decoding.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.crypto.base64" variant="note" size="medium" /> <br/>
+**Source:** [std/crypto/base64.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/crypto/base64.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.crypto.base64;
+>
+> fn main() {
+>   let encoded = Base64.encode("hello");
+>
+>   @println("{}", encoded);
+>   @println("{}", Base64.decode(encoded.slice(..)).unwrap());
+> }
+> ```
+
+## Structures
+<Card title="Base64">
+  Standard alphabet base64 codec
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn encode(data: []const char) String;
+  ```
+  ```zeen
+  pub fn decode(data: []const char) Option[String];
+  ```
+</Card>

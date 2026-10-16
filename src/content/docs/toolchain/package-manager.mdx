@@ -1,0 +1,163 @@
+---
+title: Package Manager
+description: Zora, the Zeen package manager and build system.
+---
+
+import { Aside, FileTree } from '@astrojs/starlight/components';
+
+**Zora** is the Zeen package manager. <br/>
+Ships as the `zora` binary in each release.
+
+## Project Layout
+
+<FileTree>
+  - my-project
+    - Zora.toml project manifest
+    - Zora.lock resolved dependencies
+    - .gitignore
+    - src
+      - main.zn entry point (`bin`), or index.zn (`lib/*`)
+    - dist/ build output
+</FileTree>
+
+## Quick Start
+
+Create and run new project:
+```bash
+zora new hello
+cd hello
+zora run
+```
+
+## Commands
+
+| Command | Flags | Description |
+|---------|-------|-------------|
+| `zora init` | `--lib` | Initialize a project in the current directory |
+| `zora new <name>` | `--lib` | Create a new project directory |
+| `zora build` | `-m --mode [Debug/Release]`, `--target <TRIPLE>`, `--emit <EMIT>` | Build the project |
+| `zora run` | `-m --mode [Debug/Release]` | Build and run the project |
+| `zora test` | | Run the project's test suite |
+| `zora add <git-url>` | `--branch <BRANCH>` | Add a dependency |
+| `zora remove <name>` | | Remove a dependency |
+| `zora update` | | Update lockfile dependencies from the manifest |
+| `zora check` | | Check the project config and source |
+| `zora clean` | `--global` | Remove build artifacts and caches |
+| `zora deps-map` | | Print the dependency sources map |
+
+`--emit <EMIT>` accepts `BIN`, `OBJ`, `IR` or `MIR`. `--manifest-path <PATH>` and `--no-color` apply to every command.
+
+## Manifest
+
+```toml
+[package]
+name = "hello"
+version = "0.0.0"
+zeen = "^0.3.0"
+type = "bin"
+
+[build]
+output = "hello"
+flags = ["--no-warns"]
+
+[dependencies]
+greeting = "https://github.com/mealet/greeting"
+math = { git = "https://github.com/mealet/math", rev = "dev" }
+```
+
+### `[package]`
+
+| Field | Description |
+|-------|-------------|
+| `name` | Package name, also the default output name |
+| `version` | Package version (semver) |
+| `zeen` | Required compiler version, a semver requirement |
+| `type` | `bin`, `lib/static` or `lib/dynamic` |
+| `authors` | Optional author list |
+| `repository` | Optional repository URL |
+| `license` | Optional license identifier |
+
+### `[build]`
+
+| Field | Description |
+|-------|-------------|
+| `output` | Output name, overriding the package name |
+| `flags` | Extra flags passed to the compiler |
+
+### `[dependencies]`
+
+Each entry maps a package name to a git source: a bare URL or a `{ git, rev }` pair. `rev` may be a commit, tag or branch. Dependencies are resolved into `Zora.lock`, which pins every one to a commit.
+
+## Dependencies
+
+```bash
+zora add https://github.com/mealet/greeting
+zora add https://github.com/mealet/math --branch dev
+zora remove math
+zora update
+```
+
+Resolved dependencies are handed to the compiler through `--pkg`, so `use greeting;` works inside `src/`.
+
+## Build Output
+
+```bash
+zora build -m Release
+```
+
+| Mode | Output Dir |
+|------|------------|
+| `Debug` | `dist/debug/<name>` |
+| `Release` | `dist/release/<name>` |
+
+Passing `--target` adds the triple, `dist/<triple>/<mode>/<name>`, with a `.exe` suffix on Windows.
+
+### Libraries
+
+| Library Type | Output File |
+|--------------|-------------|
+| `lib/static` | `libNAME.a`, `NAME.lib` (MSVC) |
+| `lib/dynamic` | `libNAME.so`, `NAME.dll` (Windows), `libNAME.dylib` (macOS) |
+
+## Testing
+
+Create new test files:
+
+<FileTree>
+  - my-project
+    - tests
+      - add.zn tests file
+</FileTree>
+
+Define public tests functions:
+
+```zn
+use std.testing;
+
+fn add_2(x: i32) i32 {
+  x + 2
+}
+
+/// @test
+pub fn add_test() {
+  assert_eq(add_2(2), 4);
+}
+
+/// @test
+/// @should-fail
+pub fn fail_test() {
+  assert_eq(add_2(2), 6);
+}
+```
+
+And run tests:
+```bash
+zora test
+```
+```
+Tests from `tests/add.zn`:
+  test add.add_test ... [OK]
+  test add.fail_test ... [OK]
+
+Tests 2 passed in 0.06s
+```

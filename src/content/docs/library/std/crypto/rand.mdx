@@ -1,0 +1,76 @@
+---
+title: Rand
+description: Pseudo random generators, global and owned.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.crypto.rand" variant="note" size="medium" /> <br/>
+**Source:** [std/crypto/rand.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/crypto/rand.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.crypto.rand;
+>
+> fn main() {
+>   Rand.seed(1234);
+>   @println("{}", Rand.below(100));
+>
+>   let rng = Rng.from_seed(7);
+>   @println("{}", rng.range(1, 7));
+> }
+> ```
+
+## Structures
+<Card title="Rand">
+  Global pseudo random generator
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn seed(seed: u32);
+  ```
+  ```zeen
+  pub fn next_u32() u32;
+  ```
+  ```zeen
+  pub fn below(upper: u32) u32;
+  ```
+</Card>
+
+<Card title="Rng">
+  Owned pseudo random generator
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Constructors:**
+  ```zeen
+  pub fn new() Self;
+  ```
+  ```zeen
+  pub fn from_seed(seed: u64) Self;
+  ```
+  **Methods:**
+  ```zeen
+  pub fn next_u64(*self) u64;
+  ```
+  ```zeen
+  pub fn next_u32(*self) u32;
+  ```
+  ```zeen
+  pub fn range(*self, from: u32, to: u32) u32;
+  ```
+</Card>

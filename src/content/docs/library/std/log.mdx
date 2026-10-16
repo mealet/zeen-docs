@@ -1,0 +1,75 @@
+---
+title: Log
+description: Leveled logging to stdout.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.log" variant="note" size="medium" /> <br/>
+**Source:** [std/log.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/log.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.log;
+>
+> fn main() {
+>   Log.set_level(Level.Debug);
+>
+>   Log.debug("debug message");
+>   Log.info("info message");
+>   Log.warn("warn message");
+>   Log.error("error message");
+> }
+> ```
+
+## Enums
+<Card title="Level">
+  Severity level, ordered from verbose to critical
+
+  ----
+
+  ```zeen
+  pub enum Level {
+    Debug,
+    Info,
+    Warn,
+    Error,
+  }
+  ```
+</Card>
+
+## Structures
+<Card title="Log">
+  Leveled logging to stdout
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn set_level(l: Level);
+  ```
+  ```zeen
+  pub fn level() Level;
+  ```
+  ```zeen
+  pub fn log(l: Level, msg: []const char);
+  ```
+  ```zeen
+  pub fn debug(msg: []const char);
+  ```
+  ```zeen
+  pub fn info(msg: []const char);
+  ```
+  ```zeen
+  pub fn warn(msg: []const char);
+  ```
+  ```zeen
+  pub fn error(msg: []const char);
+  ```
+</Card>

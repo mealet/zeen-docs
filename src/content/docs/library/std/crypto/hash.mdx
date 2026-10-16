@@ -1,0 +1,40 @@
+---
+title: Hash
+description: FNV-1a hashing helpers.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="std.crypto.hash" variant="note" size="medium" /> <br/>
+**Source:** [std/crypto/hash.zn](https://github.com/mealet/zeen/blob/main/lib/std/src/crypto/hash.zn) <br/>
+
+> **Usage Example**
+> ```zeen
+> use std.crypto.hash;
+>
+> fn main() {
+>   @println("{}", Hasher.fnv1a64("hello"));
+>   @println("{}", Hasher.fnv1a32("hello"));
+> }
+> ```
+
+## Structures
+<Card title="Hasher">
+  FNV-1a hashing
+
+  ----
+
+  **Fields:**
+  ```zeen
+  // No Fields
+  ```
+  ----
+
+  **Methods:**
+  ```zeen
+  pub fn fnv1a64(data: []const char) u64;
+  ```
+  ```zeen
+  pub fn fnv1a32(data: []const char) u32;
+  ```
+</Card>
