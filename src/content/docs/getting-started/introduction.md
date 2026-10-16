@@ -17,7 +17,7 @@ Besides that it introduces its own approach to ownership, memory management, and
 :::
 
 ## Why was Zeen created
-I, the founder of the language and the writer of the first version of this documentation — [@mealet](https://github.com/mealet), was very fascinated
+I, the founder of the language and the writer of the first version of this documentation - [@mealet](https://github.com/mealet), was very fascinated
 by Rust's ownership and auto-drops system, but I also wanted more freedom like in Zig. I've chosen freedom of Zig and, once a day, I've got an untraceable
 segmentation fault which I couldn't fix. It is probably my skill issue, but then I've decided to create a "free" systems language with automatic data drops and an ownership system.
 
