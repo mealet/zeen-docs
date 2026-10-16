@@ -11,10 +11,10 @@ The main idea is to create a tool to develop efficient software where most error
 Zeen took many design choices from Rust and Zig programming languages, which makes it more familiar for most developers.
 Besides that it introduces its own approach to ownership, memory management, and compile-time features.
 
-:::note[Please Note]
-- There is no borrow checker, only move semantics
-- Compiles through LLVM 22 to native binary
-:::
+<!-- :::note[Please Note] -->
+<!-- - There is no borrow checker, only move semantics -->
+<!-- - Compiles through LLVM 22 to native binary -->
+<!-- ::: -->
 
 ## Why was Zeen created
 I, the founder of the language and the writer of the first version of this documentation - [@mealet](https://github.com/mealet), was very fascinated
