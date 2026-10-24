@@ -1,0 +1,212 @@
+---
+version: 0.3.0
+date: 2026-10-16
+description: Big release on compiler, library and ecosystem.
+---
+
+Big release on compiler, library and ecosystem.
+
+# Compiler/Library
+* Reworked include resolve, now it doesn't carry non-public imports from other modules and allows to do private elements with same name (added mangling for codegen stage)
+* Fixed short circuit eval `&&` and `||` (optimization and safety element, now `if (ptr != nullptr && *ptr == 1)` won't panic)
+* Production ready standard library expansion, see new modules in web docs
+
+## New library examples
+- `std.process`
+```zeen
+use std.string;
+use std.process;
+
+fn main() {
+  let out = Command.new("echo")
+    .arg("hi")
+    .output()
+    .expect("an error occured during command spawn");
+
+  @println("Output: {}", out.stdout.trim_end());
+}
+```
+```zeen
+use std.process;
+
+fn main() {
+  let args_iter = Process.args_iter();
+
+  @println("Args without extra allocations:");
+
+  for (arg : args_iter) {
+    @println("> `{}`", arg);
+  }
+}
+```
+
+----
+
+- `std.thread` and `std.sync`
+```zeen
+use std.sync;
+use std.thread;
+
+fn main() {
+  let counter = Arc.new(Mutex.new(0));
+
+  let c1 = counter.clone();
+  let c2 = counter.clone();
+
+  let t1 = Thread.spawn(fn() i32 {
+    let guard = c1.get_mut().lock();
+    *guard = *guard + 1;
+
+    return *guard;
+  });
+
+  let t2 = Thread.spawn(fn() i32 {
+    let guard = c2.get_mut().lock();
+    *guard = *guard + 1;
+
+    return *guard;
+  });
+
+  @println("t1 = {}", t1.join());
+  @println("t2 = {}", t2.join());
+  @println("counter = {}", (*counter.get()).into_inner());
+}
+```
+
+----
+
+- `std.env`
+```zeen
+use std.env;
+
+fn main() {
+  Env.set_var("ZEEN_TEST", "works!").expect("oops! error!");
+
+  @println(
+    "{}",
+    Env.var("ZEEN_TEST").expect("nothing here")
+  );
+}
+```
+
+----
+
+- `std.path`
+```zeen
+use std.path;
+
+fn main() {
+  @println("{}", Path.join("/tmp", "a.txt"));
+}
+```
+
+----
+
+- `std.time`
+```zeen
+use std.time;
+
+fn main() {
+  let start = Instant.now();
+  Time.sleep(Duration.from_millis(512));
+
+  @println("{}", start.elapsed().as_millis());
+}
+```
+
+----
+
+- `std.json`
+```zeen
+use std.json;
+
+fn main() {
+  let source: []const char = r#"
+    {
+      "number": 42
+    }
+  "#;
+
+  let parsed = JsonValue.parse(source).expect("parser error");
+
+  switch (parsed.get("number")) {
+    .Some(n) => {
+      @println("Number is: {}", n.as_i64().expect("not a number"));
+    },
+
+    _ => @println("Nothing!"),
+  }
+}
+```
+
+----
+
+- `std.log`
+```zeen
+use std.log;
+
+fn main() {
+  Log.set_level(Level.Info);
+  Log.info("Logging works!");
+}
+```
+
+----
+
+- `std.crypto`
+```zeen
+use std.crypto.sha256;
+use std.crypto.base64;
+
+fn main() {
+  @println("sha = {}", Sha256.hexdigest("Hello!"));
+  @println("base64 = {}", Base64.encode("Hello!"));
+}
+```
+
+# LSP
+LSP Server got a huge update, fixed a lot of bugs related to hovers, goto's, defs, autocompletes and etc.
+* Added codelens elements support (such as "Run"/"Test", references counter, rename symbol, symbols map and etc.)
+* Added more useful info in hover (fixed syntax highlight, added more types display, `Drop`/`NoDrop` mark, copy/move-only mark and etc.)
+* Really expanded autocompletes: structs fields, enums variants, static/instance method, interfaces, implement blocks and more more!
+
+# Editors
+* Added VS Code static json language description for parser
+* Added tree-sitter parser support for Neovim
+
+# (NEW) Package Manager
+Designed and implemented cargo-like package manager. Packages can be used from any git repository (github, codeberg, gitlab and etc.), their revs and states are locked in `Zora.lock` (coming right from `Zora.toml` main manifest). Optimized with databases and git checkouts in home directory that is shared across projects on your computer.
+
+Also, Zora is now connected with LSP server, so just open your Zora project in editor and it will work as expected (I hope so, works on my machine).
+
+import { Aside, FileTree } from '@astrojs/starlight/components';
+
+**Zora Project Layout:**
+
+<FileTree>
+  - my-project
+    - Zora.toml project manifest
+    - Zora.lock resolved dependencies
+    - .gitignore
+    - src
+      - main.zn entry point (`bin`), or index.zn (`lib/*`)
+    - dist/ build output
+</FileTree>
+
+**Quick Start:**
+```bash
+zora new hello_world
+cd hello_world
+zora run
+```
+
+# Breaking Changes
+* Standard library is a Zora project now, it contains toml manifest and etc. This will NOT affect the way you interact with the library, old code still works fine.
+
+# Pull Requests Changelog
+* Include resolver rework by @mealet in https://github.com/mealet/zeen/pull/58
+* Short circuit eval for `&&` and `||` by @mealet in https://github.com/mealet/zeen/pull/59
+* Standard library expansion by @mealet in https://github.com/mealet/zeen/pull/61
+
+# Full Changelog
+https://github.com/mealet/zeen/compare/v0.2.2...v0.3.0

@@ -1,0 +1,85 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const releases = await getCollection(
+    'changelog',
+    ({ data }) => !data.draft,
+  );
+
+  return releases.map((release) => ({
+    params: { version: release.id },
+    props: { release },
+  }));
+}
+
+const { release } = Astro.props;
+const { Content } = await render(release);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: `v${release.data.version}`,
+    ...(release.data.description && { description: release.data.description }),
+    template: 'splash',
+  }}
+  hasSidebar={false}
+>
+  <article class="release-page">
+    <a href="/changelog/">← All releases</a>
+
+    <div class="meta">
+      <span>v{release.data.version}</span>
+      <time datetime={release.data.date.toISOString()}>
+        {release.data.date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'UTC',
+        })}
+      </time>
+    </div>
+
+    <h1>v{release.data.version}</h1>
+
+    {release.data.description && (
+      <p class="description">{release.data.description}</p>
+    )}
+
+    <hr />
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</StarlightPage>
+
+<style>
+  .release-page {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .meta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+  }
+
+  .meta span {
+    color: var(--sl-color-text-accent);
+    font-weight: 700;
+  }
+
+  .description {
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+  }
+
+  .content {
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+
+const releases = (await getCollection(
+  'changelog',
+  ({ data }) => !data.draft,
+)).sort((a, b) => {
+  const byDate = b.data.date.getTime() - a.data.date.getTime();
+  if (byDate !== 0) return byDate;
+
+  const pa = a.data.version.split('.').map(Number);
+  const pb = b.data.version.split('.').map(Number);
+  for (let i = 0; i < 3; i++) {
+    if (pa[i] !== pb[i]) return pb[i] - pa[i];
+  }
+  return 0;
+});
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Changelog',
+    description: 'Release history of the Zeen programming language.',
+    template: 'splash',
+  }}
+  hasSidebar={false}
+>
+  <div class="changelog">
+    <p class="intro">
+      Release history of Zeen programming language
+    </p>
+
+    {releases.map((release, index) => (
+      <a class="release" href={`/changelog/${release.id}/`}>
+        <div class="release-meta">
+          <span class="version">v{release.data.version}</span>
+          <time datetime={release.data.date.toISOString()}>
+            {release.data.date.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              timeZone: 'UTC',
+            })}
+          </time>
+          {index === 0 && <span class="latest">Latest</span>}
+        </div>
+
+        <h2>v{release.data.version}</h2>
+
+        {release.data.description && (
+          <p class="description">{release.data.description}</p>
+        )}
+
+        <span class="details">Read release notes →</span>
+      </a>
+    ))}
+  </div>
+</StarlightPage>
+
+<style>
+  .changelog {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .intro {
+    color: var(--sl-color-gray-2);
+    margin-bottom: 2rem;
+  }
+
+  .release {
+    display: block;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--sl-color-hairline);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .release:hover h2 {
+    color: var(--sl-color-text-accent);
+  }
+
+  .release-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.85rem;
+  }
+
+  .version {
+    color: var(--sl-color-text-accent);
+    font-weight: 700;
+  }
+
+  .latest {
+    border: 1px solid var(--sl-color-text-accent);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  .release h2 {
+    margin: 0.65rem 0 0.35rem;
+    font-size: 1.35rem;
+  }
+
+  .description {
+    margin: 0 0 0.75rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+  }
+
+  .details {
+    color: var(--sl-color-text-accent);
+    font-size: 0.9rem;
+  }
+</style>

@@ -396,6 +396,12 @@ export default defineConfig({
 						},
 					],
 				},
+
+				// Changelog
+				{
+					label: 'Changelog',
+					link: '/changelog/',
+				}
 			],
 		}),
 	],
