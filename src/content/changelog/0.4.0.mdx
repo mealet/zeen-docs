@@ -1,0 +1,180 @@
+---
+version: 0.4.0
+date: 2026-10-27
+description: Frontend and performance focused release.
+---
+
+## Comptime engine
+A featured comptime engine landed in this release. The new `zeen-comptime` crate evaluates code during compilation and substitutes the result into the program.
+
+Simple constants and splicing:
+
+```zeen
+comptime N = 16;
+comptime SquaredN = N * N;
+
+fn main() {
+  @println("{} -> {}", N, SquaredN);
+  @println("$(N) -> $(SquaredN)");
+}
+```
+
+Compile time functions, recursion and results in type expressions:
+
+```zeen
+comptime fn fact(n: comptime_int) comptime_int {
+  if (n <= 1) { return 1; };
+  return n * fact(n - 1);
+}
+
+comptime fn double(x: comptime_int) comptime_int {
+  x * 2
+}
+
+fn main() {
+  let arr: [double(2)]i32 = [1, 2, 3, 4];
+  @println("{} {}", fact(5), arr[3]);
+}
+```
+
+Compile time functions can return declarations. Here `pair_of` builds a struct and `@emit` places it into the declaration scope:
+
+```zeen
+comptime fn pair_of(struct_name: comptime_str, a: zeen_type, b: zeen_type) zeen_decl {
+  @zeen_decl(
+    struct $(struct_name) {
+      pub a: $(a),
+      pub b: $(b),
+    }
+  )
+}
+
+comptime {
+  @emit(pair_of("NumsPair", i32, f32));
+}
+
+fn main() {
+  let pair = NumsPair { .a = 1, .b = 1.0 };
+  @println("{} {}", pair.a, pair.b);
+}
+```
+
+Comptime structs, blocks and reflection work as well:
+
+```zeen
+comptime struct Point {
+  x: comptime_int,
+  y: comptime_int,
+}
+
+comptime P = Point { .x = 123, .y = 321 };
+
+fn main() {
+  @println("x = $(P.x)");
+  @println("y = $(P.y)");
+
+  comptime {
+    for (field : @fields(Point)) {
+      @println("[{}] {}: {}", field.index, field.name, field.ty);
+    }
+  }
+}
+```
+
+#### Runtime macros ported to the comptime area:
+
+| Macro | Destination |
+|-----------|------------------|
+| `@print(...)` / `@println(...)` | Print a formatted compile time string with the prefix `[comptime FUNCTION][FILE:LINE] MESSAGE` |
+| `@format(...) comptime_str` | Format and return a compile time string |
+| `@dbg(...)` | Debug print a compile time expression |
+| `@panic(...)` | Compile time formatted panic error as a `miette` error with source display |
+| `@sizeof(T) comptime_int` | Size of the provided type |
+| `@alignof(T) comptime_int` | Alignment of the provided type |
+
+#### New comptime-only macros:
+
+| Macro | Destination |
+|-----------|------------------|
+| `@zeen_type(T)` | Capture the inner type as a `zeen_type` value |
+| `@zeen_expr(expr)` | Capture an expression as a `zeen_expr` value |
+| `@zeen_decl(decl)` | Capture a declaration as a `zeen_decl` value |
+| `@emit(zeen_decl)` | Emit the captured declaration into the program scope |
+| `@fresh_name(prefix: comptime_str)` | Generate a unique name with the prefix `prefix_N` |
+| `@fields(T)` | Comptime array of `comptime struct Field` from `core.reflection` |
+| `@variants(T)` | Comptime array of `comptime struct Variant` from `core.reflection` |
+| `@typeInfo(T)` | String of named type info: `struct` / `enum` |
+| `@hasField(T, name)` | `true` if the struct has a field with the provided name |
+| `@fieldType(T, name)` | Field type as a `@zeen_type` |
+
+## Performance
+A set of frontend optimizations landed in [#62](https://github.com/mealet/zeen/pull/62). Measured on a synthetic benchmark project (15 files, 1.5 millions LOC, 26.9 MB):
+
+| Metric | Before | After | Speedup |
+|-----------|-----------|----------|-------------|
+| `--check` (best baseline run) | 58.9 s | 9.5 s | 6.2x |
+| `--check` (typical baseline run) | 158.0 s | 9.5 s | 16.6x |
+| full binary build | 137.8 s | 11.3 s | 12.2x |
+| `--check` cycles | 254.6e9 | 40.3e9 | 6.3x |
+| build cycles | 597.0e9 | 48.0e9 | 12.4x |
+| peak RSS | 1948 MiB | 1959 MiB | +0.5% |
+
+# Changelog from Github Release
+### Compiler/Library
+1. New `comptime` frontend engine (crate `zeen-comptime`) with supported: compile time constants, functions, blocks, structs and types. See examples and more detailed about macros and features in [#64](https://github.com/mealet/zeen/pull/64)
+2. Improvement of warnings system. New warnings for: `unused_variable`, `unused_fn`, `unused_const`, `unreachable_code`, `unused_expression_result`. New features for warnings:
+ - `--no-warns` disables all warnings
+ - `// @no-warnings` marker to silence a single module
+ - Core packages are always quiet about warnings
+3. Compiler frontend performance: about 16.6x speedup on typical baseline `--check` run and 12.2x on full binary build. See more in [#62](https://github.com/mealet/zeen/pull/62)
+4. Closures and generics:
+ - Closures can capture generic params, zero capture closures bind the enclosing generics
+ - Anonymous fn literals and `Fn` / `FnOnce` values work in global inits through the synthesized `zeen_init_globals`
+ - Bound methods resolve through pointers to generic params
+5. New macros: `@variantNames(T) [N][]const char`, `@variantCount(T) comptime_int`
+6. C ABI fixes: extern calls pass the `byval` attribute, struct arguments are passed per the C ABI, small struct returns are lowered per the C ABI and struct ABI now follows the target instead of the host
+7. Correctness fixes:
+   - Statements after `return` / `break` / `continue` / `@panic` no longer execute and no longer count as the block value.
+   - Integer literals that do not fit the target type are rejected instead of silently truncating.
+   - Bare `_` over a `Drop` payload is a hard error, use `&_` to borrow or discard.
+   - Multiplicative operators are left associative now (`a / b * c` is `(a / b) * c`).
+   - Negated literals fold correctly in MIR, `addr_of` lowers with the operand type and casts the pointer on coercion.
+   - Function body spans stay inside the closing brace, `@family` reports `unix` for Android targets.
+8. Native linking flags `--link <LIB>` and `--link-dir <PATH>` (repeatable) for both the CLI and Zora builds.
+
+### Library
+1. Replaced basic constants with comptime constants in: `std.math`, `std.collections`, `std.json`, `std.string`, `std.sync`
+2. `std.collections.list` got new method: `swap` and the `Index` interface implementation for non-Copy elements
+3. Windows std fixes reported by the platform test suite
+
+### LSP
+1. New semantic tokens for: `comptime_int`, `comptime_float`, `comptime_bool`, `comptime_char`, `comptime_str`, `zeen_type` and `zeen_decl`
+2. Hover for comptime names, comptime macros and variant macros
+3. Diagnostics are reported for every module of a project (not just entry file)
+4. Locals filtered by scope, interface method completion, `// @no-warnings` support
+5. Parse errors of included modules surface directly
+
+### Package Manager
+1. `[build]` accepts `link` and `link-dir`, directives from the package and its dependencies are collected in `Zora.lock` and passed to the compiler
+2. New platform sections: `[build.target.<triple>]`, `[build.arch.<value>]`, `[build.env.<value>]`, `[build.os.<value>]`, `[build.family.<value>]`. First match wins and overrides global `[build]`
+3. Lockfile format bumped to `version = 3`, older lockfiles should be deleted and re-created with `zora check`
+4. New flags for run/build: `--release` / `--debug` (alias for `-m Release` / `-m Debug`)
+5. Added forwards program arguments after `--`
+6. `[package]` section gained an optional `description` string field
+
+## Breaking Changes
+- Integer literals that exceed the target type are a compile error now. Code that relied on truncation has to annotate the binding or use `@as`.
+- Bare `_` over a `Drop` payload is rejected (`zeen::mir::discard_drop_payload`). Use `&_`.
+- Warnings are reported by default, including unused functions, unused constants and unreachable code. Use `--no-warns` or `// @no-warnings` to silence them.
+- Statements after `return` / `break` / `continue` / `@panic` no longer execute. Previously the followup statement replaced the flow cut and actually ran.
+- Multiplicative operators are left associative, so `a / b * c` parses as `(a / b) * c`.
+- Std constants are `comptime` values now (`PI`, `TAU`, `E`, collection capacities, `json` limits). A binding that needs a runtime type has to annotate it: `let cap: usize = InitialMapCapacity;`.
+- `@family` on Android targets resolves to `unix` instead of an empty string.
+
+## Pull Requests
+* Compiler frontend performance by @mealet in https://github.com/mealet/zeen/pull/62
+* Warnings system improvement by @mealet in https://github.com/mealet/zeen/pull/63
+* Featured comptime engine by @mealet in https://github.com/mealet/zeen/pull/64
+
+
+**Full Changelog**: https://github.com/mealet/zeen/compare/v0.3.0...v0.4.0
