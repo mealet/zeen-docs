@@ -84,10 +84,6 @@ export default defineConfig({
 							label: 'Package Manager',
 							slug: 'toolchain/package-manager',
 						},
-						{
-							label: 'Warnings',
-							slug: 'toolchain/warnings',
-						},
 					],
 				},
 
