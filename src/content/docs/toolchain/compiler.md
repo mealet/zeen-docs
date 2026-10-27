@@ -17,6 +17,8 @@ zeen <source> <output>
 | `--std <PATH>` | Std library project root, the directory containing `src` (default: `$ZEEN_STD`, `~/.zeen/std`, then `share/zeen/std`) |
 | `--linker-path <PROGRAM>` | Override the detected linker |
 | `--pkg NAME=PATH` | Map a package name to a source directory (repeatable) |
+| `--link <LIB>` | Link an extra native library, e.g. `raylib` (repeatable) |
+| `--link-dir <PATH>` | Add a native library search directory (repeatable) |
 | `--check` | Run all checks without codegen |
 | `--no-warns` | Disable compiler warnings |
 | `--no-color` | Disable colored output |
@@ -27,5 +29,6 @@ zeen <source> <output>
 zeen main.zn output -m Release
 zeen main.zn output.ll --emit IR
 zeen main.zn output --target x86_64-pc-windows-gnu
+zeen main.zn game --link raylib
 zeen main.zn --check
 ```

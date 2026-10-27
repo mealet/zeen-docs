@@ -1,0 +1,44 @@
+---
+title: Reflection
+description: Compile time records returned by the reflection macros.
+---
+
+import { Badge, Card } from '@astrojs/starlight/components';
+
+**Module:** <Badge text="core.reflection" variant="note" size="medium" /> <br/>
+**Source:** [core/reflection.zn](https://github.com/mealet/zeen/blob/main/lib/core/reflection.zn) <br/>
+
+## Structures
+<Card title="Field">
+  One field of a struct type
+
+  ----
+
+  **Fields:**
+  ```zeen
+  comptime struct Field {
+    index: comptime_int,
+    name: comptime_str,
+    ty: zeen_type,
+  }
+  ```
+</Card>
+
+<Card title="Variant">
+  One variant of an enum type
+
+  Payload kinds: `none`, `value`, `struct`
+
+  ----
+
+  **Fields:**
+  ```zeen
+  comptime struct Variant {
+    index: comptime_int,
+    name: comptime_str,
+    payload: comptime_str,
+    ty: zeen_type,
+    fields: [0]Field,
+  }
+  ```
+</Card>

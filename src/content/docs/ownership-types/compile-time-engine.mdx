@@ -1,0 +1,180 @@
+---
+title: Compile Time Engine
+description: Compile time constants, functions, blocks, structs, types and reflection.
+---
+
+Area `comptime` evaluates code during compilation and substitutes the result into the program. Compile time values have no runtime storage.
+
+## Constants
+
+```zeen
+comptime N = 16;
+comptime SquaredN = N * N;
+
+fn main() {
+  @println("{} {}", N, SquaredN);
+}
+```
+
+A plain name is enough inside code. Use a splice `$(NAME)` where only a literal works, for example inside a string or a type:
+
+```zeen
+fn main() {
+  @println("$(N) squared is $(SquaredN)");
+}
+```
+
+## Functions
+
+```zeen
+comptime fn fact(n: comptime_int) comptime_int {
+  if (n <= 1) { return 1; };
+  return n * fact(n - 1);
+}
+
+comptime fn double(x: comptime_int) comptime_int {
+  x * 2
+}
+
+fn main() {
+  let arr: [double(2)]i32 = [1, 2, 3, 4];
+  @println("{} {}", fact(5), arr[3]);
+}
+```
+
+A compile time function takes comptime parameters, returns a comptime value and supports recursion. Its result can be used in a type position, so a call works wherever a constant expression does.
+
+## Blocks
+
+`comptime { ... }` works at three levels:
+
+- **declaration level**, where it may emit declarations,
+- **statement level** inside a runtime function
+- **expression level**, where the tail value is substituted.
+
+```zeen
+fn main() {
+  comptime {
+    @println("evaluated during compilation");
+  }
+
+  let size = comptime { 4 * 8 };
+  @println("{}", size);
+}
+```
+
+## Structs
+
+```zeen
+comptime struct Point {
+  x: comptime_int,
+  y: comptime_int,
+}
+
+comptime P = Point { .x = 123, .y = 321 };
+
+fn main() {
+  @println("x = $(P.x)");
+  @println("y = $(P.y)");
+}
+```
+
+A comptime struct is compile time only. It is `Copy`, accepts the usual `self` receivers, and cannot be used as a runtime type.
+
+:::tip
+You can see a good `comptime struct` example in core library: [`reflection.zn`](/library/core/reflection/) <br/>
+provides compile time structs for the compiler to use reflection.
+:::
+
+## Types and declarations
+
+| Macro | Result |
+|-------|--------|
+| `@zeen_type(T)` | the type as a `zeen_type` value |
+| `@zeen_expr(expr)` | the expression as a `zeen_expr` value |
+| `@zeen_decl(decl)` | the declaration as a `zeen_decl` value |
+| `@emit(decl)` | emit a captured declaration into the program |
+| `@fresh_name(prefix)` | unique name `prefix_N` |
+
+`zeen_decl` lets a compile time function build declarations. `@emit` places them into scope:
+
+```zeen
+comptime fn pair_of(struct_name: comptime_str, a: zeen_type, b: zeen_type) zeen_decl {
+  @zeen_decl(
+    struct $(struct_name) {
+      pub a: $(a),
+      pub b: $(b),
+    }
+  )
+}
+
+comptime {
+  @emit(pair_of("NumsPair", i32, f32));
+}
+
+fn main() {
+  let pair = NumsPair { .a = 1, .b = 1.0 };
+  @println("{} {}", pair.a, pair.b);
+}
+```
+
+## Reflection
+
+| Macro | Result |
+|-------|--------|
+| `@fields(T)` | array of `Field` records |
+| `@variants(T)` | array of `Variant` records |
+| `@typeInfo(T)` | kind string, `struct` or `enum` |
+| `@hasField(T, name)` | `bool` |
+| `@fieldType(T, name)` | field type |
+
+```zeen
+struct User {
+  pub id: i32,
+  pub score: f64,
+}
+
+fn main() {
+
+  comptime {
+    @println("{}", @typeInfo(User));
+
+    for (field : @fields(User)) {
+      @println("[{}] {}: {}", field.index, field.name, field.ty);
+    }
+  }
+
+}
+```
+
+`@variantNames(T)` and `@variantCount(T)` are regular macros: they work at run time and inside comptime blocks.
+
+## Formatting and layout
+
+`@print`, `@println`, `@format`, `@dbg`, `@panic` accept the same format syntax as at run time.
+`@sizeof(T)`, `@alignof(T)` in comptime area return `comptime_int`.
+
+```zeen
+comptime Size = @sizeof(i64);
+comptime Align = @alignof(f64);
+
+fn main() {
+  @println("{} {}", Size, Align);
+}
+```
+
+## Allowed types
+List allowed types in compile time area:
+- `comptime_int`, `comptime_float`, `comptime_bool`, `comptime_char`, `comptime_str`
+- `zeen_type`, `zeen_expr`, `zeen_decl`
+- `comptime struct`
+- arrays of the above
+- `void`
+
+Runtime types are rejected in comptime signatures and local annotations. <br/>
+`@uninit` and `@void` are forbidden inside comptime.
+
+## Limits
+
+The interpreter has a step budget and a recursion depth limit. <br/>
+Exceeding either one is a compile error with the code `zeen::comptime::limit_exceeded`.

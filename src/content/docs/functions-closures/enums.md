@@ -46,7 +46,7 @@ switch (point) {
 };
 ```
 
-With `&` the arm binds a `*Payload` pointer into the enum instead of moving the payload out. `&_` discards it.
+With `&` the arm binds a `*Payload` pointer into the enum instead of moving the payload out. `&_` discards it. Bare `_` moves the payload into a dead local and drops it, which is a hard error for a non-`Copy` payload (`zeen::mir::discard_drop_payload`).
 
 ## Tag
 `@enumTag` returns the runtime tag as `u8`:

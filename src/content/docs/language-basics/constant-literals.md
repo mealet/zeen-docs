@@ -24,6 +24,24 @@ Example:
 
 Default integer literal type is `i32`.
 
+A literal takes its type from the context around it: an annotation, a call parameter or `@as`. The value must fit that type, otherwise the compiler reports `zeen::typechecker::int_literal_out_of_range`.
+
+Valid:
+```zeen
+let a: i32 = 123;
+let b: i64 = 9223372036854775807;
+```
+
+Does not fit `i32`:
+```zeen
+let c: i32 = 9223372036854775807;
+```
+
+A literal that does not fit `i64` at all is rejected by the lexer with `zeen::parser::invalid_literal`:
+```zeen
+let d: i64 = 9300000000000000000;
+```
+
 ## Float Literals
 Float (or floating point numbers) are the same with other languages.
 

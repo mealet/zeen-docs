@@ -46,3 +46,31 @@ fn main() {
   @println("{}", apply(5, f));
 }
 ```
+
+A closure may capture a generic parameter when the parameter is `Copy`. The capture is monomorphized with the enclosing function:
+```zeen
+fn twice[T: Copy](value: T) T {
+  let grab = fn() T { value };
+  return grab();
+}
+
+fn main() {
+  @println("{}", twice(9));
+}
+```
+
+Bounds of the enclosing function are not inherited by the closure body, so a closure that relies on an interface bound takes a concrete type instead.
+
+A zero capture closure inside a generic function binds the enclosing generics as well and stays a basic `fn` pointer.
+
+## Globals
+Global initializers accept function values: a named function, an anonymous `fn` literal or a `Fn` / `FnOnce` returned by a call. The compiler routes them through a synthesized init function.
+```zeen
+let scale: fn(i32) i32 = fn(x: i32) i32 { x * 2 };
+
+fn make(n: i32) FnOnce() i32 {
+  return fn() i32 { n };
+}
+
+let lazy: FnOnce() i32 = make(41);
+```

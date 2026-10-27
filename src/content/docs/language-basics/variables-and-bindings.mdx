@@ -49,9 +49,19 @@ const MAX: i32 = 100;
 let counter: i32 = 0;
 ```
 
+A global may hold a function: a named function, an `fn` literal or a `Fn` / `FnOnce` returned by a call.
+```zeen
+fn double(x: i32) i32 {
+  return x * 2;
+}
+
+let handler: fn(i32) i32 = double;
+let triple: fn(i32) i32 = fn(x: i32) i32 { x * 3 };
+```
+
 ## Discard
 
-Use `_` to discard value without drop:
+Use `_` to discard value without naming it with variable:
 ```zeen
 let _ = foo();
 ```

@@ -20,6 +20,8 @@ Probe order: family alias, then `clang`. Missing symbols in Wasm become imports 
 | Flag | Effect |
 |------|--------|
 | `--linker-path <program>` | override detected linker |
+| `--link <LIB>` | append `-l<LIB>` (gcc, clang) or `<LIB>.lib` (MSVC) |
+| `--link-dir <PATH>` | append `-L<PATH>` (gcc, clang) or `/LIBPATH:<PATH>` (MSVC) |
 | `extern link "file.c"` | append after object, skipped with warning on object-only toolchains |
 
 Output suffix follows the target: `.exe` on Windows, `.wasm` on Wasm.

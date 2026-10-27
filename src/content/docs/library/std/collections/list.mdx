@@ -96,6 +96,9 @@ import { Badge, Card } from '@astrojs/starlight/components';
   pub fn set(*self, index: usize, value: T) Option[T];
   ```
   ```zeen
+  pub fn swap(*self, a: usize, b: usize);
+  ```
+  ```zeen
   pub fn insert(*self, index: usize, value: T);
   ```
   ```zeen
@@ -128,7 +131,7 @@ import { Badge, Card } from '@astrojs/starlight/components';
   ----
 
   **Interfaces:**
-  - `core.ops` : `Drop`, `Clone` (when `T: Copy`), `Eq` (when `T: Eq`), `Index` (when `T: Copy`), `IndexPtr`, `Sliceable`
+  - `core.ops` : `Drop`, `Clone` (when `T: Copy`), `Eq` (when `T: Eq`), `Index` (`T` when `T: Copy`, `*T` otherwise), `IndexPtr`, `Sliceable`
   - `core.iter` : `PtrIterator`, `OwnedIterator`
   - `core.io` : `Debug` (when `T: Debug`)
 </Card>

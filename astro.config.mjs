@@ -84,6 +84,10 @@ export default defineConfig({
 							label: 'Package Manager',
 							slug: 'toolchain/package-manager',
 						},
+						{
+							label: 'Warnings',
+							slug: 'toolchain/warnings',
+						},
 					],
 				},
 
@@ -159,12 +163,12 @@ export default defineConfig({
 							slug: 'functions-closures/imports-and-visibility',
 						},
 						{
-							label: 'Extern',
-							slug: 'functions-closures/extern',
-						},
-						{
 							label: 'Builtin Macros',
 							slug: 'functions-closures/macros-builtin',
+						},
+						{
+							label: 'Extern',
+							slug: 'functions-closures/extern',
 						},
 					],
 				},
@@ -201,6 +205,10 @@ export default defineConfig({
 							label: 'Iterators',
 							slug: 'ownership-types/iterators',
 						},
+						{
+							label: 'Compile Time Engine',
+							slug: 'ownership-types/compile-time-engine',
+						},
 					],
 				},
 
@@ -228,6 +236,10 @@ export default defineConfig({
 								{
 									label: 'option',
 									slug: 'library/core/option',
+								},
+								{
+									label: 'reflection',
+									slug: 'library/core/reflection',
 								},
 								{
 									label: 'result',

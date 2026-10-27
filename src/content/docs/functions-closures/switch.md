@@ -109,6 +109,8 @@ switch (shape) {
 };
 ```
 
+Bare `_` as a payload binding moves the payload into a dead local and drops it. For a non-`Copy` payload this is a hard error (`zeen::mir::discard_drop_payload`), use `&_` instead.
+
 ## Statement Position
 A switch works as a statement too:
 ```zeen

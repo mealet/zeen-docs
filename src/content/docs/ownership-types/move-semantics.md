@@ -83,3 +83,16 @@ implement Copy : StructName {}
 ```
 
 A type with `Drop` cannot be `Copy`: pick one. Without an explicit `Drop`, fields drop recursively at scope end.
+
+## Payload Discard
+
+`.Variant(_)` moves the payload into a dead local and drops it immediately. For a non-copy payload that is a hard error (`zeen::mir::discard_drop_payload`), because the payload may own data. Use `&_` to borrow and discard, or `&name` to keep a pointer:
+```zeen
+switch (value) {
+  .number(_) => @println("dropped"),
+  .pair(&coords) => @println("{} {}", coords.first, coords.second),
+  _ => @println("other"),
+};
+```
+
+Bare `_` stays legal for `Copy` payloads.

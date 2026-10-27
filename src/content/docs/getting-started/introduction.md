@@ -9,7 +9,7 @@ It provides toolchains and compiler rules to operate data easily and drop it aut
 The main idea is to create a tool to develop efficient software where most errors are caught at compile time.
 
 Zeen took many design choices from Rust and Zig programming languages, which makes it more familiar for most developers.
-Besides that it introduces its own approach to ownership, memory management, and compile-time features.
+Besides that it introduces its own approach to ownership, memory management, and compile-time execution.
 
 <!-- :::note[Please Note] -->
 <!-- - There is no borrow checker, only move semantics -->

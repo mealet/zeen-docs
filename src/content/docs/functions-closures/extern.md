@@ -30,6 +30,28 @@ Varargs with `...`:
 extern fn printf([*]const char, ...);
 ```
 
+## C ABI
+
+Struct arguments and returns follow the C ABI of the target:
+
+- struct arguments pass by the C ABI rules (registers or memory),
+- small struct returns are lowered per the C ABI,
+- extern call sites carry the `byval` attribute,
+- struct layout follows the target, not the host.
+
+```zeen
+struct Vec2 {
+  x: f32,
+  y: f32,
+}
+
+extern fn vec_len(v: Vec2) f32;
+
+fn main() {
+  @println("{}", vec_len(Vec2 { .x = 3.0, .y = 4.0 }));
+}
+```
+
 ## Variables
 `extern let` declares an imported global. Storage lives in native code, no value allowed:
 ```zeen
