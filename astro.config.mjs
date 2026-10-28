@@ -112,8 +112,8 @@ export default defineConfig({
 							slug: 'language-basics/operators',
 						},
 						{
-							label: 'Constructions',
-							slug: 'language-basics/constructions',
+							label: 'Constructs',
+							slug: 'language-basics/constructs',
 						},
 						{
 							label: 'Arrays, Slices and Ranges',
