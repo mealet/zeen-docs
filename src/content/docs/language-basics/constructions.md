@@ -1,5 +1,5 @@
 ---
-title: Constructions
+title: Constructs
 description: Statements and expressions for calls, blocks, conditionals and loops.
 ---
 
